@@ -1,0 +1,23 @@
+{
+  "name": "with-styled-components",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@smooth-ui/core-sc": "^10.0.3",
+    "next": "^8.0.4",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
+    "rebass": "^3.0.0-12",
+    "styled-components": "^2.4.1",
+    "styled-icons": "^5.5.0"
+  },
+  "devDependencies": {
+    "babel-plugin-styled-components": "^1.1.5",
+    "next-plugin-styled-icons": "^5.2.0"
+  },
+  "license": "ISC"
+}
