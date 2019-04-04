@@ -1,17 +1,22 @@
 import React from "react";
 
 import styled from "styled-components";
-import Button from "@smooth-ui/core-sc";
-
 import { Box, Card, Image, Heading, Text } from "rebass";
 
 const PorfolioItem = props => (
   <Box px={2}>
-    <Image src={"/static/images/logo.png"} />
+    {/* <Image src={"/static/images/logo.png"} /> */}
     <Heading as="h3">{props.title}</Heading>
-    <Text fontSize={0}>{props.description}</Text>
-    <a href={props.github}>View on Github</a>
-    {props.demo ? <a href={props.demo}>View Live Demo</a> : null}
+    <Text>{props.description}</Text>
+    <a href={props.github} target="_blank">
+      View on Github
+    </a>
+    <br />
+    {props.demo ? (
+      <a href={props.demo} target="_blank">
+        View Live Demo
+      </a>
+    ) : null}
   </Box>
 );
 

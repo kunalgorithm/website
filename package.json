@@ -7,13 +7,18 @@
     "start": "next start"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.17",
+    "@fortawesome/free-solid-svg-icons": "^5.8.1",
+    "@fortawesome/react-fontawesome": "^0.1.4",
     "@smooth-ui/core-sc": "^10.0.3",
+    "i": "^0.3.6",
     "next": "^8.0.4",
-    "react": "^16.0.0",
-    "react-dom": "^16.0.0",
+    "npm": "^6.9.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
     "rebass": "^3.0.0-12",
-    "styled-components": "^2.4.1",
-    "styled-icons": "^5.5.0"
+    "styled-components": "^4.2.0",
+    "styled-icons": "^5.8.0"
   },
   "devDependencies": {
     "babel-plugin-styled-components": "^1.1.5",
