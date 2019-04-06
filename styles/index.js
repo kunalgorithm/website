@@ -29,6 +29,6 @@ export const Wrapper = styled.div`
   }
 `;
 
-const Section = styled.section`
+export const Section = styled.section`
   margin: 3em;
 `;

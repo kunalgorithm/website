@@ -1,3 +1,5 @@
 const withStyledIcons = require("next-plugin-styled-icons");
 
-module.exports = withStyledIcons();
+module.exports = withStyledIcons({
+  target: "serverless"
+});
