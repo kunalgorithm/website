@@ -14,15 +14,17 @@ export default () => (
 
     <Section>
       <h1>Hey, I'm Kunal</h1>
-      <p>
-        <br />
-        I'm a full-stack developer based in San Francisco.
-      </p>
+      <p>I'm a full-stack developer based in San Francisco.</p>
+      <p>kshah239@gmail.com</p>
     </Section>
 
     <Section>
-      {" "}
-      <Projects />{" "}
+      <Projects />
+    </Section>
+
+    <Section>
+      footer
+      <Image src={"/static/images/logo.png"} style={{ height: "5em" }} />
     </Section>
   </Wrapper>
 );
