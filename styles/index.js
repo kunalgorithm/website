@@ -27,6 +27,14 @@ export const Wrapper = styled.div`
       border-color: rgba(85, 85, 85, 0.4);
     }
   }
+  code {
+    color: #d400ff;
+    font-family: Menlo, Monaco, "Lucida Console", "Liberation Mono",
+      "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Courier New", monospace,
+      serif;
+    font-size: 0.9em;
+    white-space: pre-wrap;
+  }
 `;
 
 export const Section = styled.section`
