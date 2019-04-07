@@ -27,8 +27,7 @@ export default props => {
     },
     {
       title: "React Hooks Demo App",
-      image:
-        "https://github.com/kunalgorithm/react-hooks/raw/master/docs/screenshot-todos.png",
+      image: "/static/images/portfolio/react-hooks.png",
       github: "https://github.com/kunalgorithm/react-hooks",
       demo: "https://react-hooks.now.sh/",
       description: (
@@ -109,28 +108,32 @@ export default props => {
   );
 };
 const PorfolioItem = props => (
-  <Row>
-    <Col>
-      <a href={props.github} target="_blank" style={{ borderBottom: "none" }}>
-        <Image src={props.image} />
-      </a>
-    </Col>
-    <Col md="8" xs="12">
-      <Heading py={2} as="h3">
-        {props.title}
-      </Heading>
-
-      <a href={props.github} target="_blank">
-        <Github style={{ width: "15px" }} /> View on Github
-      </a>
-      {"  "}
-      {props.demo ? (
-        <a href={props.demo} target="_blank">
-          <Chrome style={{ width: "15px" }} /> View Live Demo
+  <>
+    <Row mt={6}>
+      <Col>
+        <a href={props.github} target="_blank" style={{ borderBottom: "none" }}>
+          <Image src={props.image} />
         </a>
-      ) : null}
-      <br />
-      <Text py={2}>{props.description}</Text>
-    </Col>
-  </Row>
+      </Col>
+      <Col md="8" xs="12">
+        <Heading py={2} as="h3">
+          {props.title}
+        </Heading>
+
+        <Text py={2}>
+          <a href={props.github} target="_blank">
+            <Github style={{ width: "15px" }} /> View on Github
+          </a>
+          {"   "}
+          {props.demo ? (
+            <a href={props.demo} target="_blank" style={{ marginLeft: "2em" }}>
+              <Chrome style={{ width: "15px" }} /> View Live Demo
+            </a>
+          ) : null}
+        </Text>
+
+        <Text py={2}>{props.description}</Text>
+      </Col>
+    </Row>
+  </>
 );
