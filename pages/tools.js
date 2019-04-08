@@ -5,13 +5,14 @@ import { Box, Card, Image, Heading, Text } from "rebass";
 import styled from "styled-components";
 import {} from "@smooth-ui/core-sc";
 import { Wrapper, Section } from "../styles";
-import Projects from "../components/Projects";
+import Menu from "../components/Menu";
 //@ts-ignore
 import Tools from "../docs/Tools.mdx";
 import Link from "next/link";
 export default () => (
   <Wrapper>
     <Normalize />
+    <Menu />
     <Grid>
       <Row justifyContent={{ xs: "center" }} py={5} px={3}>
         <Col>

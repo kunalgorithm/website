@@ -99,15 +99,23 @@ export default props => {
       image: "/static/images/portfolio/rice-blockchain.png",
       github: "https://github.com/kunalgorithm/RiceBlockchain",
       demo: "https://riceblockchain.kunal.sh",
-      description: <div>The official website of the Rice Blockchain Club.</div>
+      description: (
+        <div>
+          The official website of the Rice Blockchain Club. <br /> Built with
+          HTML, CSS, and jQuery.
+        </div>
+      )
     },
     {
       title: "Wiess College",
       image: "/static/images/portfolio/teamwiess.png",
-      github: "https://github.com/kunalgorithm/teamwiess2017/",
+      github: "https://github.com/kunalgorithm/teamwiess2017",
       demo: "http://www.teamwiess.com/",
       description: (
-        <div>The Official website of Wiess College at Rice University.</div>
+        <div>
+          The Official website of Wiess College at Rice University. <br />
+          Built with HTML, CSS, and jQuery.
+        </div>
       )
     }
   ];

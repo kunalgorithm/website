@@ -6,13 +6,12 @@ import styled from "styled-components";
 import {} from "@smooth-ui/core-sc";
 import { Wrapper, Section } from "../styles";
 import Projects from "../components/Projects";
-import Home from "../components/Home";
 import Menu from "../components/Menu";
 
 export default () => (
   <Wrapper>
     <Normalize />
     <Menu />
-    <Home />
+    <Projects />
   </Wrapper>
 );

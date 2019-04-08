@@ -2,15 +2,11 @@ import * as React from "react";
 
 import Projects from "./Projects";
 import SocialIcons from "./SocialIcons";
-import { Normalize, Grid, Row, Col } from "@smooth-ui/core-sc";
-import { Box, Card, Image, Heading, Text } from "rebass";
-import styled from "styled-components";
+import { Grid, Row } from "@smooth-ui/core-sc";
+import { Image } from "rebass";
 import {} from "@smooth-ui/core-sc";
-import { Wrapper, Section } from "../styles";
-import { Github } from "styled-icons/fa-brands/Github";
-import { MediumM } from "styled-icons/fa-brands/MediumM";
-import { Twitter } from "styled-icons/fa-brands/Twitter";
-// facebook? linkedin?
+import { Section } from "../styles";
+import Footer from "./Footer";
 
 export default () => (
   <>
@@ -25,10 +21,6 @@ export default () => (
       <Projects />
     </Section>
 
-    <Grid>
-      <Row justifyContent={{ xs: "center" }} py={5}>
-        <Image src={"/static/images/logo.png"} style={{ height: "3em" }} />
-      </Row>
-    </Grid>
+    <Footer />
   </>
 );
