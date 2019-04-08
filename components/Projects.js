@@ -69,7 +69,7 @@ export default props => {
     {
       title: "Movie Converter",
       image:
-        "https://github.com/kunalgorithm/electron-movie-converter/raw/master/screenshot.png",
+        "/static/images/portfolio/movie-converter.png",
       github: "https://github.com/kunalgorithm/electron-movie-converter",
       demo: "",
       description: (
@@ -83,7 +83,7 @@ export default props => {
     {
       title: "Task Timer",
       image:
-        "https://github.com/kunalgorithm/task-timer/raw/master/screenshot.png",
+        "/static/images/portfolio/task-timer.png",
       github: "https://github.com/kunalgorithm/task-timer",
       demo: "",
       description: (
