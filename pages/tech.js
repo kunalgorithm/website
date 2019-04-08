@@ -6,7 +6,8 @@ import styled from "styled-components";
 import {} from "@smooth-ui/core-sc";
 import { Wrapper, Section } from "../styles";
 import Projects from "../components/Projects";
-import Tech from "../components/Tech";
+//@ts-ignore
+import Tech from "../components/Tech.mdx";
 import Link from "next/link";
 export default () => (
   <Wrapper>
