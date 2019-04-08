@@ -5,6 +5,10 @@ export const Wrapper = styled.div`
     font-family: "Source Sans Pro", Helvetica, sans-serif;
   }
 
+  h2 {
+    margin-top: 2em;
+  }
+
   p {
     display: block;
     margin-block-start: 1em;

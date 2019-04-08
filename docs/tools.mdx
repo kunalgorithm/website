@@ -1,0 +1,80 @@
+import { Grid, Row, Col } from "@smooth-ui/core-sc";
+// export default ({ children }) => <>{children}</>
+
+# Tools
+
+> Alternative titles: Technology Stack, Software Central
+
+Just as painters and sculptors see their tools as extensions of
+themselves, I find that the same applies to the tools software engineers
+use to create software. Here are the programming languages, libraries,
+services, and other tools I use and prefer when building software.
+
+My current set up for launching new projects is composed of:
+
+- React and typescirpt on the front end, deployed to `now`
+- [GraphQL](https://graphql.org) [Node.js](https://nodejs.org) server deployed to [render](https://render.com)
+- [Prisma](https://prisma.io) bindings, data layer, and hosted database to access and manage data.
+
+I've chosen this tech stack after a fairly exhaustive exploration of the alternatives for each component,
+and selected each component for a variety of reason. This document documents the reasoning behind each of
+these decisions.
+
+Moreover, it is important to note that my particular interest is
+prototyping web applications, and my choice of tools is tailored to be
+conducive to that interest.
+
+> ## Legend
+
+> ⭐️ - indicates that the discovery and adopted usage of the tool has improved my workflow (and life) in a non-trivial way and has persisted as my tool-of-choice for it's particular purpose.
+
+## Front End
+
+---
+
+I particularly enjoy front-end web development because it allows me to
+operate simultaneously as a developer, designer, and product manager.
+
+### ⭐️ [React](https://reactjs.org)
+
+React is great framework to learn just because of it's enormous
+popularity. However, I've found that once you get through the horrific
+uphil battle of learning how to <i>think in react</i>, it's built-in
+composability makes constructing complex single-page applications an
+absolute delight.
+
+⭐️ [<code>create-react-app</code>](https://github.com/facebook/create-react-app)
+
+My go-to production-ready scaffolding tool for react projects. The zero configuration set up is invaluable, and I avoid `ejecting` the app whenever possible.
+Use `npx create-react-app <app-name>` for action; plus `--typescript` if you want type-safe action.
+
+Other Tools: I've used [Vue](https://vuejs.org/) sparingly at hackathons.
+Less experience with [Angular](https://angular.io/).
+
+### ⭐️ [Next](https://nextjs.org)
+
+Another zero-configuration tool built by the [ZEIT](https://zeit.co) team for server-rendered react applications. Works like a charm with [Now](https://zeit.co/now).
+
+## ORMs
+
+---
+
+### ⭐️ [Prisma](https://prisma.io)
+
+Next-generation ORM and database-as-a-service with astonishingly pleasant data modeling, migrations, and management. Works with node and typescript, and a few other frameworks. Highly recommend following the Node tutotrial at [How To GraphQL](https://howtographql.com) to get started.
+
+### [Mongoose](https://mongoosejs.org)
+
+Solid choice for prototyping side-projects on top of MongoDB
+
+### [SQLalchemy](https://www.sqlalchemy.org/)
+
+The default ORM to use with flask and python. Works as expected.
+
+### Django
+
+Raved about by friends whom identify as pythonistas. I've only tinkered with it.
+
+### Raw SQL queries
+
+Used surprisingly often in production by large tech companies. Seems inefficient and too error prone for my likes.
