@@ -68,8 +68,7 @@ export default props => {
     },
     {
       title: "Movie Converter",
-      image:
-        "/static/images/portfolio/movie-converter.png",
+      image: "/static/images/portfolio/movie-converter.png",
       github: "https://github.com/kunalgorithm/electron-movie-converter",
       demo: "",
       description: (
@@ -82,8 +81,7 @@ export default props => {
     },
     {
       title: "Task Timer",
-      image:
-        "/static/images/portfolio/task-timer.png",
+      image: "/static/images/portfolio/task-timer.png",
       github: "https://github.com/kunalgorithm/task-timer",
       demo: "",
       description: (
@@ -94,6 +92,22 @@ export default props => {
           bar for designated tasks. Built with React, Redux, Electron, Webpack
           and Material UI.
         </div>
+      )
+    },
+    {
+      title: "Rice Blockchain",
+      image: "/static/images/portfolio/rice-blockchain.png",
+      github: "https://github.com/kunalgorithm/RiceBlockchain",
+      demo: "https://riceblockchain.kunal.sh",
+      description: <div>The official website of the Rice Blockchain Club.</div>
+    },
+    {
+      title: "Wiess College",
+      image: "/static/images/portfolio/teamwiess.png",
+      github: "https://github.com/kunalgorithm/teamwiess2017/",
+      demo: "http://www.teamwiess.com/",
+      description: (
+        <div>The Official website of Wiess College at Rice University.</div>
       )
     }
   ];
