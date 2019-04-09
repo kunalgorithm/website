@@ -20,13 +20,13 @@ export default () => (
           </div>
         </Link>
       </Col>
-      {/* <Col xs={3} sm={2}>
+      <Col xs={3} sm={2}>
         <Link href="/tools">
           <div>
             <a>Tools</a>
           </div>
         </Link>
-      </Col> */}
+      </Col>
     </Row>
   </Grid>
 );

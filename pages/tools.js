@@ -7,7 +7,7 @@ import {} from "@smooth-ui/core-sc";
 import { Wrapper, Section } from "../styles";
 import Menu from "../components/Menu";
 //@ts-ignore
-import Tools from "../docs/Tools.mdx";
+import Tools from "../docs/tools.mdx";
 import Link from "next/link";
 export default () => (
   <Wrapper>

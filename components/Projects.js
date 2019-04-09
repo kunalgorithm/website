@@ -10,10 +10,9 @@ export default props => {
   const projects = [
     {
       title: "Graphql Authentication Seriver",
-      github: "https://github.com/kunalgorithm/graphql-auth-server",
+      github: "graphql-auth-server",
       demo: "https://graphql-auth-server.now.sh/",
-      image:
-        "https://github.com/kunalgorithm/graphql-auth-server/raw/master/screenshot.png",
+      image: "/static/portfolio/graphql-auth-server.png",
       description: (
         <div>
           A Graphql authentication server boilerplate built on node and express
@@ -27,8 +26,8 @@ export default props => {
     },
     {
       title: "React Hooks Demo App",
-      image: "/static/images/portfolio/react-hooks.png",
-      github: "https://github.com/kunalgorithm/react-hooks",
+      image: "/static/portfolio/react-hooks.png",
+      github: "react-hooks",
       demo: "https://react-hooks.now.sh/",
       description: (
         <div>
@@ -42,9 +41,8 @@ export default props => {
     },
     {
       title: "Hackernews Clone",
-      image:
-        "https://github.com/kunalgorithm/hackernews-clone/raw/master/public/screenshot.png",
-      github: "https://github.com/kunalgorithm/hackernews-clone",
+      image: "/static/portfolio/hackernews-clone.png",
+      github: "hackernews-clone",
       demo: "",
       description: (
         <div>
@@ -68,8 +66,8 @@ export default props => {
     },
     {
       title: "Movie Converter",
-      image: "/static/images/portfolio/movie-converter.png",
-      github: "https://github.com/kunalgorithm/electron-movie-converter",
+      image: "/static/portfolio/movie-converter.png",
+      github: "electron-movie-converter",
       demo: "",
       description: (
         <div>
@@ -79,25 +77,11 @@ export default props => {
         </div>
       )
     },
-    {
-      title: "Task Timer",
-      image: "/static/images/portfolio/task-timer.png",
-      github: "https://github.com/kunalgorithm/task-timer",
-      demo: "",
-      description: (
-        <div>
-          A tray application that displays and counts down a timer for
-          designated tasks in your task bar. A tray application for Mac OS X,
-          Windows, and Linux that displays and counts down a timer in your task
-          bar for designated tasks. Built with React, Redux, Electron, Webpack
-          and Material UI.
-        </div>
-      )
-    },
+
     {
       title: "Rice Blockchain",
-      image: "/static/images/portfolio/rice-blockchain.png",
-      github: "https://github.com/kunalgorithm/RiceBlockchain",
+      image: "/static/portfolio/rice-blockchain.png",
+      github: "RiceBlockchain",
       demo: "https://riceblockchain.kunal.sh",
       description: (
         <div>
@@ -108,13 +92,28 @@ export default props => {
     },
     {
       title: "Wiess College",
-      image: "/static/images/portfolio/teamwiess.png",
-      github: "https://github.com/kunalgorithm/teamwiess2017",
+      image: "/static/portfolio/teamwiess.png",
+      github: "teamwiess2017",
       demo: "http://www.teamwiess.com/",
       description: (
         <div>
           The Official website of Wiess College at Rice University. <br />
           Built with HTML, CSS, and jQuery.
+        </div>
+      )
+    },
+    {
+      title: "Task Timer",
+      image: "/static/portfolio/task-timer.png",
+      github: "task-timer",
+      demo: "",
+      description: (
+        <div>
+          A tray application that displays and counts down a timer for
+          designated tasks in your task bar. A tray application for Mac OS X,
+          Windows, and Linux that displays and counts down a timer in your task
+          bar for designated tasks. Built with React, Redux, Electron, Webpack
+          and Material UI.
         </div>
       )
     }
@@ -133,7 +132,11 @@ const PorfolioItem = props => (
   <>
     <Row mt={6}>
       <Col>
-        <a href={props.github} target="_blank" style={{ borderBottom: "none" }}>
+        <a
+          href={`https://github.com/kunalgorithm/${props.github}`}
+          target="_blank"
+          style={{ borderBottom: "none" }}
+        >
           <Image src={props.image} />
         </a>
       </Col>
@@ -143,7 +146,10 @@ const PorfolioItem = props => (
         </Heading>
 
         <Text py={2}>
-          <a href={props.github} target="_blank">
+          <a
+            href={`https://github.com/kunalgorithm/${props.github}`}
+            target="_blank"
+          >
             <Github style={{ width: "15px" }} /> View on Github
           </a>
           {"   "}
