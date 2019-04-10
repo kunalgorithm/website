@@ -3,6 +3,7 @@ const withMDX = require("@zeit/next-mdx")();
 
 module.exports = withMDX(
   withStyledIcons({
-    target: "serverless"
+    // target: "serverless"
+    "/": { page: "/" }
   })
 );
