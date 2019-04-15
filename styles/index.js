@@ -27,6 +27,7 @@ export const Wrapper = styled.div`
     transition-duration: 0.15s;
     transition-property: border-color;
     transition-timing-function: ease-out;
+    cursor: pointer;
     :hover & {
       border-color: rgba(85, 85, 85, 0.4);
     }

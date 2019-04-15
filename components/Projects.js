@@ -17,10 +17,7 @@ export default props => {
         <div>
           A Graphql authentication server boilerplate built on node and express
           that allows users to sign up with a username and password and create
-          their own data. The <code>User</code> object is structured using{" "}
-          <a href="https://mongoosejs.org">Mongoose</a> and the password is
-          hashed and salted using brypt. All data is stored in a database
-          specified by <code>process.env.DATABASE_URL</code>.
+          their own data.
         </div>
       )
     },
@@ -46,19 +43,13 @@ export default props => {
       demo: "",
       description: (
         <div>
-          <a href="https://graphql.org/">GraphQL</a>, a relatively new API
-          specification by Facebook, has been getting all the hype lately. I
-          wanted to know what all the fuss was about, so I built a fullstack
-          javascript application using popular GraphQL libraries.
-          <br />
-          The server is built with a NodeJS GraphQL application layer that
-          interfaces with a distinct database layer API, built on top of and
-          hosted by <a href="https://prisma.io">Prisma</a>. The client is
-          bootstrapped with <code>create-react-app</code> and uses the
+          Node.js GraphQL app with a database later built on top of{" "}
+          <a href="https://prisma.io">Prisma</a>. The client is bootstrapped
+          with <code>create-react-app</code> and uses the
           <a href="https://github.com/apollographql">
             Apollo Client for Javascript
           </a>
-          to send and receive data to and from the backend.
+          to interface with the server.
           <br />
           It's a hackernews clone, naturally.
         </div>
@@ -109,11 +100,9 @@ export default props => {
       demo: "",
       description: (
         <div>
-          A tray application that displays and counts down a timer for
-          designated tasks in your task bar. A tray application for Mac OS X,
-          Windows, and Linux that displays and counts down a timer in your task
-          bar for designated tasks. Built with React, Redux, Electron, Webpack
-          and Material UI.
+          A desktop tray application that displays and counts down a timer for
+          designated tasks in your task bar. Built with React, Redux, Electron,
+          Webpack and Material UI.
         </div>
       )
     }
