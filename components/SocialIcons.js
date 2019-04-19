@@ -42,7 +42,7 @@ export default () => (
       />
     </a>
     <a
-      href="https://twitter.com/kunalgorithm"
+      href="https://twitter.com/kunalsh22"
       target="blank"
       style={{
         borderBottom: "none"
