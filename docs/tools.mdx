@@ -5,19 +5,19 @@ import { Grid, Row, Col } from "@smooth-ui/core-sc";
 
 > Alternative titles: Technology Stack, How I Build Software
 
-> Created 4/8/19; updated 4/14/19
+> Created 4/8/19; updated 4/22/19
+
+My current technology stack is composed of:
+
+- Front-end: [React](https://reactjs.org) with [Typescript](https://www.typescriptlang.org/), deployed to [ZEIT now](https://zeit.co/now).
+- Styles: [Styled Components](https://www.styled-components.com/), [Styled Icons](https://styled-icons.js.org/), [Reactstrap](https://reactstrap.github.io/), [Rebass](https://rebassjs.org/), and [Smooth UI](https://smooth-ui.smooth-code.com/).
+- API: [GraphQL](https://graphql.org) [Apollo](https://www.apollographql.com) server built with [Node.js](https://nodejs.org) and deployed to [render](https://render.com).
+- Database: [Prisma](https://prisma.io).
 
 Just as painters and sculptors see their tools as extensions of
 themselves, I find that the same applies to the tools software engineers
 use to create software. Here are the programming languages, libraries,
 services, and other tools I use and prefer when building software.
-
-My current technology stack is composed of:
-
-- Front-end: [React](https://reactjs.org) and typescript, deployed to [ZEIT now](https://zeit.co/now).
-- Styles: [Styled Components](https://www.styled-components.com/), [Reactstrap](https://reactstrap.github.io/), [Rebass](https://rebassjs.org/), and [Smooth UI](https://smooth-ui.smooth-code.com/).
-- Server: [Node.js](https://nodejs.org) deployed to [render](https://render.com).
-- Data: [GraphQL](https://graphql.org), [Apollo](https://www.apollographql.com), and [Prisma](https://prisma.io).
 
 I've chosen this tech stack after a fairly exhaustive exploration of the alternatives for each component,
 and selected each for a variety of reason. This document describes the reasoning behind each of
@@ -57,6 +57,16 @@ Less experience with [Angular](https://angular.io/).
 
 Another zero-configuration tool built by the [ZEIT](https://zeit.co) team for server-rendered react applications. Works like a charm with [Now](https://zeit.co/now).
 
+## Styles
+
+---
+
+### ⭐️ [Styled Components](https://styled-components.com)
+
+If you love React, you'll love styled-components. Allows you to painlessly attach CSS styles to components without worrying about duplicate/mispelled/conflicting classnames and makes dynamic styles easier than ever.
+
+### [Rebass](https://rebassjs.org/)
+
 ## API
 
 ---
@@ -86,20 +96,6 @@ Python web framework that I used at both of my previous startups. Works well, bu
 
 Perhaps the most promising and comprehensive full-stack Javascript framework that ties together all of the latest JS technologies: GraphQL, React, Meteor, and more. VulcanJS seems to be the fastest way and most seamless way to build an by focusing almost entirely on what makes it unique and abstracting away almost everything else. The instagram clone example app is the perfect demonstration, and their Youtube Channel is invalueble in getting started.
 
-## Deploy
-
----
-
-### ⭐️ [`Now`](https://zeit.co/now)
-
-Discovering and using `now` is an absolute delight for front-end projects, so much so that I find myself fervently opposed to almost every other tool.
-
-However, I've moved away from deploying backend web services to now, finding the start-up latency issues of serverless deployments too slow to bear.
-
-### ⭐️ [Render](https://render.com)
-
-So easy, it makes me wonder why I had ever previously entertained Heroku or AWS. Create a repo, connect Render to Github, push to master, and BAM you have a working deployment that updates with every pull request.
-
 ## Data
 
 ---
@@ -115,3 +111,24 @@ Dependable choice for prototyping side-projects on top of MongoD and my ORM of c
 ### [SQLalchemy](https://www.sqlalchemy.org/)
 
 The default ORM to use with flask and python. Works as expected.
+
+## Deploy
+
+---
+
+### ⭐️ [`Now`](https://zeit.co/now)
+
+Discovering and using `now` is an absolute delight for front-end projects, so much so that I find myself fervently opposed to almost every other tool. Just type in
+
+```bash
+now
+```
+
+and you'll immediately deploy an https-secured, immutable instance of your applicaiton on the global CDN.
+
+However, I've moved away from deploying backend web services to now, finding the start-up latency issues of serverless deployments too slow to bear.
+Alternatives: [Surge](https://surge.sh/), [Netlify](https://www.netlify.com/).
+
+### ⭐️ [Render](https://render.com)
+
+So easy, it makes me wonder why I had ever previously entertained Heroku or AWS. Create a repo, connect Render to Github, push to master, and BAM you have a working deployment that updates with every pull request. Alternatives: [Heroku](https://dashboard.heroku.com/), [AWS](https://aws.amazon.com/).
