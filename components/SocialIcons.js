@@ -9,7 +9,7 @@ import { Wrapper, Section } from "../styles";
 import { Github } from "styled-icons/fa-brands/Github";
 import { MediumM } from "styled-icons/fa-brands/MediumM";
 import { Twitter } from "styled-icons/fa-brands/Twitter";
-// facebook? linkedin?
+import { LinkedinIn } from "styled-icons/fa-brands/LinkedinIn";
 
 export default () => (
   <>
@@ -49,6 +49,20 @@ export default () => (
       }}
     >
       <Twitter
+        style={{
+          width: "25px",
+          marginRight: "1em"
+        }}
+      />
+    </a>
+    <a
+      href="https://www.linkedin.com/in/kunalsh22/"
+      target="blank"
+      style={{
+        borderBottom: "none"
+      }}
+    >
+      <LinkedinIn
         style={{
           width: "25px",
           marginRight: "1em"

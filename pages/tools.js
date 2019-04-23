@@ -9,23 +9,11 @@ import Menu from "../components/Menu";
 //@ts-ignore
 import Tools from "../docs/tools.mdx";
 import Link from "next/link";
+import Footer from "../components/Footer";
+import Page from "../layouts/Page";
+
 export default () => (
-  <Wrapper>
-    <Normalize />
-    <Menu />
-    <Grid>
-      <Row justifyContent={{ xs: "center" }} py={5} px={3}>
-        <Col>
-          <Tools />
-        </Col>
-      </Row>
-    </Grid>
-    <Grid>
-      <Row justifyContent={{ xs: "center" }} py={5}>
-        <Link href="/">
-          <Image src={"/static/images/logo.png"} style={{ height: "3em" }} />
-        </Link>
-      </Row>
-    </Grid>
-  </Wrapper>
+  <Page>
+    <Tools />
+  </Page>
 );

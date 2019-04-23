@@ -6,12 +6,10 @@ import { Wrapper } from "../styles";
 import Projects from "../components/Projects";
 import Menu from "../components/Menu";
 import Footer from "../components/Footer";
+import Page from "../layouts/Page";
 
 export default () => (
-  <Wrapper>
-    <Normalize />
-    <Menu />
+  <Page>
     <Projects />
-    <Footer />
-  </Wrapper>
+  </Page>
 );

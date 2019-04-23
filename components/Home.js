@@ -15,17 +15,9 @@ const FullPage = styled.div`
 
 export default () => (
   <>
-    <FullPage>
-      <Section>
-        <h1>Hey, I'm Kunal Shah</h1>
-        <SocialIcons />
-        <p>I'm a full-stack developer based in San Francisco.</p>
-        Write to me at{" "}
-        <a href="mailto:kshah239@gmail.com">kshah239@gmail.com</a>.
-      </Section>
-      >
-    </FullPage>
-
-    <Footer />
+    <h1>Hey, I'm Kunal Shah</h1>
+    <SocialIcons />
+    <p>I'm a full-stack developer based in San Francisco.</p>
+    Write to me at <a href="mailto:kshah239@gmail.com">kshah239@gmail.com</a>.
   </>
 );

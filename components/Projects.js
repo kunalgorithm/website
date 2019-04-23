@@ -109,12 +109,12 @@ export default props => {
   ];
 
   return (
-    <Grid>
-      <h2>Recent Projects</h2>
+    <>
+      <h1>Recent Projects</h1>
       {projects.map(project => (
         <PorfolioItem {...project} key={project.name} />
       ))}
-    </Grid>
+    </>
   );
 };
 const PorfolioItem = props => (
