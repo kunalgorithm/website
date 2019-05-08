@@ -9,7 +9,7 @@ import { Chrome } from "styled-icons/fa-brands/Chrome";
 export default props => {
   const projects = [
     {
-      title: "Graphql Authentication Seriver",
+      title: "Graphql Authentication Server",
       github: "graphql-auth-server",
       demo: "https://graphql-auth-server.now.sh/",
       image: "/static/portfolio/graphql-auth-server.png",

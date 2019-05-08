@@ -17,7 +17,14 @@ export default () => (
   <>
     <h1>Hey, I'm Kunal Shah</h1>
     <SocialIcons />
-    <p>I'm a full-stack developer based in San Francisco.</p>
+    <p>
+      I'm a full-stack developer based in San Francisco currently working as a
+      software engineer at{" "}
+      <a href="https://beondeck.com" target="_blank">
+        On Deck
+      </a>
+      .
+    </p>
     Write to me at <a href="mailto:kshah239@gmail.com">kshah239@gmail.com</a>.
   </>
 );
