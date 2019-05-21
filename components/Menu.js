@@ -7,21 +7,21 @@ export default () => (
   <Grid>
     <Row mt={2} justifyContent="flex-start">
       <Col xs={3} sm={2}>
-        <Link href="/">
+        <Link href="/" prefetch>
           <div>
             <a>Home</a>
           </div>
         </Link>
       </Col>
       <Col xs={3} sm={2}>
-        <Link href="/projects">
+        <Link href="/projects" prefetch>
           <div>
             <a>Projects</a>
           </div>
         </Link>
       </Col>
       <Col xs={3} sm={2}>
-        <Link href="/tools">
+        <Link href="/tools" prefetch>
           <div>
             <a>Tools</a>
           </div>
