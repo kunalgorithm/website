@@ -1,5 +1,5 @@
 {
-  "name": "with-styled-components",
+  "name": "kunal.sh",
   "version": "1.0.0",
   "scripts": {
     "dev": "next",
@@ -12,11 +12,11 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.17",
     "@fortawesome/free-solid-svg-icons": "^5.8.1",
     "@fortawesome/react-fontawesome": "^0.1.4",
-    "@mdx-js/loader": "^0.20.3",
+    "@mdx-js/loader": "^1.1.0",
     "@smooth-ui/core-sc": "^10.0.3",
     "@zeit/next-mdx": "^1.2.0",
     "i": "^0.3.6",
-    "next": "^8.0.4",
+    "next": "^9.0.2",
     "npm": "^6.9.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
