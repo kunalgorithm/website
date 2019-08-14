@@ -6,12 +6,12 @@ import { Wrapper } from '../styles';
 import Projects from '../components/Projects';
 import Menu from '../components/Menu';
 import Footer from '../components/Footer';
-import Page from '../layouts/Page';
+
 import Head from 'next/head';
 import Link from 'next/link';
 
 export default () => (
-  <Page>
+  <div>
     <Head>
       <title>Not Found</title>
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
@@ -24,5 +24,5 @@ export default () => (
         <a>Go back</a>
       </Link>
     </Row>
-  </Page>
+  </div>
 );
