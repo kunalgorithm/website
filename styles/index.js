@@ -1,8 +1,9 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 export const Wrapper = styled.div`
   body {
     line-height: 1.6;
-    font-family: "Source Sans Pro", Helvetica, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+      Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   }
 
   h2 {
@@ -33,9 +34,9 @@ export const Wrapper = styled.div`
     }
   }
   code {
-    color: #d400ff;
-    font-family: Menlo, Monaco, "Lucida Console", "Liberation Mono",
-      "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Courier New", monospace,
+    color: #f13b21;
+    font-family: Menlo, Monaco, 'Lucida Console', 'Liberation Mono',
+      'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New', monospace,
       serif;
     font-size: 0.9em;
     white-space: pre-wrap;

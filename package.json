@@ -2,7 +2,7 @@
   "name": "kunal.sh",
   "version": "1.0.0",
   "scripts": {
-    "dev": "next",
+    "dev": "next --port 3001",
     "build": "next build",
     "now-build": "next build",
     "start": "next start",
@@ -12,7 +12,6 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.17",
     "@fortawesome/free-solid-svg-icons": "^5.8.1",
     "@fortawesome/react-fontawesome": "^0.1.4",
-    "@mdx-js/loader": "^1.1.0",
     "@smooth-ui/core-sc": "^10.0.3",
     "@zeit/next-mdx": "^1.2.0",
     "i": "^0.3.6",
@@ -25,8 +24,14 @@
     "styled-icons": "^5.8.0"
   },
   "devDependencies": {
+    "@mdx-js/loader": "^1.1.0",
+    "@next/mdx": "^9.0.3",
+    "@types/node": "^12.7.1",
+    "@types/react": "^16.9.1",
+    "@types/styled-components": "^4.1.18",
     "babel-plugin-styled-components": "^1.1.5",
-    "next-plugin-styled-icons": "^5.2.0"
+    "next-plugin-styled-icons": "^5.2.0",
+    "typescript": "^3.5.3"
   },
   "license": "ISC"
 }

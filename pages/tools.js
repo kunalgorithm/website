@@ -1,15 +1,21 @@
-import * as React from "react";
+import Router from 'next/router';
 
-//@ts-ignore
-import Tools from "../docs/tools.mdx";
-import Page from "../layouts/Page";
-import Head from "next/head";
-export default () => (
-  <Page>
-    <Head>
-      <title>Tools</title>
-      <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-    </Head>
-    <Tools />
-  </Page>
-);
+const Tools = () => {
+  return null;
+};
+
+const targetRoute = '/tech-stack';
+// Redirect to /tech-stack
+Tools.getInitialProps = async context => {
+  if (context.res) {
+    // server
+    // 303: "See other"
+    context.res.writeHead(303, { Location: targetRoute });
+    context.res.end();
+  } else {
+    // In the browser, we just pretend like this never even happened ;)
+    Router.replace(targetRoute);
+  }
+  return {};
+};
+export default Tools;

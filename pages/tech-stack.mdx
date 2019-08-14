@@ -1,18 +1,34 @@
-import { Grid, Row, Col } from "@smooth-ui/core-sc";
-// export default ({ children }) => <>{children}</>
+import { Grid, Row, Col } from '@smooth-ui/core-sc';
+import Head from 'next/head';
 
-# Tools
+export default ({ children }) => (
+  <>
+    <Head>
+      <title>Tech Stack</title>
+      <meta name='viewport' content='initial-scale=1.0, width=device-width' />
+    </Head>
+    {children}
+  </>
+);
 
-> Alternative titles: Technology Stack, How I Build Software
+# Tech Stack
 
-> Created 4/8/19; updated 4/22/19
+_Created 4/8/19; updated 8/14/19; originally titled "Tools" _
 
-My current technology stack is composed of:
+This documents all of the technical tools I use to build applications. My current technology stack is composed of:
 
-- Front-end: [React](https://reactjs.org) with [Typescript](https://www.typescriptlang.org/), deployed to [ZEIT now](https://zeit.co/now).
-- Styles: [Styled Components](https://www.styled-components.com/), [Styled Icons](https://styled-icons.js.org/), [Reactstrap](https://reactstrap.github.io/), [Rebass](https://rebassjs.org/), and [Smooth UI](https://smooth-ui.smooth-code.com/).
+- Web
+  - [React](https://reactjs.org) for composable UI components.
+  - [Next](https://nextjs.org) for server-side rendering, hot-reloading in development, file-system routing and automatic code-splitting.
+  - [Typescript](https://www.typescriptlang.org/) for modern syntactical features and type-checking component `props` .
+- Web Styles
+  - [Styled Components](https://www.styled-components.com/) for CSS-in-JS.
+  - [Smooth UI](https://smooth-ui.smooth-code.com/) for `Grid`, `Row`, and `Col`.
+  - [Styled Icons](https://styled-icons.js.org/) for icons.
+  - [Reactstrap](https://reactstrap.github.io/) for `Modal`, `Form`, and `Input`.
+- Mobile: React Native + Typescript + React Apollo bootstrap with [typescript-expo-apollo-boilerplate](https://github.com/dai-shi/typescript-expo-apollo-boilerplate) and styled with [UI Kitten](https://github.com/akveo/react-native-ui-kitten).
 - API: [GraphQL](https://graphql.org) [Apollo](https://www.apollographql.com) server built with [Node.js](https://nodejs.org) and deployed to [render](https://render.com).
-- Database: [Prisma](https://prisma.io).
+- Database: [Prisma](https://prisma.io) server on [AWS Fargate](https://www.prisma.io/tutorials/deploy-prisma-to-aws-fargate-ct14) .
 
 Just as painters and sculptors see their tools as extensions of
 themselves, I find that the same applies to the tools software engineers
