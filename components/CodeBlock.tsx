@@ -1,8 +1,23 @@
 import React from 'react';
 import Highlight, { defaultProps } from 'prism-react-renderer';
-console.log(defaultProps);
+import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live';
+import { mdx } from '@mdx-js/react';
+export default ({ children, live }: { children: any; live: boolean }) => {
+  if (live) {
+    return (
+      <div style={{ marginTop: '40px' }}>
+        <LiveProvider
+          code={children.trim()}
+          transformCode={code => '/** @jsx mdx */ \n' + code}
+          scope={{ mdx }}>
+          <LiveEditor />
+          <LiveError />
+          <LivePreview />
+        </LiveProvider>
+      </div>
+    );
+  }
 
-export default ({ children }) => {
   return (
     <Highlight
       {...defaultProps}

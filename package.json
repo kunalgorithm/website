@@ -20,6 +20,7 @@
     "prism-react-renderer": "^0.1.7",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "react-live": "^2.1.2",
     "rebass": "^3.0.0-12",
     "styled-components": "^4.2.0",
     "styled-icons": "^5.8.0"

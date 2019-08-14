@@ -11,7 +11,7 @@ import { MDXProvider } from '@mdx-js/react';
 
 const components = {
   // pre: props => <div {...props} />,
-  code: props => <CodeBlock {...props} />,
+  code: CodeBlock,
   a: props => <a target="_blank" {...props} />,
 };
 class MyApp extends App {
