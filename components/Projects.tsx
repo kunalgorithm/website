@@ -1,18 +1,50 @@
-import React from 'react';
+import React from "react";
 
-import styled from 'styled-components';
-import { Box, Card, Image, Heading, Text } from 'rebass';
-import { Grid, Row, Col } from '@smooth-ui/core-sc';
-import { Github } from 'styled-icons/fa-brands/Github';
-import { Chrome } from 'styled-icons/fa-brands/Chrome';
+import styled from "styled-components";
+import { Box, Card, Image, Heading, Text } from "rebass";
+import { Grid, Row, Col } from "@smooth-ui/core-sc";
+import { Github } from "styled-icons/fa-brands/Github";
+import { Chrome } from "styled-icons/fa-brands/Chrome";
 
 export default props => {
   const projects = [
     {
-      title: 'Graphql Authentication Server',
-      github: 'graphql-auth-server',
-      demo: 'https://graphql-auth-server.now.sh/',
-      image: '/static/portfolio/graphql-auth-server.png',
+      title: "Snailsheet",
+
+      demo: "https://snailsheet.com/",
+      isDemo: false,
+      image: "/static/portfolio/snailsheet.png",
+      description: <div>Send snail mail straight from Google Drive.</div>,
+    },
+    {
+      title: "Graphql FullStack",
+      github: "graphql-fullstack",
+      demo: "https://graphql-fullstack.now.sh/",
+      isDemo: true,
+      image: "/static/portfolio/graphql-fullstack.png",
+      description: (
+        <div>
+          Deploy a fullstack web application on serverless with cutting-edge
+          tooling in 60 seconds.
+        </div>
+      ),
+    },
+    {
+      title: "Via",
+
+      demo: "https://via.beondeck.com/",
+      isDemo: false,
+      image: "/static/portfolio/via.png",
+      description: (
+        <div>Get referred to breakout companies via top investors.</div>
+      ),
+    },
+    {
+      title: "Graphql Authentication Server",
+      github: "graphql-auth-server",
+      demo: "https://graphql-auth-server.now.sh/",
+      isDemo: true,
+      image: "/static/portfolio/graphql-auth-server.png",
       description: (
         <div>
           A Graphql authentication server boilerplate built on node and express
@@ -22,44 +54,44 @@ export default props => {
       ),
     },
     {
-      title: 'React Hooks Demo App',
-      image: '/static/portfolio/react-hooks.png',
-      github: 'react-hooks',
-      demo: 'https://react-hooks.now.sh/',
+      title: "React Hooks Demo App",
+      image: "/static/portfolio/react-hooks.png",
+      github: "react-hooks",
+      isDemo: true,
+      demo: "https://react-hooks.now.sh/",
       description: (
         <div>
           A <code>create-react-app</code> demonstrating the use the stateful
           operations in React without defining <code>Class</code> Components by
-          using the recent{' '}
+          using the recent{" "}
           <a href="https://reactjs.org/docs/hooks-intro.html">React Hooks</a>
           API proposal in React 16.7.0-alpha.
         </div>
       ),
     },
     {
-      title: 'Hackernews Clone',
-      image: '/static/portfolio/hackernews-clone.png',
-      github: 'hackernews-clone',
-      demo: '',
+      title: "Hackernews Clone",
+      image: "/static/portfolio/hackernews-clone.png",
+      github: "hackernews-clone",
+      isDemo: true,
+      demo: "",
       description: (
         <div>
-          Node.js GraphQL app with a database later built on top of{' '}
+          Node.js GraphQL app with a database later built on top of{" "}
           <a href="https://prisma.io">Prisma</a>. The client is bootstrapped
-          with <code>create-react-app</code> and uses the
-          <a href="https://github.com/apollographql">
-            Apollo Client for Javascript
-          </a>
-          to interface with the server.
+          with <code>create-react-app</code> and uses{" "}
+          <a href="https://github.com/apollographql">Apollo</a> to interface
+          with the server.
           <br />
           It's a hackernews clone, naturally.
         </div>
       ),
     },
     {
-      title: 'Movie Converter',
-      image: '/static/portfolio/movie-converter.png',
-      github: 'electron-movie-converter',
-      demo: '',
+      title: "Movie Converter",
+      image: "/static/portfolio/movie-converter.png",
+      github: "electron-movie-converter",
+      demo: "",
       description: (
         <div>
           A desktop application that converts videos on your desktop into a
@@ -70,10 +102,11 @@ export default props => {
     },
 
     {
-      title: 'Rice Blockchain',
-      image: '/static/portfolio/rice-blockchain.png',
-      github: 'RiceBlockchain',
-      demo: 'https://riceblockchain.kunal.sh',
+      title: "Rice Blockchain",
+      image: "/static/portfolio/rice-blockchain.png",
+      github: "RiceBlockchain",
+      isDemo: true,
+      demo: "https://riceblockchain.kunal.sh",
       description: (
         <div>
           The official website of the Rice Blockchain Club. <br /> Built with
@@ -82,10 +115,11 @@ export default props => {
       ),
     },
     {
-      title: 'Wiess College',
-      image: '/static/portfolio/teamwiess.png',
-      github: 'teamwiess2017',
-      demo: 'http://www.teamwiess.com/',
+      title: "Wiess College",
+      image: "/static/portfolio/teamwiess.png",
+      github: "teamwiess2017",
+      isDemo: false,
+      demo: "http://www.teamwiess.com/",
       description: (
         <div>
           The Official website of Wiess College at Rice University. <br />
@@ -94,10 +128,11 @@ export default props => {
       ),
     },
     {
-      title: 'Task Timer',
-      image: '/static/portfolio/task-timer.png',
-      github: 'task-timer',
-      demo: '',
+      title: "Task Timer",
+      image: "/static/portfolio/task-timer.png",
+      isDemo: true,
+      github: "task-timer",
+      demo: "",
       description: (
         <div>
           A desktop tray application that displays and counts down a timer for
@@ -122,27 +157,35 @@ const PorfolioItem = props => (
     <Row mt={6}>
       <Col>
         <a
-          href={`https://github.com/kunalgorithm/${props.github}`}
+          href={
+            props.github
+              ? `https://github.com/kunalgorithm/${props.github}`
+              : props.demo
+          }
           target="_blank"
-          style={{ borderBottom: 'none' }}>
+          style={{ borderBottom: "none" }}>
           <Image src={props.image} />
         </a>
       </Col>
-      <Col md="8" xs="12">
+      <Col md="6" sm="12">
         <Heading py={2} as="h3">
           {props.title}
         </Heading>
 
         <Text py={2}>
-          <a
-            href={`https://github.com/kunalgorithm/${props.github}`}
-            target="_blank">
-            <Github style={{ width: '15px' }} /> View on Github
-          </a>
-          {'   '}
+          {props.github && (
+            <a
+              href={`https://github.com/kunalgorithm/${props.github}`}
+              style={{ marginRight: "2em" }}
+              target="_blank">
+              <Github style={{ width: "15px" }} /> View on Github
+            </a>
+          )}
+
           {props.demo ? (
-            <a href={props.demo} target="_blank" style={{ marginLeft: '2em' }}>
-              <Chrome style={{ width: '15px' }} /> View Live Demo
+            <a href={props.demo} target="_blank">
+              <Chrome style={{ width: "15px" }} />{" "}
+              {props.isDemo ? "View Live Demo" : "Visit "}
             </a>
           ) : null}
         </Text>
