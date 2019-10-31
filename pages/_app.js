@@ -1,13 +1,13 @@
-import * as React from 'react';
+import * as React from "react";
 
-import { Normalize, Grid } from '@smooth-ui/core-sc';
-import {} from '@smooth-ui/core-sc';
-import { Wrapper } from '../styles';
-import Menu from '../components/Menu';
-import Footer from '../components/Footer';
-import CodeBlock from '../components/CodeBlock';
-import App, { Container } from 'next/app';
-import { MDXProvider } from '@mdx-js/react';
+import { Normalize, Grid } from "@smooth-ui/core-sc";
+import {} from "@smooth-ui/core-sc";
+import { Wrapper } from "../styles/global";
+import Menu from "../components/Menu";
+import Footer from "../components/Footer";
+import CodeBlock from "../components/CodeBlock";
+import App, { Container } from "next/app";
+import { MDXProvider } from "@mdx-js/react";
 
 const components = {
   // pre: props => <div {...props} />,

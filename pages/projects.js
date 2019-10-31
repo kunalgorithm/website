@@ -1,13 +1,13 @@
-import * as React from 'react';
+import * as React from "react";
 
-import { Normalize } from '@smooth-ui/core-sc';
-import {} from '@smooth-ui/core-sc';
-import { Wrapper } from '../styles';
-import Projects from '../components/Projects';
-import Menu from '../components/Menu';
-import Footer from '../components/Footer';
+import { Normalize } from "@smooth-ui/core-sc";
+import {} from "@smooth-ui/core-sc";
+import { Wrapper } from "../styles/global";
+import Projects from "../components/Projects";
+import Menu from "../components/Menu";
+import Footer from "../components/Footer";
 
-import Head from 'next/head';
+import Head from "next/head";
 
 export default () => (
   <div>
