@@ -1,11 +1,11 @@
-import { Grid, Row, Col } from '@smooth-ui/core-sc';
-import Head from 'next/head';
+import { Grid, Row, Col } from "@smooth-ui/core-sc";
+import Head from "next/head";
 
 export default ({ children }) => (
   <>
     <Head>
       <title>Tech Stack</title>
-      <meta name='viewport' content='initial-scale=1.0, width=device-width' />
+      <meta name="viewport" content="initial-scale=1.0, width=device-width" />
     </Head>
     {children}
   </>
@@ -45,7 +45,7 @@ uphil battle of learning how to <i>think in react</i>, it's built-in
 composability makes constructing complex single-page applications an
 absolute delight.
 
-⭐️ [<code>create-react-app</code>](https://github.com/facebook/create-react-app)
+⭐️ [`create-react-app`](https://github.com/facebook/create-react-app)
 
 My go-to production-ready scaffolding tool for react projects. The zero configuration set up is invaluable, and I avoid `ejecting` the app whenever possible.
 Use `npx create-react-app <app-name>` for action; plus `--typescript` if you want type-safe action.
@@ -118,13 +118,7 @@ The default ORM to use with flask and python. Works as expected.
 
 ### ⭐️ [`Now`](https://zeit.co/now)
 
-Discovering and using `now` is an absolute delight for front-end projects, so much so that I find myself fervently opposed to almost every other tool. Just type in
-
-```bash
-now
-```
-
-and you'll immediately deploy an https-secured, immutable instance of your applicaiton on the global CDN.
+Discovering and using `now` is an absolute delight for front-end projects, so much so that I find myself fervently opposed to almost every other tool. Just type in `now` and you'll immediately deploy an https-secured, immutable instance of your applicaiton on the global CDN.
 
 However, I've moved away from deploying backend web services to now, finding the start-up latency issues of serverless deployments too slow to bear.
 Alternatives: [Surge](https://surge.sh/), [Netlify](https://www.netlify.com/).

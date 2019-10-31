@@ -1,13 +1,20 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 export const Wrapper = styled.div`
   body {
     line-height: 1.6;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-      Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+      Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   }
 
   h2 {
     margin-top: 2em;
+  }
+
+  div {
+    border: 0 solid #dfe4e7;
+    color: #4e616c;
+    line-height: 1.5;
+    /* margin-bottom: 2.5rem; */
   }
 
   p {
@@ -35,8 +42,8 @@ export const Wrapper = styled.div`
   }
   code {
     color: #f13b21;
-    font-family: Menlo, Monaco, 'Lucida Console', 'Liberation Mono',
-      'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New', monospace,
+    font-family: Menlo, Monaco, "Lucida Console", "Liberation Mono",
+      "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Courier New", monospace,
       serif;
     font-size: 0.9em;
     white-space: pre-wrap;
