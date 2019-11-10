@@ -12,7 +12,8 @@ export const Wrapper = styled.div`
 
   div {
     border: 0 solid #dfe4e7;
-    color: #4e616c;
+    max-width: 750px;
+    /* color: #4e616c; */
     line-height: 1.5;
     /* margin-bottom: 2.5rem; */
   }

@@ -8,14 +8,14 @@ import { Chrome } from "styled-icons/fa-brands/Chrome";
 
 export default props => {
   const projects = [
-    {
-      title: "Snailsheet",
+    // {
+    //   title: "Snailsheet",
 
-      demo: "https://snailsheet.com/",
-      isDemo: false,
-      image: "/static/portfolio/snailsheet.png",
-      description: <div>Send snail mail straight from Google Drive.</div>,
-    },
+    //   demo: "https://snailsheet.com/",
+    //   isDemo: false,
+    //   image: "/static/portfolio/snailsheet.png",
+    //   description: <div>Send snail mail straight from Google Drive.</div>,
+    // },
     {
       title: "Graphql FullStack",
       github: "graphql-fullstack",
