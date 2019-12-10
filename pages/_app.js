@@ -16,10 +16,10 @@ const components = {
 };
 class MyApp extends App {
   render() {
-    const { Component, pageProps, apolloClient } = this.props;
+    const { Component, pageProps } = this.props;
 
     return (
-      <Container>
+      <div>
         {/* <Head><title>Kunal Shah</title></Head> */}
         <MDXProvider components={components}>
           <Wrapper>
@@ -31,7 +31,7 @@ class MyApp extends App {
             </Grid>
           </Wrapper>
         </MDXProvider>
-      </Container>
+      </div>
     );
   }
 }
