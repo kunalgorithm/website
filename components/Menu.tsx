@@ -12,6 +12,11 @@ export default () => (
         </Link>
       </Col>
       <Col>
+        <Link href="/links" prefetch>
+          <a>Links</a>
+        </Link>
+      </Col>
+      <Col>
         <Link href="/projects" prefetch>
           <a>Projects</a>
         </Link>
