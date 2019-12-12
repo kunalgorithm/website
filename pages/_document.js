@@ -15,7 +15,7 @@
 //   return (
 //     <html>
 //       <Head>
-//         <link rel="icon" href="/static/favicon.png" type="image/x-icon" />
+//         <link rel="icon" href="/public/favicon.png" type="image/x-icon" />
 
 //         {this.props.styleTags}
 //       </Head>

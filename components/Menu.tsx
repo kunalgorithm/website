@@ -3,29 +3,25 @@ import React from 'react';
 import Link from 'next/link';
 import { Grid, Row, Col } from '@smooth-ui/core-sc';
 
+const routes = [
+  { name: "Home", path: "/" },
+  { name: "Links", path: "/links" },
+  { name: "Projects", path: "/projects" },
+  { name: "Tech Stack", path: "/tech-stack" },
+]
+
 export default () => (
-  <Grid>
-    <Row mt={7} justifyContent="flex-start">
-      <Col>
-        <Link href="/" prefetch>
-          <a>Home</a>
-        </Link>
-      </Col>
-      <Col>
-        <Link href="/links" prefetch>
-          <a>Links</a>
-        </Link>
-      </Col>
-      <Col>
-        <Link href="/projects" prefetch>
-          <a>Projects</a>
-        </Link>
-      </Col>
-      <Col>
-        <Link href="/tech-stack" prefetch>
-          <a>Tech Stack</a>
-        </Link>
-      </Col>
+  <Grid flexDirection="column">
+    <Row mt={7} justifyContent="flex-start" >
+
+      {routes.map(route => (
+        <Col key={route.path}>
+          <Link href={route.path} >
+            <a>{route.name}</a>
+          </Link>
+        </Col>)
+      )}
+
     </Row>
   </Grid>
 );

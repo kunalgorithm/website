@@ -21,7 +21,7 @@ export default props => {
       github: "graphql-fullstack",
       demo: "https://graphql-fullstack.now.sh/",
       isDemo: true,
-      image: "/static/portfolio/graphql-fullstack.png",
+      image: "static/portfolio/graphql-fullstack.png",
       description: (
         <div>
           Deploy a fullstack web application on serverless with cutting-edge
