@@ -148,9 +148,9 @@ const projects = [
 
 function Projects() {
   return (
-    <div className="centered-container">
+    <div>
       <h1>Projects</h1>
-      <style jsx>{centeredPageStyles}</style>
+
       <div>
         {projects.map(project => (
           <PorfolioItem {...project} key={project.title} />
@@ -163,6 +163,11 @@ function Projects() {
 const PorfolioItem = props => (
   <>
     <div>
+      <style jsx>{`
+        img {
+          height: 400px;
+        }
+      `}</style>
       <div>
         <a
           href={
