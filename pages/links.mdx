@@ -1,21 +1,17 @@
-import { Grid, Row, Col } from "@smooth-ui/core-sc";
-import Head from "next/head";
+import BlogMeta from "../components/BlogMeta";
 
-export default ({ children }) => (
-  <>
-    <Head>
-      <title>Links</title>
-      <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-    </Head>
-    {children}
-  </>
-);
+export const meta = {
+  title: "Links",
+  tags: ["links"],
+  layout: "post",
+  publishDate: "2019-12-10",
+  modifiedDate: false,
+  seoDescription: "This is the links page."
+};
 
 # Links
 
 Lists of my favorite articles, blog posts, essays, videos, and other content.
-
-_Created 12/10/2019 _
 
 ## Books
 
