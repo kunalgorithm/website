@@ -42,7 +42,7 @@ export const globalStyles = css.global`
     background: #fff;
     height: 80px;
     width: 100%;
-    border-top: 2px solid ${config.css.lightGray};
+
     display: flex;
     justify-content: center;
     align-items: center;

@@ -17,7 +17,7 @@ config:
   # This is list is used to create the links in the navigation panel
   navigation:
     - { text: Home, link: / }
-    - { text: Blog, link: /blog }
+    # - { text: Blog, link: /blog }
     - { text: Links, link: /links }
     - { text: Projects, link: /projects }
 
