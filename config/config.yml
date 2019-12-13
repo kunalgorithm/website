@@ -8,7 +8,7 @@ config:
 
   # For Twitter cards, this logo must be a hosted url, not a relative path.
   # Must be square. Minimum size is 144x144; maximum size 4096x4096.
-  websiteLogo: "https://cdn.auth0.com/blog/logos/nextjs-logo.png"
+  # websiteLogo: "https://cdn.auth0.com/blog/logos/nextjs-logo.png"
 
   # if your string begins with a special character, you usually have to put it in quotes
   twitterHandle: "@kunalsh22"
