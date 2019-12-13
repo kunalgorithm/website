@@ -98,7 +98,7 @@ export default class MyApp extends App {
           </style>
           <style jsx>{`
             .icon-button {
-              margin: 15px;
+              margin: 12px;
             }
           `}</style>
         </div>

@@ -5,7 +5,7 @@ import { FaGithub, FaChrome } from "react-icons/fa";
 export const meta = {
   title: "about",
   tags: ["Next.js", "MDX"],
-  layout: "page",
+  layout: "post",
   publishDate: "2011-01-01",
   modifiedDate: false,
   seoDescription: "This is an about page."
