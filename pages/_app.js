@@ -1,39 +1,110 @@
-import * as React from "react";
-
-import { Normalize, Grid } from "@smooth-ui/core-sc";
-import { Wrapper } from "../styles/global";
-import Menu from "../components/Menu";
-import Footer from "../components/Footer";
-import CodeBlock from "../components/CodeBlock";
 import App, { Container } from "next/app";
-import { MDXProvider } from "@mdx-js/react";
-import { Head } from "next/document";
+import Head from "next/head";
+import NextSeo from "next-seo";
+import Navigation from "../components/Navigation";
+import { createSEOConfig } from "../utils/seo";
+import getPostData from "../utils/get-post-data";
+import BlogEngine from "../utils/blog-engine";
+import { renderLayout } from "../utils/render-app-layout";
+import Footer from "../components/Footer";
+import { checkForSW } from "../utils/check-for-sw";
+import { FaBars } from "react-icons/fa";
+import { globalStyles } from "../styles";
 
-const components = {
-  // pre: props => <div {...props} />,
-  code: CodeBlock,
-  a: props => <a target="_blank" {...props} />
-};
-class MyApp extends App {
-  render() {
-    const { Component, pageProps } = this.props;
+export default class MyApp extends App {
+  constructor(props) {
+    super(props);
+    this.state = { navOpen: false, postData: props.postData };
+  }
 
-    return (
-      <div>
-        {/* <Head><title>Kunal Shah</title></Head> */}
-        <MDXProvider components={components}>
-          <Wrapper>
-            <Normalize />
-            <Menu />
+  static async getInitialProps({ Component, router, ctx }) {
+    let pageProps = {};
 
-            <Grid py={5} px={3}>
-              <Component {...pageProps} />
-            </Grid>
-          </Wrapper>
-        </MDXProvider>
-      </div>
+    if (Component.getInitialProps) {
+      pageProps = await Component.getInitialProps(ctx);
+    }
+
+    // @ts-ignore
+    const [allData, postData] = await Promise.all([
+      BlogEngine(),
+      getPostData(router)
+    ]).catch(error =>
+      console.error("Error in _app.js getInitialProps()", error)
     );
+
+    const propsObj = Object.assign({}, { postData, allData, ...pageProps });
+
+    return { ...propsObj };
+  }
+
+  async componentDidMount() {
+    await checkForSW();
+  }
+
+  async componentDidUpdate(prevProps, prevState) {
+    const postData = await getPostData(this.props.router);
+    // console.log(prevState, postData)
+    if (!prevState.postData || (postData && this.state.postData)) {
+      if (!prevState.postData || postData.name !== this.state.postData.name) {
+        this.setState({ postData });
+      }
+    }
+  }
+
+  handleToggleNavigation = () => {
+    this.setState({
+      navOpen: !this.state.navOpen
+    });
+  };
+
+  render() {
+    const { postData } = this.state;
+
+    const seoData = createSEOConfig(postData);
+    if (postData) {
+      const tagsString = postData.tags.join(", ");
+      return (
+        <div>
+          {/* (1) SEO  */}
+          <Head>
+            <meta name="keywords" content={tagsString} />
+          </Head>
+          <NextSeo config={seoData} />
+
+          {/* (2) navigation */}
+          <Navigation
+            open={this.state.navOpen}
+            toggleNavigation={this.handleToggleNavigation}
+          />
+          <button
+            type="button"
+            role="button"
+            aria-label="open navigation"
+            className="icon-button hamburger"
+            onClick={this.handleToggleNavigation}
+          >
+            <FaBars size={20} />
+          </button>
+
+          {/* (3) page body */}
+          <>{renderLayout(this.props, this.state)}</>
+
+          {/* (4) footer */}
+          <Footer />
+
+          {/* (5) global and local styles */}
+          <style global jsx>
+            {globalStyles}
+          </style>
+          <style jsx>{`
+            .icon-button {
+              margin: 12px;
+            }
+          `}</style>
+        </div>
+      );
+    } else {
+      return null;
+    }
   }
 }
-
-export default MyApp;

@@ -1,0 +1,14 @@
+import imageUrl from "../../static/images/mountains.jpg";
+import BlogMeta from "../../components/BlogMeta";
+export const meta = {
+  title: "2019 In Review",
+  tags: ["general", "2019", "review"],
+  layout: "post",
+  publishDate: "2019-12-12",
+  hideProgressBar: true,
+  seoDescription: "This post is a reflection on 2019.",
+  exclude: true
+};
+
+<BlogMeta data={props} />
+<img src={imageUrl} className="img-centered" alt="Image alt" />
