@@ -24,7 +24,6 @@ export default class MyApp extends App {
       pageProps = await Component.getInitialProps(ctx);
     }
 
-    // @ts-ignore
     const [allData, postData] = await Promise.all([
       BlogEngine(),
       getPostData(router)
@@ -43,11 +42,8 @@ export default class MyApp extends App {
 
   async componentDidUpdate(prevProps, prevState) {
     const postData = await getPostData(this.props.router);
-    // console.log(prevState, postData)
-    if (!prevState.postData || (postData && this.state.postData)) {
-      if (!prevState.postData || postData.name !== this.state.postData.name) {
-        this.setState({ postData });
-      }
+    if (!prevState.postData || postData.name !== this.state.postData.name) {
+      this.setState({ postData });
     }
   }
 
@@ -64,7 +60,7 @@ export default class MyApp extends App {
     if (postData) {
       const tagsString = postData.tags.join(", ");
       return (
-        <div>
+        <>
           {/* (1) SEO  */}
           <Head>
             <meta name="keywords" content={tagsString} />
@@ -98,13 +94,13 @@ export default class MyApp extends App {
           </style>
           <style jsx>{`
             .icon-button {
-              margin: 12px;
+              margin: 15px;
             }
           `}</style>
-        </div>
+        </>
       );
     } else {
-      return null;
+      return <div>something went wrong</div>;
     }
   }
 }

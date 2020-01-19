@@ -203,7 +203,7 @@ const PorfolioItem = props => (
           ) : null}
         </div>
 
-        <p>{props.description}</p>
+        <>{props.description}</>
       </div>
     </div>
   </>

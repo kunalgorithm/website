@@ -76,7 +76,7 @@ export const globalStyles = css.global`
     padding: 40px 20px 100px 20px;
     position: relative;
   }
-  .blog-layout > div {
+  .blog-layout {
     display: flex;
     flex-direction: column;
   }
