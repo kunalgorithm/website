@@ -44,7 +44,7 @@ export default () => (
     </a>
 
     <a
-      href="https://twitter.com/kunalsh22"
+      href="https://twitter.com/kunalgoritm"
       target="blank"
       style={{
         borderBottom: "none"
