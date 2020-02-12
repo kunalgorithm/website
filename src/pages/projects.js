@@ -4,6 +4,89 @@ import { FaGithub, FaChrome } from "react-icons/fa"
 import { css } from "@emotion/core"
 import Layout from "../components/Layout"
 
+export default function Projects() {
+  return (
+    <Layout title="Projects">
+      <h1>Projects</h1>
+
+      <div>
+        {projects.map(project => (
+          <PorfolioItem {...project} key={project.title} />
+        ))}
+      </div>
+    </Layout>
+  )
+}
+
+const PorfolioItem = props => (
+  <div>
+    <div>
+      <h2>{props.title}</h2>
+      <div>
+        <p style={{ paddingBottom: "3px" }}>{props.description}</p>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+          }}
+        >
+          <br></br>
+          {props.github && (
+            <a
+              href={`https://github.com/kunalgorithm/${props.github}`}
+              style={{
+                marginRight: "2em",
+                display: "flex",
+                alignItems: "center",
+              }}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaGithub style={{ width: "35px", marginRight: "3px" }} /> View on
+              Github
+            </a>
+          )}
+
+          {props.demo ? (
+            <a
+              href={props.demo}
+              style={{
+                display: "flex",
+                alignItems: "center",
+              }}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaChrome style={{ width: "35px", marginRight: "3px" }} />{" "}
+              {props.isDemo ? " View Live Demo" : " Visit"}
+            </a>
+          ) : null}
+        </div>
+      </div>
+    </div>
+    <div
+      css={css`
+        img {
+          height: 400px;
+        }
+      `}
+    >
+      <a
+        href={
+          props.github
+            ? `https://github.com/kunalgorithm/${props.github}`
+            : props.demo
+        }
+        target="_blank"
+        rel="noopener noreferrer"
+        style={{ borderBottom: "none" }}
+      >
+        <img src={props.image} className="img-centered" alt={props.name} />
+      </a>
+    </div>
+  </div>
+)
+
 const projects = [
   // {
   //   title: "Snailsheet",
@@ -61,8 +144,8 @@ const projects = [
         A <code>create-react-app</code> demonstrating the use the stateful
         operations in React without defining <code>Class</code> Components by
         using the recent{" "}
-        <a href="https://reactjs.org/docs/hooks-intro.html">React Hooks</a>
-        API proposal in React 16.7.0-alpha.
+        <a href="https://reactjs.org/docs/hooks-intro.html">React Hooks</a> API
+        proposal in React 16.7.0-alpha.
       </div>
     ),
   },
@@ -138,71 +221,3 @@ const projects = [
     ),
   },
 ]
-
-function Projects() {
-  return (
-    <Layout>
-      <h1>Projects</h1>
-
-      <div>
-        {projects.map(project => (
-          <PorfolioItem {...project} key={project.title} />
-        ))}
-      </div>
-    </Layout>
-  )
-}
-
-const PorfolioItem = props => (
-  <div>
-    <div>
-      <div
-        css={css`
-          img {
-            height: 400px;
-          }
-        `}
-      >
-        <a
-          href={
-            props.github
-              ? `https://github.com/kunalgorithm/${props.github}`
-              : props.demo
-          }
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{ borderBottom: "none" }}
-        >
-          <img src={props.image} className="img-centered" alt={props.name} />
-        </a>
-      </div>
-      <div>
-        <h2>{props.title}</h2>
-
-        <div>
-          {props.github && (
-            <a
-              href={`https://github.com/kunalgorithm/${props.github}`}
-              style={{ marginRight: "2em" }}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <FaGithub style={{ width: "15px" }} /> View on Github
-            </a>
-          )}
-
-          {props.demo ? (
-            <a href={props.demo} target="_blank" rel="noopener noreferrer">
-              <FaChrome style={{ width: "15px" }} />{" "}
-              {props.isDemo ? "View Live Demo" : "Visit "}
-            </a>
-          ) : null}
-        </div>
-
-        <>{props.description}</>
-      </div>
-    </div>
-  </div>
-)
-
-export default Projects

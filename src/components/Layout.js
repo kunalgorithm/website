@@ -9,7 +9,7 @@ const ListLink = props => (
   </li>
 )
 
-export default ({ children }) => {
+export default ({ children, title = undefined }) => {
   const data = useStaticQuery(
     graphql`
       query {
@@ -26,7 +26,7 @@ export default ({ children }) => {
   return (
     <div style={{ margin: `3rem auto`, maxWidth: 650, padding: `0 1rem` }}>
       <SEO
-        title={data.site.siteMetadata.title}
+        title={title || data.site.siteMetadata.title}
         description={data.site.siteMetadata.description}
       />
       <header style={{ marginBottom: `1.5rem` }}>
@@ -37,8 +37,7 @@ export default ({ children }) => {
         <ul style={{ listStyle: `none`, float: `right` }}>
           <ListLink to="/">Home</ListLink>
           <ListLink to="/projects">Projects</ListLink>
-          <ListLink to="/about/">About</ListLink>
-          <ListLink to="/contact/">Contact</ListLink>
+          <ListLink to="/about">About</ListLink>
         </ul>
         <SocialIcons />
       </header>
