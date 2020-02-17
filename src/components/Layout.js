@@ -39,7 +39,7 @@ export default ({ children, title = undefined }) => {
           <ListLink to="/projects">Projects</ListLink>
           <ListLink to="/about">About</ListLink>
         </ul>
-        <SocialIcons />
+        {/* <SocialIcons /> TODO  */}
       </header>
 
       {children}
