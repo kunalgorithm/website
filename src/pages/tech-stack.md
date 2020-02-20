@@ -10,7 +10,7 @@ This documents all of the technical tools I use to build applications. My curren
   - [Next](https://nextjs.org) for server-side rendering, hot-reloading in development, file-system routing and automatic code-splitting.
   - [Typescript](https://www.typescriptlang.org/) for modern syntactical features and type-checking component `props` .
 - Web Styles
-  - [Styled Components](https://www.styled-components.com/) for CSS-in-JS.
+  - [Emotion](https://emotion.sh/) for styles CSS-in-JS.
   - [Smooth UI](https://smooth-ui.smooth-code.com/) for `Grid`, `Row`, and `Col`.
   - [Styled Icons](https://styled-icons.js.org/) for icons.
   - [Reactstrap](https://reactstrap.github.io/) for `Modal`, `Form`, and `Input`.
@@ -49,7 +49,7 @@ Another zero-configuration tool built by the [ZEIT](https://zeit.co) team for se
 
 ---
 
-### ⭐️ [Styled Components](https://styled-components.com)
+### ⭐️ [Emotion](https://emotion.sh)
 
 If you love React, you'll love styled-components. Allows you to painlessly attach CSS styles to components without worrying about duplicate/mispelled/conflicting classnames and makes dynamic styles easier than ever.
 
