@@ -1,12 +1,5 @@
 import * as React from "react"
-import {
-  FaBars,
-  FaGithub,
-  FaInstagram,
-  FaMediumM,
-  FaTwitter,
-  FaLinkedinIn,
-} from "react-icons/fa"
+import { FaGithub, FaInstagram, FaTwitter, FaLinkedinIn } from "react-icons/fa"
 import { css } from "@emotion/core"
 
 export default () => (

@@ -1,7 +1,7 @@
 import React from "react"
 import { Link, useStaticQuery, graphql } from "gatsby"
 import SEO from "./seo"
-import SocialIcons from "./SocialIcons"
+// import SocialIcons from "./SocialIcons"
 
 const ListLink = props => (
   <li style={{ display: `inline-block`, marginRight: `1rem` }}>

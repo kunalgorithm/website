@@ -20,7 +20,7 @@ Both apps are hosted on render.
 ## UI 
 
 We originally bootstrapped our application using create-react-app, the no-configuration abstractions of which made building composable UI on the web an absolute breeze. 
-We later realized however, that our app needed to dynamically generate <meta> tags for title and og:image, among others, for individual connector's pages. This would allow custom previews for each page. For example, when I send an iMessage linking to my Medium profile, it shows a preview of my profile like so:
+We later realized however, that our app needed to dynamically generate `<meta>` tags for title and og:image, among others, for individual connector's pages. This would allow custom previews for each page. For example, when I send an iMessage linking to my Medium profile, it shows a preview of my profile like so:
 
 ![Via Twitter Preview](/via-twitter-preview.png)
 
@@ -40,11 +40,9 @@ To load a connector's profile and list of companies, for example, you just pass
 connector {
   name
   email
-  ...
   portfolio {
-   comapny_name
+   company_name
    company_website
-   ...
  }
 }
 ```
