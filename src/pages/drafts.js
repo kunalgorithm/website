@@ -5,14 +5,22 @@ import { rhythm } from "../utils/typography"
 import Layout from "../components/Layout"
 
 export default ({ data }) => {
-  const pages = data.allMarkdownRemark.edges.filter(
-    ({ node }) => !node.frontmatter.draft
+  console.log(data)
+  if (process.env.NODE_ENV === "production")
+    return (
+      <Layout title="Drafts">
+        <div>This page is only visible on development.</div>
+      </Layout>
+    )
+
+  const drafts = data.allMarkdownRemark.edges.filter(
+    ({ node }) => node.frontmatter.draft && node.frontmatter.date
   )
   return (
-    <Layout title="Home">
+    <Layout title="Drafts">
       <div>
-        <h4>{pages.length} Posts</h4>
-        {pages.map(({ node }) => (
+        <h4>{drafts.length} Drafts</h4>
+        {drafts.map(({ node }) => (
           <div key={node.id}>
             <Link
               to={node.fields.slug}
