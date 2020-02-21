@@ -3,7 +3,7 @@ title: "Links"
 date: "2019-12-10"
 ---
 
-Lists of my favorite articles, blog posts, essays, videos, and other content.
+Collections of articles, blog posts, essays, and books I've been recently reading.
 
 ## Articles
 
