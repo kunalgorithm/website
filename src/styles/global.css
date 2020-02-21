@@ -1,11 +1,12 @@
 html {
-  background-color: gainsboro;
+  background-color: white;
 }
 
 a {
   text-decoration: none;
   text-shadow: none;
   background-image: none;
+  color: #516bf0;
 }
 
 a:hover {
@@ -17,6 +18,35 @@ a > img {
   background-image: none;
 }
 
+/* :root {
+  --theme-color: #42b983;
+  --theme-color-secondary: rgb(167, 94, 255);
+}
+code {
+  color: var(--theme-color-secondary);
+} */
+
+code {
+  font-family: Fira Code, Monaco, courier, monospace !important;
+  color: rgb(167, 94, 255);
+  font-weight: 500;
+  background-color: #f8f8f8;
+  border-radius: 2px;
+
+  font-size: 0.8rem;
+  margin: 0 2px;
+  padding: 3px 5px;
+  white-space: pre-wrap;
+}
+pre {
+  background-color: hsla(100, 100%, 0%, 0.2);
+  max-width: 275px;
+  text-align: center;
+  color: white;
+  border-radius: 10px;
+  padding: 0.5em;
+  margin: 0 auto;
+}
 /**
  * from: https://www.gatsbyjs.org/packages/gatsby-remark-prismjs/
  * Add back the container background-color, border-radius, padding, margin
@@ -24,6 +54,7 @@ a > img {
  */
 .gatsby-highlight {
   background-color: hsla(0, 0%, 0%, 0.8);
+  color: rgb(167, 94, 255);
   border-radius: 0.3em;
   margin: 0.5em 0;
   padding: 1em;
