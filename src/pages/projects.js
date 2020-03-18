@@ -110,6 +110,14 @@ const projects = [
     ),
   },
   {
+    title: "Cosign",
+
+    demo: "https://cosign.co",
+    isDemo: false,
+    image: "portfolio/cosign-profile2.png",
+    description: <div>A peer-to-peer credentialing network.</div>,
+  },
+  {
     title: "Via",
 
     demo: "https://via.beondeck.com/",
