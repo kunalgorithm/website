@@ -3,7 +3,7 @@ import { graphql } from "gatsby"
 import Layout from "../components/Layout"
 
 export default ({ data }) => {
-  console.log(data)
+
   return (
     <Layout>
       <div>

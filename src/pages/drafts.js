@@ -5,7 +5,7 @@ import { rhythm } from "../utils/typography"
 import Layout from "../components/Layout"
 
 export default ({ data }) => {
-  console.log(data)
+
   if (process.env.NODE_ENV === "production")
     return (
       <Layout title="Drafts">
