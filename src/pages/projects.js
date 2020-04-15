@@ -4,6 +4,8 @@ import { FaGithub, FaChrome } from "react-icons/fa"
 import { css } from "@emotion/core"
 import Layout from "../components/Layout"
 
+// TODO: add medicalbills.fyi, found ?
+
 export default function Projects() {
   return (
     <Layout title="Projects">
@@ -109,24 +111,24 @@ const projects = [
       </div>
     ),
   },
-  {
-    title: "Cosign",
+  // {
+  //   title: "Cosign",
 
-    demo: "https://cosign.co",
-    isDemo: false,
-    image: "portfolio/cosign-profile2.png",
-    description: <div>A peer-to-peer credentialing network.</div>,
-  },
-  {
-    title: "Via",
+  //   demo: "https://cosign.co",
+  //   isDemo: false,
+  //   image: "portfolio/cosign-profile2.png",
+  //   description: <div>A peer-to-peer credentialing network.</div>,
+  // },
+  // {
+  //   title: "Via",
 
-    demo: "https://via.beondeck.com/",
-    isDemo: false,
-    image: "portfolio/via.png",
-    description: (
-      <div>Get referred to breakout companies via top investors.</div>
-    ),
-  },
+  //   demo: "https://via.beondeck.com/",
+  //   isDemo: false,
+  //   image: "portfolio/via.png",
+  //   description: (
+  //     <div>Get referred to breakout companies via top investors.</div>
+  //   ),
+  // },
   {
     title: "Graphql Authentication Server",
     github: "graphql-auth-server",
