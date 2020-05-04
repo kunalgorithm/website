@@ -2,64 +2,58 @@ html {
   background-color: white;
 }
 
+/* Links */
 a {
   text-decoration: none;
   text-shadow: none;
   background-image: none;
   color: #516bf0;
 }
-
 a:hover {
   color: slategray;
 }
-
 a > img {
   text-shadow: none;
   background-image: none;
 }
 
-/* :root {
-  --theme-color: #42b983;
-  --theme-color-secondary: rgb(167, 94, 255);
-}
-code {
-  color: var(--theme-color-secondary);
-} */
-
+/* Inline code */
 code {
   font-family: Fira Code, Monaco, courier, monospace !important;
   color: rgb(167, 94, 255);
   font-weight: 500;
   background-color: #f8f8f8;
   border-radius: 2px;
-
   font-size: 0.8rem;
   margin: 0 2px;
   padding: 3px 5px;
   white-space: pre-wrap;
 }
-pre {
+
+/* Add custom styles to codeblocks */
+/* pre {
   background-color: hsla(100, 100%, 0%, 0.2);
-  max-width: 275px;
   text-align: center;
   color: white;
   border-radius: 10px;
   padding: 0.5em;
   margin: 0 auto;
-}
+  font-size: 80%;
+} */
+
 /**
  * from: https://www.gatsbyjs.org/packages/gatsby-remark-prismjs/
  * Add back the container background-color, border-radius, padding, margin
  * and overflow that we removed from <pre>.
  */
-.gatsby-highlight {
+/* .gatsby-highlight {
   background-color: hsla(0, 0%, 0%, 0.8);
   color: rgb(167, 94, 255);
   border-radius: 0.3em;
   margin: 0.5em 0;
   padding: 1em;
   overflow: auto;
-}
+} */
 
 /**
  * Remove the default PrismJS theme background-color, border-radius, margin,
@@ -68,16 +62,17 @@ pre {
  * 2. Always fill the visible space in .gatsby-highlight.
  * 3. Adjust the position of the line numbers
  */
-.gatsby-highlight pre[class*="language-"] {
+/* .gatsby-highlight pre[class*="language-"] {
   background-color: transparent;
   font-size: 90%;
   margin: 0;
   padding: 0;
   overflow: initial;
-  float: left; /* 1 */
-  min-width: 100%; /* 2 */
-}
+  float: left;
+  min-width: 100%;
+} */
 
 blockquote {
   border-left: 0.54375rem solid #bbb;
+  font-size: 85%;
 }
