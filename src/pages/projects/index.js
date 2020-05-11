@@ -2,9 +2,159 @@ import React from "react"
 
 import { FaGithub, FaChrome } from "react-icons/fa"
 import { css } from "@emotion/core"
-import Layout from "../components/Layout"
-
+import Layout from "../../components/Layout"
+//@ts-ignore
+import Asteroids from "./portfolio/asteroids-small.gif"
+//@ts-ignore
+import GraphQLFullStack from "./portfolio/graphql-fullstack.gif"
+//@ts-ignore
+import GraphQLAuthServer from "./portfolio/graphql-auth-server.png"
+//@ts-ignore
+import HackerNews from "./portfolio/hackernews-clone.png"
+//@ts-ignore
+import MovieConverter from "./portfolio/movie-converter.png"
+//@ts-ignore
+import WiessCollege from "./portfolio/teamwiess.png"
+//@ts-ignore
+import RiceBlockchain from "./portfolio/rice-blockchain.png"
+//@ts-ignore
+import TaskTimer from "./portfolio/task-timer.png"
 // TODO: add medicalbills.fyi, found ?
+
+const projects = [
+  // {
+  //   title: "Snailsheet",
+
+  //   demo: "https://snailsheet.com/",
+  //   isDemo: false,
+  //   image: "/portfolio/snailsheet.png",
+  //   description: <div>Send snail mail straight from Google Drive.</div>,
+  // },
+  {
+    title: "Asteroids",
+    github: "asteroids",
+    demo: "https://asteroids.live/",
+    isDemo: true,
+    image: Asteroids,
+    description: <div>Asteroids in your browser.</div>,
+  },
+  {
+    title: "Graphql FullStack",
+    github: "graphql-fullstack",
+    isDemo: true,
+    image: GraphQLFullStack,
+    description: (
+      <div>
+        Deploy a fullstack web application on serverless with cutting-edge
+        tooling in 60 seconds.
+      </div>
+    ),
+  },
+  // {
+  //   title: "Cosign",
+
+  //   demo: "https://cosign.co",
+  //   isDemo: false,
+  //   image: "portfolio/cosign-profile2.png",
+  //   description: <div>A peer-to-peer credentialing network.</div>,
+  // },
+  // {
+  //   title: "Via",
+
+  //   demo: "https://via.beondeck.com/",
+  //   isDemo: false,
+  //   image: "portfolio/via.png",
+  //   description: (
+  //     <div>Get referred to breakout companies via top investors.</div>
+  //   ),
+  // },
+  {
+    title: "Graphql Authentication Server",
+    github: "graphql-auth-server",
+    demo: "https://graphql-auth-server.now.sh/",
+    isDemo: true,
+    image: GraphQLAuthServer,
+    description: (
+      <div>
+        A Graphql authentication server boilerplate built on node and express
+        that allows users to sign up with a username and password and create
+        their own data.
+      </div>
+    ),
+  },
+
+  {
+    title: "Hackernews Clone",
+    image: HackerNews,
+    github: "hackernews-clone",
+    isDemo: true,
+    demo: "",
+    description: (
+      <div>
+        Node.js GraphQL app with a database later built on top of{" "}
+        <a href="https://prisma.io">Prisma</a>. The client is bootstrapped with{" "}
+        <code>create-react-app</code> and uses{" "}
+        <a href="https://github.com/apollographql">Apollo</a> to interface with
+        the server.
+        <br />
+        It's a hackernews clone, naturally.
+      </div>
+    ),
+  },
+  {
+    title: "Movie Converter",
+    image: MovieConverter,
+    github: "electron-movie-converter",
+    demo: "",
+    description: (
+      <div>
+        A desktop application that converts videos on your desktop into a format
+        of your choice. Built with Electron, React, Redux, Webpack, and Babel.
+      </div>
+    ),
+  },
+
+  {
+    title: "Rice Blockchain",
+    image: RiceBlockchain,
+    github: "RiceBlockchain",
+    isDemo: true,
+    demo: "https://riceblockchain.kunal.sh",
+    description: (
+      <div>
+        The official website of the Rice Blockchain Club. <br /> Built with
+        HTML, CSS, and jQuery.
+      </div>
+    ),
+  },
+  {
+    title: "Wiess College",
+    image: WiessCollege,
+    github: "teamwiess2017",
+    isDemo: false,
+    demo: "http://www.teamwiess.com/",
+    description: (
+      <div>
+        The Official website of Wiess College at Rice University. <br />
+        Built with HTML, CSS, and jQuery.
+      </div>
+    ),
+  },
+  {
+    title: "Task Timer",
+    image: TaskTimer,
+    isDemo: true,
+    github: "task-timer",
+    demo: "",
+    description: (
+      <div>
+        A desktop tray application that displays and counts down a timer for
+        designated tasks in your task bar. Built with React, Redux, Electron,
+        Webpack and Material UI.
+      </div>
+    ),
+  },
+]
 
 export default function Projects() {
   return (
@@ -25,7 +175,7 @@ const PorfolioItem = props => (
     <div>
       <h2>{props.title}</h2>
       <div>
-        <p style={{ paddingBottom: "3px" }}>{props.description}</p>
+        <div style={{ paddingBottom: "3px" }}>{props.description}</div>
         <div
           style={{
             display: "flex",
@@ -83,151 +233,13 @@ const PorfolioItem = props => (
         rel="noopener noreferrer"
         style={{ borderBottom: "none" }}
       >
-        <img src={props.image} className="img-centered" alt={props.name} />
+        <img
+          src={props.image}
+          className="img-centered"
+          alt={props.name}
+          style={{ marginTop: "15px" }}
+        />
       </a>
     </div>
   </div>
 )
-
-const projects = [
-  // {
-  //   title: "Snailsheet",
-
-  //   demo: "https://snailsheet.com/",
-  //   isDemo: false,
-  //   image: "/portfolio/snailsheet.png",
-  //   description: <div>Send snail mail straight from Google Drive.</div>,
-  // },
-  {
-    title: "Graphql FullStack",
-    github: "graphql-fullstack",
-    demo: "https://graphql-fullstack.now.sh/",
-    isDemo: true,
-    image: "portfolio/graphql-fullstack.png",
-    description: (
-      <div>
-        Deploy a fullstack web application on serverless with cutting-edge
-        tooling in 60 seconds.
-      </div>
-    ),
-  },
-  // {
-  //   title: "Cosign",
-
-  //   demo: "https://cosign.co",
-  //   isDemo: false,
-  //   image: "portfolio/cosign-profile2.png",
-  //   description: <div>A peer-to-peer credentialing network.</div>,
-  // },
-  // {
-  //   title: "Via",
-
-  //   demo: "https://via.beondeck.com/",
-  //   isDemo: false,
-  //   image: "portfolio/via.png",
-  //   description: (
-  //     <div>Get referred to breakout companies via top investors.</div>
-  //   ),
-  // },
-  {
-    title: "Graphql Authentication Server",
-    github: "graphql-auth-server",
-    demo: "https://graphql-auth-server.now.sh/",
-    isDemo: true,
-    image: "portfolio/graphql-auth-server.png",
-    description: (
-      <div>
-        A Graphql authentication server boilerplate built on node and express
-        that allows users to sign up with a username and password and create
-        their own data.
-      </div>
-    ),
-  },
-  {
-    title: "React Hooks Demo App",
-    image: "portfolio/react-hooks.png",
-    github: "react-hooks",
-    isDemo: true,
-    demo: "https://react-hooks.now.sh/",
-    description: (
-      <div>
-        A <code>create-react-app</code> demonstrating the use the stateful
-        operations in React without defining <code>Class</code> Components by
-        using the recent{" "}
-        <a href="https://reactjs.org/docs/hooks-intro.html">React Hooks</a> API
-        proposal in React 16.7.0-alpha.
-      </div>
-    ),
-  },
-  {
-    title: "Hackernews Clone",
-    image: "portfolio/hackernews-clone.png",
-    github: "hackernews-clone",
-    isDemo: true,
-    demo: "",
-    description: (
-      <div>
-        Node.js GraphQL app with a database later built on top of{" "}
-        <a href="https://prisma.io">Prisma</a>. The client is bootstrapped with{" "}
-        <code>create-react-app</code> and uses{" "}
-        <a href="https://github.com/apollographql">Apollo</a> to interface with
-        the server.
-        <br />
-        It's a hackernews clone, naturally.
-      </div>
-    ),
-  },
-  {
-    title: "Movie Converter",
-    image: "portfolio/movie-converter.png",
-    github: "electron-movie-converter",
-    demo: "",
-    description: (
-      <div>
-        A desktop application that converts videos on your desktop into a format
-        of your choice. Built with Electron, React, Redux, Webpack, and Babel.
-      </div>
-    ),
-  },
-
-  {
-    title: "Rice Blockchain",
-    image: "portfolio/rice-blockchain.png",
-    github: "RiceBlockchain",
-    isDemo: true,
-    demo: "https://riceblockchain.kunal.sh",
-    description: (
-      <div>
-        The official website of the Rice Blockchain Club. <br /> Built with
-        HTML, CSS, and jQuery.
-      </div>
-    ),
-  },
-  {
-    title: "Wiess College",
-    image: "portfolio/teamwiess.png",
-    github: "teamwiess2017",
-    isDemo: false,
-    demo: "http://www.teamwiess.com/",
-    description: (
-      <div>
-        The Official website of Wiess College at Rice University. <br />
-        Built with HTML, CSS, and jQuery.
-      </div>
-    ),
-  },
-  {
-    title: "Task Timer",
-    image: "portfolio/task-timer.png",
-    isDemo: true,
-    github: "task-timer",
-    demo: "",
-    description: (
-      <div>
-        A desktop tray application that displays and counts down a timer for
-        designated tasks in your task bar. Built with React, Redux, Electron,
-        Webpack and Material UI.
-      </div>
-    ),
-  },
-]
