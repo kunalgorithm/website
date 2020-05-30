@@ -11,6 +11,7 @@ module.exports = {
     author: `Kunal Shah`,
   },
   plugins: [
+    "gatsby-plugin-antd",
     `gatsby-plugin-sharp`,
     `gatsby-transformer-remark`,
     `gatsby-plugin-emotion`,
@@ -39,12 +40,12 @@ module.exports = {
         path: `${__dirname}/src/`,
       },
     },
-    {
-      resolve: `gatsby-plugin-typography`,
-      options: {
-        pathToConfigModule: `src/utils/typography`,
-      },
-    },
+    // {
+    //   resolve: `gatsby-plugin-typography`,
+    //   options: {
+    //     pathToConfigModule: `src/utils/typography`,
+    //   },
+    // },
     {
       resolve: `gatsby-plugin-manifest`,
       options: {

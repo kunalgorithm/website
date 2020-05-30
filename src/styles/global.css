@@ -1,9 +1,8 @@
-html {
-  background-color: white;
+body {
+  overflow-x: hidden;
 }
-
 /* Links */
-a {
+/* a {
   text-decoration: none;
   text-shadow: none;
   background-image: none;
@@ -15,14 +14,14 @@ a:hover {
 a > img {
   text-shadow: none;
   background-image: none;
-}
+} */
 
 /* Inline code */
 code {
   font-family: Fira Code, Monaco, courier, monospace !important;
   color: rgb(167, 94, 255);
   font-weight: 500;
-  background-color: #f8f8f8;
+  /* background-color: #f8f8f8; */
   border-radius: 2px;
   font-size: 0.8rem;
   margin: 0 2px;
@@ -73,6 +72,7 @@ code {
 } */
 
 blockquote {
-  border-left: 0.54375rem solid #bbb;
-  font-size: 85%;
+  border-left: 0.2rem solid #bbb;
+  margin-left: 0.4rem;
+  font-size: 90%;
 }
