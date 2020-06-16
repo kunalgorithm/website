@@ -20,6 +20,7 @@ import RiceBlockchain from "./portfolio/rice-blockchain.png"
 //@ts-ignore
 import TaskTimer from "./portfolio/task-timer.png"
 // TODO: add medicalbills.fyi, found ?
+import { Row, Col } from "antd"
 
 const projects = [
   // {
@@ -161,11 +162,9 @@ export default function Projects() {
     <Layout title="Projects">
       <h1>Projects</h1>
 
-      <div>
-        {projects.map(project => (
-          <PorfolioItem {...project} key={project.title} />
-        ))}
-      </div>
+      {projects.map(project => (
+        <PorfolioItem {...project} key={project.title} />
+      ))}
     </Layout>
   )
 }
@@ -173,7 +172,7 @@ export default function Projects() {
 const PorfolioItem = props => (
   <div>
     <div>
-      <h2>{props.title}</h2>
+      <h2 style={{ marginTop: "4rem" }}>{props.title}</h2>
       <div>
         <div style={{ paddingBottom: "3px" }}>{props.description}</div>
         <div
@@ -219,7 +218,9 @@ const PorfolioItem = props => (
     <div
       css={css`
         img {
-          height: 400px;
+          width: 80%;
+          max-width: 800px;
+          text-align: center;
         }
       `}
     >
