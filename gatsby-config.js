@@ -11,6 +11,7 @@ module.exports = {
     author: `Kunal Shah`,
   },
   plugins: [
+    `gatsby-plugin-mdx`,
     "gatsby-plugin-antd",
     `gatsby-plugin-sharp`,
     `gatsby-transformer-remark`,
