@@ -70,6 +70,13 @@ code {
   float: left;
   min-width: 100%;
 } */
+.gatsby-highlight pre[class*="language-browser"] {
+  padding: 1em;
+  border: 1px solid #eee;
+  border-radius: 3px;
+  margin: 16px 0;
+  border-top: 9px solid #bbb;
+}
 
 blockquote {
   border-left: 0.2rem solid #bbb;
