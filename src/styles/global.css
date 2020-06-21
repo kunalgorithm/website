@@ -1,6 +1,10 @@
 body {
   overflow-x: hidden;
 }
+
+h2 {
+  margin-top: 2.5rem !important;
+}
 /* Links */
 /* a {
   text-decoration: none;
@@ -61,18 +65,20 @@ code {
  * 2. Always fill the visible space in .gatsby-highlight.
  * 3. Adjust the position of the line numbers
  */
-/* .gatsby-highlight pre[class*="language-"] {
-  background-color: transparent;
-  font-size: 90%;
-  margin: 0;
-  padding: 0;
-  overflow: initial;
-  float: left;
-  min-width: 100%;
-} */
+.gatsby-highlight pre[class*="language-"] {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+.gatsby-highlight pre[class*="language-browser"] {
+  padding: 1em;
+  border: 1px solid #eee;
+  border-radius: 3px;
+  margin: 16px 0;
+  border-top: 15px solid #bbb;
+}
 
 blockquote {
   border-left: 0.2rem solid #bbb;
-  margin-left: 0.4rem;
+  padding-left: 10px;
   font-size: 90%;
 }
