@@ -2,7 +2,7 @@
   "name": "kunal.sh",
   "homepage": "https://.kunal.sh",
   "private": true,
-  "description": "Welcome to my website 👋",
+
   "version": "0.1.0",
   "license": "MIT",
   "scripts": {

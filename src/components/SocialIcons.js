@@ -39,7 +39,7 @@ export default () => (
     </a>
 
     <a
-      href="https://twitter.com/kunalgoritm"
+      href="https://twitter.com/kunalgorithm"
       target="blank"
       rel="noopener noreferrer"
       style={{
