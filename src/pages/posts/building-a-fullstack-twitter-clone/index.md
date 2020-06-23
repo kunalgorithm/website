@@ -80,12 +80,12 @@ export default (req, res) => {
     {
       text:
         "Wow not having to configure and transpile typescript is one of the best parts of next.js",
-      author: "john",
+      author: { username: "john" },
     },
     {
       text:
         "I'm a firm believer that dark mode should be a universal default on the web",
-      author: "jill",
+      author: { username: "jill" },
     },
   ]
   res.json(feed)
@@ -96,42 +96,98 @@ export default (req, res) => {
 
 The real power with this approach is that we can write frontend and backend code in the same place, with the same language, and split the logic accordingly.
 
-To pull them together, we query the new `api/feed` endpoint from the `pages/index.tsx` page, and show our list of tweets to the user.
+To pull them together, we query the new `api/feed` endpoint from the `pages/index.tsx` page, and show our list of tweets to the user. We're going to user a small library called [SWR](https://swr.now.sh) for our data fetching, which handles caching, locally changing data during POST requests, and revalidation. The power of SWR and it's ability to make handling cached data on the frontend will soon become obvious.
 
-We do this by calling the endpoint from the `getInitialProps` method. Change the content of `index.tsx` to
+Also, we want our app to be beautiful on more than just the inside, so let's use [Ant Design](https://ant.design) to boostrap our interface's styles.
 
-```ts
-function Page({ feed }) {
-  return <div>JSON.stringify(feed)</div>
-}
+First, we install both libraries
 
-Page.getInitialProps = async ctx => {
-  const res = await fetch("http://localhost:3000/api/feed")
-  const json = await res.json()
-  return { feed: json }
-}
-
-export default Page
+```bash
+yarn add swr antd
 ```
 
-which will give us the same contents as the value of the json endpoint, demonstrating that the data is being retrived correctly. Now, we can change the `Page` component to render the data functionally
+Create a top-level `components` directory, and a `util` directory within that. Inside `util`, create `fetcher.tsx` and `hooks.tsx`.
 
-```jsx
-const Page = ({ feed }) => {
-  return (
-    <div>
-      {feed.map(tweet => (
-        <div>
+Within `fetcher.tsx` we have
+
+```tsx
+export const fetcher = (url, data = undefined) =>
+  fetch("http://localhost:3000" + url, {
+    method: data ? "POST" : "GET",
+    credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  }).then(r => r.json())
+```
+
+This basically abstracts away the complexity of POST and GET requests when using SWR, so the requests within the components themselves won't clutter up our react code.
+
+In `hooks.tsx` we add
+
+```tsx
+import { Tweet, User } from "@prisma/client"
+import useSWR from "swr"
+import { fetcher } from "./fetcher"
+
+export function useFeed() {
+  const { data: feed }: { data?: Tweet[] } = useSWR("/api/feed", fetcher)
+  return { feed }
+}
+```
+
+Note that even though this is client-side code, we can import the interface for each `Tweet`, allowing our editor to give us autocomplete suggestions for each of it's fields: `id`, `text`, `createdAt`, etc; so we're not guessing the shape and properties of data we're retrieving from the backend.
+
+Finally, let's pull this all together in `components/Feed.tsx`, rendering each Tweet in Ant Design's `Card` component
+
+```tsx
+import { Card } from "antd"
+import { useFeed } from "./util/hooks"
+
+export const Feed = () => {
+  const { feed } = useFeed()
+  return feed ? (
+    <>
+      {feed.map((tweet, i) => (
+        <Card key={i}>
           <h4>{tweet.text}</h4>
-          <span>{tweet.author}</span>
-        </div>
+          <span>{tweet.author.username}</span>
+        </Card>
       ))}
-    </div>
-  )
+    </>
+  ) : null
 }
 ```
 
-Which gives us
+which will give us the same contents as the value of the json endpoint, demonstrating that the data is being retrived correctly. Finaly, we can render the feed in our `Page` component in `pages/index.tsx`
+
+```tsx
+import { Col, Row } from "antd"
+import { Feed } from "../components/Feed"
+
+export default () => (
+  <Row>
+    <Col md={{ span: 10, offset: 8 }}>
+      <Feed />
+    </Col>
+  </Row>
+)
+```
+
+and for one last detail, let's import Ant Design's CSS stylesheet in a specially-designed file in the `pages` directory titled `_app.js`, which next uses to wrap all other pages
+
+```js
+import "antd/dist/antd.css"
+
+export default function MyApp({ Component, pageProps }) {
+  return <Component {...pageProps} />
+}
+```
+
+> Note: you'll have to restart your development server for changes to `_app.js` to take effect.
+
+Now visit http://localhost:3000 and we'll see the naked data from our backend being rendered
 
 ```browser
 
@@ -146,38 +202,40 @@ jill
 
 ```
 
-plus a border around each of the tweets.
-
 ## Creating new tweets
 
-Our twitter app won't work if all users can do is _read_ tweets, so we need to give them a way to create them too. Let's add a simple `input` and `form` within our page to allow users to add new tweets to the feed on the go.
+Our twitter app won't work if all users can do is _read_ tweets, so we need to give them a way to create them too. Let's add a form component that users can useto add new tweets. Inside `components` create `CreateTweetForm.tsx`.
 
-```jsx
+> Notice the naming conventions, which are entirely for the sake of organization and can be changed to your liking:
+>
+> - Components are capitalized TSX files (`Feed.tsx`)
+> - Pages are lowercased TSX files (`index.tsx`)
+> - API routes are lowercased TS files (`feed.ts`)
+
+In `CreateTweetForm.tsx` we call the same `useFeed()` hook as in `Feed.tsx`, and we additionally make use of the `mutate` export from swr. This allows us to change the state of the data retrieved locally in our react app, making use of swr's caching capabilities.
+
+```tsx
+import { Button, message } from "antd"
+import { mutate } from "swr"
+import { fetcher } from "./util/fetcher"
 import { useState } from "react"
+import { useFeed, useMe } from "./util/hooks"
 
-const Page = ({ feed: initialFeed }) => {
+export const CreateTweetForm = () => {
   const [input, setInput] = useState("")
-  const [feed, setFeed] = useState(initialFeed)
+  const { feed } = useFeed()
   return (
-    <div>
-      <form
-        onSubmit={e => {
-          e.preventDefault()
-          setFeed([input, ...feed])
-          setInput("")
-        }}
-      >
-        <input value={input} onChange={e => setInput(e.target.value)}></input>
-      </form>
-      <div>
-        {feed.map(tweet => (
-          <div>
-            <h4>{tweet.text}</h4>
-            <span>{tweet.author}</span>
-          </div>
-        ))}
-      </div>
-    </div>
+    <form
+      style={{ padding: "2rem" }}
+      onSubmit={async e => {
+        e.preventDefault()
+        mutate("/api/feed", [{ text: input, author: me }, ...feed])
+        setInput("")
+      }}
+    >
+      <input value={input} onChange={e => setInput(e.target.value)} />
+      <Button htmlType="submit">Tweet</Button>
+    </form>
   )
 }
 ```
@@ -280,24 +338,18 @@ import { PrismaClient } from "@prisma/client"
 const prisma = new PrismaClient()
 
 export default async (req, res) => {
-  const tweet = await prisma.tweet.create({ data: { text: req.body.text } })
+  const { text } = req.body
+  const tweet = await prisma.tweet.create({ data: { text } })
   res.json(tweet)
 }
 ```
 
 Notice that we are assuming the `text` to be attached to the body of the request. Let's make this code a bit more robust to suboptimal usage, like creating empty tweets, by adding a few lines to check the request body at the beginning of the function
 
-```diff
-import { PrismaClient } from "@prisma/client"
-const prisma = new PrismaClient()
-
-export default async (req, res) => {
-+ if (!req.body) {
-+    res.status(400).json({ error: "❌ Tweets cannot be empty " });
-+    return;
-+  }
-  const tweet = await prisma.tweet.create({ data: { text: req.body.text } })
-  res.json(tweet)
+```js
+if (!req.body || !req.body.text) {
+  res.status(400).json({ error: "❌ Tweets cannot be empty " })
+  return
 }
 ```
 
@@ -341,6 +393,166 @@ const tweets = await prisma.tweet.findMany({
 
 To return them in chronological order.
 
-## To be continued...
+## Styles 💅
 
-with sections on authentication, deployment, style, and use of types in the frontend. Also, I'll include a demo app and repository 🙂
+So far so good, but our app isn't exactly a beauty (on the outside) quite yet.
+
+Let's use [Ant Design](https://ant.design) to change that.
+
+First, add antd add a dependency
+
+```bash
+yarn add antd
+```
+
+Then, create a file `_app,js` in the pages directory, which is a special file next uses to wrap all other pages.
+
+```jsx
+import "antd/dist/antd.css"
+export default function MyApp({ Component, pageProps }) {
+  return <Component {...pageProps} />
+}
+```
+
+Restart your development server by re-running `npx next` for changes to take effect. You should see the default font, text size, text color, and highilghting to automatically (though sublty, change).
+
+Now, we can use antd components in our code. As we use them, let's modularize our react components so that they're easier to work with.
+
+Inside, move the code we use to render each tweet, each within a `Card` component from ant design.
+
+```tsx
+import { Card } from "antd"
+
+export const Feed = ({ feed }) => {
+  return feed.map((tweet, i) => (
+    <Card key={i}>
+      <h4>{tweet.text}</h4>
+      <span>{tweet.author}</span>
+    </Card>
+  ))
+}
+```
+
+Then do the same for `CreateTweetForm`, containing the code to create a tweet. Also, add a `Button` component under the input that users can use to create tweets if they are on mobile or using a mouse.
+
+> Remember that each of these compoonents will be receiving their props from the page.
+
+```tsx
+import { Button } from "antd"
+export const CreateTweetForm = ({ feed, setFeed, input, setInput }) => {
+  return (
+    <form
+      style={{ padding: "2rem" }}
+      onSubmit={e => {
+        e.preventDefault()
+        setFeed([{ text: input, author: "" }, ...feed])
+        fetch(`http://localhost:3000/api/tweet/create`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ text: input }),
+        })
+        setInput("")
+      }}
+    >
+      <input value={input} onChange={e => setInput(e.target.value)}></input>
+      <Button htmlType="submit">Tweet</Button>
+    </form>
+  )
+}
+```
+
+Finally, edit `pages/index.tsx` to import and render these components with ant design's `Row` and `Col` Grid system components
+
+```tsx
+import { useState } from "react"
+import { Col, Row } from "antd"
+import { Feed } from "../components/Feed"
+import { CreateTweetForm } from "../components/CreateTweetForm"
+
+const Page = ({ feed: initialFeed }) => {
+  const [input, setInput] = useState("")
+  const [feed, setFeed] = useState(initialFeed)
+  return (
+    <Row>
+      <Col md={{ span: 10, offset: 8 }}>
+        <CreateTweetForm
+          feed={feed}
+          setFeed={setFeed}
+          input={input}
+          setInput={setInput}
+        />
+        <Feed feed={feed} />
+      </Col>
+    </Row>
+  )
+}
+```
+
+That's more like it!
+
+Though, I don't know about you but I still keep creating empty tweets. Let's fix that by giving the user some feedback when the `input` variable is an empty string.
+
+In `CreateTweetForm.tsx` we can change the `onSubmit` method to include, after `e.preventDefault()`
+
+```tsx
+if (input.length < 1) {
+  message.error("Oops! You can't create empty tweets.")
+  return
+}
+```
+
+then import the `message` utility with
+
+```tsx
+import { Button, message } from "antd"
+```
+
+and give our new resposiveness a shot.
+
+## Authentication
+
+Our app can't compete with twitter if you can't log in and no one knows who's posts are whose, can it? Let's fix this by giving users a way to log in.
+
+We're going to allow users to sign up, encrypt their passwords with [bcrypt](http://bcryptjs.com) then authorize their device by attaching a server-side [HttpOnly](https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies) cookie to their requests.
+
+Basically, we're gonna build a safe and secure way to allow users to sign in with passwords while making sure they or we don't get hacked.
+
+First, we introduce the `User` model in `schema.prisma`
+
+```prisma
+model User {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  email     String   @unique
+  name      String?
+  password String
+  tweets     Tweet[]
+}
+```
+
+You'll notice that every `user` has a `tweets` field that corresponds to an array of Tweets. This allows us to access a users tweets as simply as with `user.tweets`. But let's not get ahead of ourselves, since we still need to save and apply the database migration.
+
+```bash
+npx prisma migrate save --experimental
+npx prisma migrate up --experimental
+npx prisma generate
+```
+
+Then, we add our new dependencies
+
+```bash
+yarn add bcrypt jsonwebtoken cookie
+```
+
+Now we create a new API route for signing up, in `pages/api/signup.tsx`
+
+```ts
+```
+
+---
+
+# To be continued
+
+with sections on authentication, deployment, and use of types in the frontend. Also, I'll include a demo app and repository 🙂
