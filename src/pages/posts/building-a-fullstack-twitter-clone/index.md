@@ -4,6 +4,8 @@ date: "2020-06-21"
 draft: false
 ---
 
+This tutorial covers how to build a fullstack application that allows users to sign up or login, then post tweets to a global feed. You can find the code for the completed app [here](https://github.com/kunalgorithm/fullstack-twitter).
+
 ## Prerequisites
 
 Before we get started, make sure you have node and [yarn](https://yarnpkg.com/) installed.
@@ -229,7 +231,10 @@ export const CreateTweetForm = () => {
       style={{ padding: "2rem" }}
       onSubmit={async e => {
         e.preventDefault()
-        mutate("/api/feed", [{ text: input, author: me }, ...feed])
+
+        // we include "false" here to ask SWR not to revalidate the cache with
+        // the feed returned from the server. we'll remove this after the next section
+        mutate("/api/feed", [{ text: input, author: me }, ...feed], false)
         setInput("")
       }}
     >
