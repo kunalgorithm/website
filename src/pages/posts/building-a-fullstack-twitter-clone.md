@@ -6,9 +6,13 @@ draft: false
 
 This tutorial covers how to build a fullstack application that allows users to sign up or login, then post tweets to a global feed. You can find the code for the completed app [here](https://github.com/kunalgorithm/fullstack-twitter).
 
+A demo of what we'll be building is currently deployed at https://fullstack-twitter.onrender.com
+
 ## Prerequisites
 
 Before we get started, make sure you have node and [yarn](https://yarnpkg.com/) installed.
+
+> At the time of writing, prisma migrate is still an experimental feature and should not be used on production. You can still use the this tutorial to bootstrap your database schema, but consider using [Hasura](https://hasura.io) to create, update, and manage tables when supporting production user data.
 
 ## Getting Started
 
@@ -46,11 +50,7 @@ Now, run the next development server
 npx next
 ```
 
-and visit http://localhost:3000 to see our first component in action. We should have a barebones unstyled webpage with
-
-```browser
-hello, world!
-```
+and visit http://localhost:3000 to see our first component in action. We should have a barebones unstyled webpage with "hello, world!" in the top left.
 
 ## The backend
 
@@ -66,11 +66,12 @@ Create a file, `feed.ts` within the `api` directory and create a simple function
 export default (req, res) => res.json({ feed: [] })
 ```
 
-Head to http://localhost:3000/api/feed and you should see some json within your browser with a datetime object.
+Head to http://localhost:3000/api/feed and you should see some json within your browser.
 
-```browser
+```json
+// localhost:3000
 {
-"feed": []
+  "feed": []
 }
 ```
 
@@ -113,6 +114,8 @@ Create a top-level `components` directory, and a `util` directory within that. I
 Within `fetcher.tsx` we have
 
 ```tsx
+// components/util/fetcher.tsx
+
 export const fetcher = (url, data = undefined) =>
   fetch("http://localhost:3000" + url, {
     method: data ? "POST" : "GET",
@@ -129,17 +132,15 @@ This basically abstracts away the complexity of POST and GET requests when using
 In `hooks.tsx` we add
 
 ```tsx
-import { Tweet, User } from "@prisma/client"
+// components/util/hooks.tsx
 import useSWR from "swr"
 import { fetcher } from "./fetcher"
 
 export function useFeed() {
-  const { data: feed }: { data?: Tweet[] } = useSWR("/api/feed", fetcher)
+  const { data: feed } = useSWR("/api/feed", fetcher)
   return { feed }
 }
 ```
-
-Note that even though this is client-side code, we can import the interface for each `Tweet`, allowing our editor to give us autocomplete suggestions for each of it's fields: `id`, `text`, `createdAt`, etc; so we're not guessing the shape and properties of data we're retrieving from the backend.
 
 Finally, let's pull this all together in `components/Feed.tsx`, rendering each Tweet in Ant Design's `Card` component
 
@@ -162,7 +163,7 @@ export const Feed = () => {
 }
 ```
 
-which will give us the same contents as the value of the json endpoint, demonstrating that the data is being retrived correctly. Finaly, we can render the feed in our `Page` component in `pages/index.tsx`
+which will give us the same contents as the value of the json endpoint, demonstrating that the data is being retrieved correctly. Finaly, we can render the feed in our `Page` component in `pages/index.tsx`
 
 ```tsx
 import { Col, Row } from "antd"
@@ -177,9 +178,11 @@ export default () => (
 )
 ```
 
-and for one last detail, let's import Ant Design's CSS stylesheet in a specially-designed file in the `pages` directory titled `_app.js`, which next uses to wrap all other pages
+For one last detail, let's import Ant Design's CSS stylesheet in a specially-designed file in the `pages` directory titled `_app.js`, which next uses to wrap all other pages
 
 ```js
+// pages/_app.js
+
 import "antd/dist/antd.css"
 
 export default function MyApp({ Component, pageProps }) {
@@ -191,19 +194,6 @@ export default function MyApp({ Component, pageProps }) {
 
 Now visit http://localhost:3000 and we'll see the naked data from our backend being rendered
 
-```browser
-
-Wow not having to configure and transpile typescript is one of the best parts of next.js
-
-john
-
-
-I'm a firm believer that dark mode should be a universal default on the web
-
-jill
-
-```
-
 ## Creating new tweets
 
 Our twitter app won't work if all users can do is _read_ tweets, so we need to give them a way to create them too. Let's add a form component that users can useto add new tweets. Inside `components` create `CreateTweetForm.tsx`.
@@ -214,7 +204,7 @@ Our twitter app won't work if all users can do is _read_ tweets, so we need to g
 > - Pages are lowercased TSX files (`index.tsx`)
 > - API routes are lowercased TS files (`feed.ts`)
 
-In `CreateTweetForm.tsx` we call the same `useFeed()` hook as in `Feed.tsx`, and we additionally make use of the `mutate` export from swr. This allows us to change the state of the data retrieved locally in our react app, making use of swr's caching capabilities.
+In `CreateTweetForm.tsx` we call the same `useFeed()` hook as in `Feed.tsx`, and we additionally make use of the `mutate` export from swr. This allows us to change the local state of our feed to reflect the change, even before it's registered by the server, so the user can see their new tweet right away.
 
 ```tsx
 import { Button, message } from "antd"
@@ -247,14 +237,14 @@ export const CreateTweetForm = () => {
 
 Be sure to test this on localhost to ensure you can spam your feed with every thought with which you desire.
 
-Only problem is, now we need a way for:
+The only problem, you may have noticed, is that tweets don't stick around if you refresh your browser. So, now we need a way for:
 
 1. Tweets to stick around if you refresh the browser or go take a nap.
-2. Your friends on the same website to see all the stuff you're posting.
+2. Your friends to be able to see your tweets on their computers.
 
 ## Enter: sqlite + Prisma
 
-Now that we've got our app working nicely on single-player single-sesion instances, we need to make it immune to the effects of time and refreshes by storing all of our users' data in a database. We do this by bringing in our old friend, **the database**. With it, we'll use [Prisma](https://prisma.io) to handle the datamodel, access the data, and give us type safety throughout the application.
+Now that we've got our app working nicely on single-player single-sesion instances, we need to make it immune to the effects of time and refreshes by storing all of our users' data somewhere persistent. We do this by bringing in our old friend, **the database**. With it, we'll use [Prisma](https://prisma.io) to handle the datamodel, access the data, and give us type safety throughout the application.
 
 We start by adding prisma to our project
 
@@ -308,20 +298,32 @@ Now let's put this to use to allow users to create tweets.
 
 ### Generate the prisma client
 
-> at the time of writing, prisma migrate is still an experimental feature and should not be used on production. Instead, consider using [Hasura](https://hasura.io) to create, update, and manage tables.
->
-> Now that we have our schema file set up, we can create the sqlite database file, run the migration to create the new table, and then generate the prisma client to create and access tweets.
+Before we begin, let's add some scripts to `package.json` to make it easier for us to call `prisma migrate` commands, as well a few more to facilitate the build process for when we deploy our app to production.
 
-First, we create the sqlite file and save the migration using `prisma migrate`
-
+```json
+"scripts": {
+    "migrate:save": "prisma migrate save --experimental",
+    "migrate:up": "prisma migrate up --experimental",
+    "postinstall": "prisma generate",
+    "generate":"prisma generate",
+    "dev": "next",
+    "start": "next start",
+    "build": "next build"
+},
 ```
-npx prisma migrate save --experimental
+
+Now that we're set up, we can create the sqlite database file, run the migration to create the new table, and then generate the prisma client to create and access tweets.
+
+First, we create the sqlite file and save the migration.
+
+```bash
+yarn migrate:save
 ```
 
-Respond **Yes** when asked if you'd like to create a new sqlite file, then give your migration a name, like "Create tweet model". Then, we run the migration against our database
+Respond **Yes** when asked if you'd like to create a new sqlite file, then give your migration a name, like "Create tweet model". Then, we run the migration against our database.
 
-```
-npx prisma migrate up --experimental
+```bash
+yarn migrate:up
 ```
 
 Finally, we can generate the prisma client, which lives in the `node_modules` directory and is generated on the fly (usually in a postintall hook) to give us up-to-date typesafe access to our data.
@@ -329,7 +331,7 @@ Finally, we can generate the prisma client, which lives in the `node_modules` di
 Create the client by running
 
 ```bash
-npx prisma generate
+yarn generate
 ```
 
 Which peaks into our schema file for the models defined, generates the client in `node_modules/@prisma/client` and concludes with some output dictating exactly how we can use it in our code.
@@ -349,26 +351,17 @@ export default async (req, res) => {
 }
 ```
 
-Notice that we are assuming the `text` to be attached to the body of the request. Let's make this code a bit more robust to suboptimal usage, like creating empty tweets, by adding a few lines to check the request body at the beginning of the function
+Notice that we are assuming the `text` to be attached to the body of the request.
 
-```js
-if (!req.body || !req.body.text) {
-  res.status(400).json({ error: "❌ Tweets cannot be empty " })
-  return
-}
-```
-
-Now, lets try calling this function from our frontend. After the call to `setFeed` in our index page, add
+Now, lets try calling this function from our frontend. After the call to `mutate` in our index page, add
 
 ```ts
-fetch(`http://localhost:3000/api/tweet/create`, {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-  },
-  body: JSON.stringify({ text: input }),
+fetcher("/api/tweet/create", {
+  text: input,
 })
 ```
+
+Remember to `import { fetcher } from "./util/fetcher"` at the top of the file.
 
 Now, try creating another tweet in the browser and head to the **Network** tab of the console to see the results. You should see a request titled **create**, after the suffix of the endpoint, and click it to view the resposne. If the response worked, you'll see a response JSON object with an `id`, `createdAt`, and `text` fields.
 
@@ -410,21 +403,20 @@ First, we introduce the `User` model in `schema.prisma`
 
 ```prisma
 model User {
-  id        Int      @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  email     String   @unique
-  name      String?
-  password String
-  tweets     Tweet[]
+  id          Int      @id @default(autoincrement())
+  createdAt   DateTime @default(now())
+  username    String @unique
+  password    String
+  tweets      Tweet[]
 }
 ```
 
 You'll notice that every `user` has a `tweets` field that corresponds to an array of Tweets. This allows us to access a users tweets as simply as with `user.tweets`. But let's not get ahead of ourselves, since we still need to save and apply the database migration.
 
 ```bash
-npx prisma migrate save --experimental
-npx prisma migrate up --experimental
-npx prisma generate
+yarn migrate:save
+yarn migrate:up
+yarn generate
 ```
 
 Then, we add our new dependencies
@@ -433,13 +425,457 @@ Then, we add our new dependencies
 yarn add bcrypt jsonwebtoken cookie
 ```
 
-Now we create a new API route for signing up, in `pages/api/signup.tsx`
+We're going to handle authentication and reflect this to the user by rendering a `Profile` component on the page, which will show the user's details if they're logged in, and a `SignupForm` otherwise.
 
-```ts
+Let's start by creating `Profile.tsx`
+
+```tsx
+// components/Profile.tsx
+import { Row, Col, Button, message } from "antd"
+import { SignupForm } from "./SignupForm"
+import { useMe } from "./util/hooks"
+import { useState } from "react"
+
+export const Profile = () => {
+  const { me } = useMe()
+  const [loading, setLoading] = useState(false)
+  if (!me) return null
+
+  return (
+    <Row style={{ padding: "1.5rem" }}>
+      {!me.username ? (
+        <SignupForm />
+      ) : (
+        <Col>
+          Logged in as: <strong>{me.username}</strong>
+          {/* TODO: we'll add a logout button here */}
+        </Col>
+      )}
+    </Row>
+  )
+}
 ```
 
----
+You'll notice we're using a new hook, `useMe`. As you can guess, this will return the currently authenticated user. Let's go ahead and add this hook to our hooks utility.
 
-# To be continued
+```tsx
+// components/util/hooks.tsx
+import { User } from "@prisma/client"
 
-with sections on authentication, deployment, and use of types in the frontend. Also, I'll include a demo app and repository 🙂
+// useFeed function
+
+export function useMe() {
+  const { data: me }: { data?: User } = useSWR("/api/me", fetcher)
+  return { me }
+}
+```
+
+Notice that we're importing the `User` interface from prisma and applying it to the return type of the hook. This will give us typesafety through the frontend when working with our data, and is one of the most powerful advantages of using Prisma with React Hooks.
+
+Also, our use of SWR will automatically deduplicate uses of `useMe` since they have the same key, `/api/me`. This means we can call `useMe` in several different components, and our app will only make a single request to the backend.
+
+We'll implement the `/api/me` endpoint right after we've built the signup form and endpoints.
+
+### SignupForm
+
+Then we can create the form itself
+
+```tsx
+// components/SignupForm.tsx
+import { Row, Col, Button, message, Input } from "antd"
+import { useState } from "react"
+import { mutate } from "swr"
+import { fetcher } from "./util/fetcher"
+export const SignupForm = ({}) => {
+  const [username, setUsername] = useState("")
+  const [password, setPassword] = useState("")
+  const [login, setLogin] = useState(false)
+  const [loading, setLoading] = useState(false)
+  return (
+    <Row>
+      <Col>
+        <h3>Sign up</h3>
+        <form
+          onSubmit={async e => {
+            e.preventDefault()
+            if (username.length === 0 || password.length === 0) {
+              message.error(
+                "Uh oh: you can't have a blank username or password."
+              )
+            }
+            setLoading(true)
+            const { data, error } = await fetcher(
+              `/api/${login ? "login" : "signup"}`,
+              {
+                username,
+                password,
+              }
+            )
+            if (error) {
+              message.error(error)
+              setLoading(false)
+              return
+            }
+            await mutate("/api/me")
+          }}
+        >
+          <div>
+            <Input
+              value={username}
+              onChange={e => setUsername(e.target.value)}
+              type="name"
+              placeholder="Username"
+            />
+
+            <Input
+              value={password}
+              onChange={e => setPassword(e.target.value)}
+              type="password"
+              placeholder="Password"
+            />
+          </div>
+          <div>
+            <Button htmlType="submit" loading={loading}>
+              {login ? "Login" : "Sign up"}
+            </Button>
+          </div>
+          <div>
+            <a onClick={() => setLogin(!login)}>
+              {login ? "New? Sign Up" : "Already a user? Log In"}
+            </a>
+          </div>
+        </form>
+      </Col>
+    </Row>
+  )
+}
+```
+
+Notice that our Signup form also serves as a login form, and can switch between the two. Also, it will post to the endpoint `/api/signup` if the user is signing up, and to `/api/login` otherwise. As you may have guessed, now we'll have to create these two API files to handle the signing up and logging in process themselves.
+
+Let's start with `signup` which
+
+1. Salts and hashes the `password` with Bcrypt
+2. Creates a User in the database with prisma
+3. Signs a `jsonwebtoken` with the `id` and `username` of the user and the `JWT_SECRET` from the environment.
+4. Sets an [httpOnly cookie](https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies)
+
+```ts
+// pages/api/signup.ts
+import bcrypt from "bcrypt"
+import jwt from "jsonwebtoken"
+import cookie from "cookie"
+import { PrismaClient } from "@prisma/client"
+const prisma = new PrismaClient()
+
+export default async (req, res) => {
+  const salt = bcrypt.genSaltSync()
+  const { username, password } = req.body
+  let user
+  try {
+    user = await prisma.user.create({
+      data: {
+        username,
+        password: bcrypt.hashSync(password, salt),
+      },
+    })
+  } catch (error) {
+    res.json({ error: "A user with that username already exists 😮" })
+    return
+  }
+  const token = jwt.sign(
+    { username: user.username, id: user.id, time: new Date() },
+    process.env.JWT_SECRET,
+    {
+      expiresIn: "6h",
+    }
+  )
+
+  res.setHeader(
+    "Set-Cookie",
+    cookie.serialize("token", token, {
+      httpOnly: true,
+      maxAge: 6 * 60 * 60,
+      path: "/",
+      sameSite: "lax",
+      secure: process.env.NODE_ENV === "production",
+    })
+  )
+  res.json(user)
+  return
+}
+```
+
+Now, we can a similarly-structured `login` route
+
+```ts
+// pages/api/login.tsx
+import { PrismaClient } from "@prisma/client"
+const prisma = new PrismaClient()
+import bcrypt from "bcrypt"
+import jwt from "jsonwebtoken"
+import cookie from "cookie"
+
+export default async (req, res) => {
+  const { username, password } = req.body
+
+  const user = await prisma.user.findOne({
+    where: { username },
+  })
+
+  if (user && bcrypt.compareSync(password, user.password)) {
+    const token = jwt.sign(
+      { username: user.username, id: user.id, time: new Date() },
+      process.env.JWT_SECRET,
+      {
+        expiresIn: "6h",
+      }
+    )
+
+    res.setHeader(
+      "Set-Cookie",
+      cookie.serialize("token", token, {
+        httpOnly: true,
+        maxAge: 6 * 60 * 60,
+        path: "/",
+        sameSite: "lax",
+        secure: process.env.NODE_ENV === "production",
+      })
+    )
+
+    res.json(user)
+  } else {
+    res.json({ error: "Incorrect username or password 🙁" })
+    return
+  }
+}
+```
+
+Before we forget, create a `.env` file in the top-level directory and add
+
+```env
+JWT_SECRET=appsecret123
+```
+
+Replace `appsecret123` with some less-guessable combination of characters, and restart your development server.
+
+## The `Me` Endpoint
+
+Finally, we can build `/api/me`
+
+```ts
+// pages/api/me.ts
+import jwt from "jsonwebtoken"
+import { PrismaClient } from "@prisma/client"
+const prisma = new PrismaClient()
+
+export default async (req, res) => {
+  const { token } = req.cookies
+
+  if (token) {
+    const { id, username } = jwt.verify(token, process.env.JWT_SECRET)
+    const me = await prisma.user.findOne({ where: { id } })
+    res.json(me)
+  } else {
+    res.json({})
+  }
+}
+```
+
+Also, we can return the author of each tweet in the `feed`, so that we can render their usernames
+
+```ts
+// pages/api/feed.ts
+import { PrismaClient } from "@prisma/client"
+const prisma = new PrismaClient()
+
+export default async (req, res) => {
+  const tweets = await prisma.tweet.findMany({
+    orderBy: { createdAt: "desc" },
+    include: { author: true },
+  })
+  res.json(tweets)
+}
+```
+
+If you hover over the `tweets` variable, typescript will show us that the feed is now of type
+
+```ts
+const tweets: (Tweet & { user: User })[]
+```
+
+So we can update our `useFeed` hook to return the same type, the same as we did for `useMe` earlier.
+
+```tsx
+// components/util/hooks.tsx
+import { Tweet, User } from "@prisma/client"
+import useSWR from "swr"
+import { fetcher } from "./fetcher"
+
+export function useFeed() {
+  const { data: feed }: { data?: (Tweet & { author: User })[] } = useSWR(
+    "/api/feed",
+    fetcher
+  )
+  return { feed }
+}
+export function useMe() {
+  const { data: me }: { data?: User } = useSWR("/api/me", fetcher)
+  return { me }
+}
+```
+
+### Attaching tweets to authors
+
+One last thing: we need to attach the logged in user to each tweet that's created as it's author. We do this by using the `token` the same way we do in `/api/me`, and then using the prisma client's `connect` property.
+
+```ts
+// pages/api/tweet/create.ts
+import { PrismaClient } from "@prisma/client"
+import jwt from "jsonwebtoken"
+export default async (req, res) => {
+  const prisma = new PrismaClient()
+
+  const { token } = req.cookies
+
+  if (token) {
+    // Get authenticated user
+    const { _id, username } = jwt.verify(token, process.env.JWT_SECRET)
+    const { text } = req.body
+
+    const tweet = await prisma.tweet.create({
+      data: { text, author: { connect: { username } } },
+    })
+    res.json(tweet)
+  } else {
+    res.json({ error: "You must be logged in to tweet." })
+  }
+}
+```
+
+Now, test the app on localhost to make sure you can sign up and create new tweets.
+
+## Final Touches
+
+It would be nice if users could delete their tweets after they've posted them, as well as log themselves out. Let's create some button components to facilitate this.
+
+To know if a user can delete a tweet, we need to check if the user is the tweet's author. Then we can make a call to a new API endpoint for deleting a tweet, and then locally mutate the cache to remove the tweet from the feed.
+
+Create a new component `DeleteTweetButton.tsx` in components.
+
+```tsx
+// components/DeleteTweetButton
+import { Button } from "antd"
+import { mutate } from "swr"
+import { fetcher } from "./util/fetcher"
+
+export const DeleteTweetButton = ({ tweet, feed }) => (
+  <Button
+    style={{ float: "right" }}
+    danger
+    type="dashed"
+    onClick={async () => {
+      await fetcher("/api/tweet/delete", { id: tweet.id })
+      await mutate(
+        "/api/feed",
+        feed.filter(t => t.id !== tweet.id)
+      )
+    }}
+  >
+    x
+  </Button>
+)
+```
+
+and import and render it in the feed component.
+
+```diff
+// components/Feed.tsx
++ import { DeleteTweetButton } from "./DeleteTweetButton";
+...
+
+ <Card key={i}>
++  {me && tweet.author.id === me.id && (
++    <DeleteTweetButton tweet={tweet} feed={feed} />
++  )}
+  <h4>{tweet.text}</h4>
+  <span>{tweet.author.username}</span>
+ </Card>
+
+```
+
+Now, let's create the backend half of the equation. Create a new API route for `/api/tweet/delete` that takes the `id` from the body of the request, then passes it to prisma's `delete` method, and returns the (now empty) tweet.
+
+```ts
+// pages/api/tweet/delete
+
+import { PrismaClient } from "@prisma/client"
+const prisma = new PrismaClient()
+
+export default async (req, res) => {
+  const { id } = req.body
+
+  const tweet = await prisma.tweet.delete({
+    where: { id },
+  })
+
+  res.json(tweet)
+  return
+}
+```
+
+Test to make sure you can now delete your own (and only your own) tweets.
+
+Great! Now let's follow the very same process to facillitate logging out.
+
+Create a `LogoutButton.tsx`
+
+```tsx
+// components/LogoutButton.tsx
+import { Button, message } from "antd"
+import { mutate } from "swr"
+import { fetcher } from "./util/fetcher"
+import { useState } from "react"
+export const LogoutButton = () => {
+  const [loading, setLoading] = useState(false)
+  return (
+    <Button
+      loading={loading}
+      onClick={async () => {
+        setLoading(true)
+        const { data, error } = await fetcher("/api/logout")
+        if (error) {
+          message.error(error)
+          setLoading(false)
+          return
+        }
+        await mutate("/api/me")
+      }}
+    >
+      Log Out
+    </Button>
+  )
+}
+```
+
+Then import and render it in Profile
+
+```diff
+// components/Profile.tsx
++ import { LogoutButton } from "./LogoutButton";
+...
+
+ <Col>
+    Logged in as: <strong>{me.username}</strong>
+    <br />
++   <LogoutButton  />
+
+ </Col>
+
+```
+
+Try and logout, and behold that our app is complete.
+
+## Need help?
+
+Don't hesitate to email me directory at me@kunal.sh 🙂
