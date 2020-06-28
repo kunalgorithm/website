@@ -8,7 +8,7 @@ This tutorial covers how to build a fullstack application that allows users to s
 
 A demo of what we'll be building is currently deployed at [fullstack-twitter.onrender.com](https://fullstack-twitter.onrender.com)
 
-[![Finished Screenshot](./finished-screenshot.png)](https://fullstack-twitter.onrender.com)
+[![Finished Screenshot](./authed-screenshot.png)](https://fullstack-twitter.onrender.com)
 
 ## Table of Contents
 
@@ -49,6 +49,7 @@ touch pages/index.tsx
 Then add the following component to our first page
 
 ```jsx
+// pages/index.tsx
 export default () => <div> hello, world! </div>
 ```
 
@@ -71,13 +72,16 @@ mkdir pages/api
 Create a file, `feed.ts` within the `api` directory and create a simple function that returns a timestamp
 
 ```ts
+// pages/api/feed.ts
 export default (req, res) => res.json({ feed: [] })
 ```
 
 Head to http://localhost:3000/api/feed and you should see some json within your browser.
 
+> Bonus: you can take a sneak peek at the feed endpoint of the production app, which our endpoint will eventually build up to, at [fullstack-twitter.onrender.com/api/feed](https://fullstack-twitter.onrender.com/api/feed)
+
 ```json
-// localhost:3000
+// localhost:3000/api/feed
 {
   "feed": []
 }
@@ -86,6 +90,7 @@ Head to http://localhost:3000/api/feed and you should see some json within your 
 Let's make this more interesting by adding some fake tweets to `feed.ts`
 
 ```ts
+// pages/api/feed.ts
 export default (req, res) => {
   const feed = [
     {
@@ -102,6 +107,12 @@ export default (req, res) => {
   res.json(feed)
 }
 ```
+
+Visit your browser again you should see the fake tweets being rendered as raw json.
+
+> Note: I have a browser extension installed that prettifies raw JSON, like in the screenshot below.
+
+![Feed JSON preview](./feed-json.png)
 
 ### Put the two together
 
@@ -123,7 +134,6 @@ Within `fetcher.tsx` we have
 
 ```tsx
 // components/util/fetcher.tsx
-
 export const fetcher = (url, data = undefined) =>
   fetch("http://localhost:3000" + url, {
     method: data ? "POST" : "GET",
@@ -153,6 +163,7 @@ export function useFeed() {
 Finally, let's pull this all together in `components/Feed.tsx`, rendering each Tweet in Ant Design's `Card` component
 
 ```tsx
+// components/Feed.tsx
 import { Card } from "antd"
 import { useFeed } from "./util/hooks"
 
@@ -204,6 +215,8 @@ export default function MyApp({ Component, pageProps }) {
 
 Now visit http://localhost:3000 and we'll see the naked data from our backend being rendered
 
+![Card Tweets with Ant Design preview](./card-tweets.png)
+
 ### Creating new tweets
 
 Our twitter app won't work if all users can do is _read_ tweets, so we need to give them a way to create them too. Let's add a form component that users can useto add new tweets. Inside `components` create `CreateTweetForm.tsx`.
@@ -217,15 +230,16 @@ Our twitter app won't work if all users can do is _read_ tweets, so we need to g
 In `CreateTweetForm.tsx` we call the same `useFeed()` hook as in `Feed.tsx`, and we additionally make use of the `mutate` export from swr. This allows us to change the local state of our feed to reflect the change, even before it's registered by the server, so the user can see their new tweet right away.
 
 ```tsx
-import { Button, message } from "antd"
+import { Button, message, Row, Col, Input } from "antd"
 import { mutate } from "swr"
 import { fetcher } from "./util/fetcher"
 import { useState } from "react"
-import { useFeed, useMe } from "./util/hooks"
+import { useFeed } from "./util/hooks"
 
 export const CreateTweetForm = () => {
   const [input, setInput] = useState("")
   const { feed } = useFeed()
+
   return (
     <form
       style={{ padding: "2rem" }}
@@ -234,12 +248,19 @@ export const CreateTweetForm = () => {
 
         // we include "false" here to ask SWR not to revalidate the cache with
         // the feed returned from the server. we'll remove this after the next section
-        mutate("/api/feed", [{ text: input, author: me }, ...feed], false)
+        mutate("/api/feed", [{ text: input, author }, ...feed], false)
         setInput("")
       }}
     >
-      <input value={input} onChange={e => setInput(e.target.value)} />
-      <Button htmlType="submit">Tweet</Button>
+      <Row>
+        <Col>
+          <Input value={input} onChange={e => setInput(e.target.value)} />
+        </Col>
+
+        <Col>
+          <Button htmlType="submit">Tweet</Button>
+        </Col>
+      </Row>
     </form>
   )
 }
@@ -702,7 +723,7 @@ const prisma = new PrismaClient()
 export default async (req, res) => {
   const tweets = await prisma.tweet.findMany({
     orderBy: { createdAt: "desc" },
-    include: { author: true },
+    include: { author: { select: { username: true, id: true } } },
   })
   res.json(tweets)
 }
