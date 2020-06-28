@@ -163,9 +163,11 @@ export const Feed = () => {
 }
 ```
 
-which will give us the same contents as the value of the json endpoint, demonstrating that the data is being retrieved correctly. Finaly, we can render the feed in our `Page` component in `pages/index.tsx`
+which will give us the same contents as the value of the json endpoint, demonstrating that the data is being retrieved correctly. Finally, we can render the feed in `pages/index.tsx`
+ah
 
 ```tsx
+// pages/index.tsx
 import { Col, Row } from "antd"
 import { Feed } from "../components/Feed"
 
@@ -296,7 +298,7 @@ const tweet = await prisma.tweet.create({ data: { text: "Hello, Twitter!" } })
 
 Now let's put this to use to allow users to create tweets.
 
-### Generate the prisma client
+## Generate the prisma client
 
 Before we begin, let's add some scripts to `package.json` to make it easier for us to call `prisma migrate` commands, as well a few more to facilitate the build process for when we deploy our app to production.
 
@@ -336,7 +338,7 @@ yarn generate
 
 Which peaks into our schema file for the models defined, generates the client in `node_modules/@prisma/client` and concludes with some output dictating exactly how we can use it in our code.
 
-### Actually creating tweets
+## Actually creating tweets
 
 Within the `api` directory, create another directory `tweet`, and within that `create.ts`. This will be another backend serverless function that takes some `text` and gives us back a tweet object.
 
@@ -476,7 +478,7 @@ Also, our use of SWR will automatically deduplicate uses of `useMe` since they h
 
 We'll implement the `/api/me` endpoint right after we've built the signup form and endpoints.
 
-### SignupForm
+## The `SignupForm`
 
 Then we can create the form itself
 
@@ -725,7 +727,7 @@ export function useMe() {
 }
 ```
 
-### Attaching tweets to authors
+## Attaching tweets to authors
 
 One last thing: we need to attach the logged in user to each tweet that's created as it's author. We do this by using the `token` the same way we do in `/api/me`, and then using the prisma client's `connect` property.
 
@@ -878,4 +880,4 @@ Try and logout, and behold that our app is complete.
 
 ## Need help?
 
-Don't hesitate to email me directory at me@kunal.sh 🙂
+Don't hesitate to DM me on [twitter](https://twitter.com/kunalgorithm) or email me at me@kunal.sh 🙂
