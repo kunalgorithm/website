@@ -10,39 +10,44 @@ export default ({ data }) => {
   )
   return (
     <Layout title="Home">
-      <div>
-        <h4>{pages.length} Posts</h4>
-        {pages.map(({ node }) => (
-          <div key={node.id}>
-            <Link
-              to={node.fields.slug.replace(/\/$/, "")}
-              css={css`
-                text-decoration: none;
-                color: inherit;
-              `}
-            >
-              <h3
-                css={css`
-                  margin-bottom: ${rhythm(1 / 4)};
-                `}
-              >
-                {node.frontmatter.title}{" "}
-                <span
-                  css={css`
-                    color: #bbb;
-                  `}
-                >
-                  — {node.frontmatter.date}
-                </span>
-              </h3>
-              <p>{node.excerpt}</p>
-            </Link>
-          </div>
-        ))}
-      </div>
+      {/* <h4>{pages.length} Posts</h4> */}
+      <Posts pages={pages} />
     </Layout>
   )
 }
+
+const Posts = ({ pages }) => (
+  <div>
+    {pages.map(({ node }) => (
+      <div key={node.id}>
+        <Link
+          to={node.fields.slug.replace(/\/$/, "")}
+          css={css`
+            text-decoration: none;
+            color: inherit;
+          `}
+        >
+          <h3
+            css={css`
+              margin-bottom: ${rhythm(1 / 4)};
+            `}
+          >
+            {node.frontmatter.title} <br />
+            <span
+              css={css`
+                color: #bbb;
+                font-size: 70%;
+              `}
+            >
+              {node.frontmatter.date}
+            </span>
+          </h3>
+          <p>{node.excerpt}</p>
+        </Link>
+      </div>
+    ))}
+  </div>
+)
 
 export const query = graphql`
   query {

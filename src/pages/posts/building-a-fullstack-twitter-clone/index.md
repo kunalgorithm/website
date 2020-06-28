@@ -6,7 +6,15 @@ draft: false
 
 This tutorial covers how to build a fullstack application that allows users to sign up or login, then post tweets to a global feed. You can find the code for the completed app [here](https://github.com/kunalgorithm/fullstack-twitter).
 
-A demo of what we'll be building is currently deployed at https://fullstack-twitter.onrender.com
+A demo of what we'll be building is currently deployed at [fullstack-twitter.onrender.com](https://fullstack-twitter.onrender.com)
+
+[![Finished Screenshot](./finished-screenshot.png)](https://fullstack-twitter.onrender.com)
+
+## Table of Contents
+
+```toc
+exclude: "Table of Contents"
+```
 
 ## Prerequisites
 
@@ -18,7 +26,7 @@ Before we get started, make sure you have node and [yarn](https://yarnpkg.com/) 
 
 First, create a new npm project
 
-```bash
+```shell
 mkdir fullstack-twitter-clone
 cd fullstack-twitter-clone
 npm init -y
@@ -52,7 +60,7 @@ npx next
 
 and visit http://localhost:3000 to see our first component in action. We should have a barebones unstyled webpage with "hello, world!" in the top left.
 
-## The backend
+### The backend
 
 Now that our react code has the client up and running, let's use Next.js's API routes to write a backend handler in the designated `api` directory within `pages`
 
@@ -95,7 +103,7 @@ export default (req, res) => {
 }
 ```
 
-## Put the two together
+### Put the two together
 
 The real power with this approach is that we can write frontend and backend code in the same place, with the same language, and split the logic accordingly.
 
@@ -196,7 +204,7 @@ export default function MyApp({ Component, pageProps }) {
 
 Now visit http://localhost:3000 and we'll see the naked data from our backend being rendered
 
-## Creating new tweets
+### Creating new tweets
 
 Our twitter app won't work if all users can do is _read_ tweets, so we need to give them a way to create them too. Let's add a form component that users can useto add new tweets. Inside `components` create `CreateTweetForm.tsx`.
 
@@ -298,7 +306,7 @@ const tweet = await prisma.tweet.create({ data: { text: "Hello, Twitter!" } })
 
 Now let's put this to use to allow users to create tweets.
 
-## Generate the prisma client
+### Generate the prisma client
 
 Before we begin, let's add some scripts to `package.json` to make it easier for us to call `prisma migrate` commands, as well a few more to facilitate the build process for when we deploy our app to production.
 
@@ -338,7 +346,7 @@ yarn generate
 
 Which peaks into our schema file for the models defined, generates the client in `node_modules/@prisma/client` and concludes with some output dictating exactly how we can use it in our code.
 
-## Actually creating tweets
+### Actually creating tweets
 
 Within the `api` directory, create another directory `tweet`, and within that `create.ts`. This will be another backend serverless function that takes some `text` and gives us back a tweet object.
 
@@ -367,7 +375,7 @@ Remember to `import { fetcher } from "./util/fetcher"` at the top of the file.
 
 Now, try creating another tweet in the browser and head to the **Network** tab of the console to see the results. You should see a request titled **create**, after the suffix of the endpoint, and click it to view the resposne. If the response worked, you'll see a response JSON object with an `id`, `createdAt`, and `text` fields.
 
-## Feed 2.0
+### Feed 2.0
 
 Now that we can create tweets in our database, let's change our feed API function to retrieve tweets from the database instead of giving us back hardcoded data. Open `pages/api/feed.ts` and change the contents to
 
@@ -478,7 +486,7 @@ Also, our use of SWR will automatically deduplicate uses of `useMe` since they h
 
 We'll implement the `/api/me` endpoint right after we've built the signup form and endpoints.
 
-## The `SignupForm`
+### The `SignupForm`
 
 Then we can create the form itself
 
@@ -661,7 +669,7 @@ JWT_SECRET=appsecret123
 
 Replace `appsecret123` with some less-guessable combination of characters, and restart your development server.
 
-## The `Me` Endpoint
+### The `Me` Endpoint
 
 Finally, we can build `/api/me`
 
@@ -727,7 +735,7 @@ export function useMe() {
 }
 ```
 
-## Attaching tweets to authors
+### Attaching tweets to authors
 
 One last thing: we need to attach the logged in user to each tweet that's created as it's author. We do this by using the `token` the same way we do in `/api/me`, and then using the prisma client's `connect` property.
 

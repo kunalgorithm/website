@@ -3,8 +3,14 @@ body {
 }
 
 h2 {
-  margin-top: 2.5rem !important;
+  margin-top: 3.5rem !important;
+  font-size: 1.85em;
 }
+h3 {
+  margin-top: 2.5rem !important;
+  font-size: 1.5em;
+}
+
 /* Links */
 /* a {
   text-decoration: none;
@@ -80,5 +86,12 @@ code {
 blockquote {
   border-left: 0.2rem solid #bbb;
   padding-left: 10px;
-  font-size: 90%;
+  font-size: 95%;
+}
+
+.toc > ul > li {
+  margin-top: 0.5em;
+}
+.toc > ul > li > p {
+  margin-bottom: 0.5em;
 }
