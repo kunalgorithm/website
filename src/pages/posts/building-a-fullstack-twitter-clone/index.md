@@ -69,7 +69,7 @@ Now that our react code has the client up and running, let's use Next.js's API r
 mkdir pages/api
 ```
 
-Create a file, `feed.ts` within the `api` directory and create a simple function that returns a timestamp
+Create a file, `feed.ts` within the `api` directory and create a simple function that returns an array.
 
 ```ts
 // pages/api/feed.ts
@@ -78,16 +78,13 @@ export default (req, res) => res.json({ feed: [] })
 
 Head to http://localhost:3000/api/feed and you should see some json within your browser.
 
-> Bonus: you can take a sneak peek at the feed endpoint of the production app, which our endpoint will eventually build up to, at [fullstack-twitter.onrender.com/api/feed](https://fullstack-twitter.onrender.com/api/feed)
-
 ```json
-// localhost:3000/api/feed
 {
   "feed": []
 }
 ```
 
-Let's make this more interesting by adding some fake tweets to `feed.ts`
+Let's make our feed more interesting by adding some fake tweets to `feed.ts`
 
 ```ts
 // pages/api/feed.ts
@@ -108,15 +105,17 @@ export default (req, res) => {
 }
 ```
 
-Visit your browser again you should see the fake tweets being rendered as raw json.
+> Bonus: you can take a sneak peek at the feed endpoint of the production app, which our endpoint will eventually build up to, at [fullstack-twitter.onrender.com/api/feed](https://fullstack-twitter.onrender.com/api/feed)
 
-> Note: I have a browser extension installed that prettifies raw JSON, like in the screenshot below.
+Visit your browser again you should see the fake tweets being rendered as raw json.
 
 ![Feed JSON preview](./feed-json.png)
 
+> Note: I have a browser extension, [JSON formatter](https://chrome.google.com/webstore/detail/json-formatter/bcjindcccaagfpapjjmafapmmgkkhgoa?hl=en), installed that prettifies raw JSON, like in the screenshot above.
+
 ### Put the two together
 
-The real power with this approach is that we can write frontend and backend code in the same place, with the same language, and split the logic accordingly.
+The real power with this approach is that we can write frontend and backend code in the same place, in the same language, and split the logic accordingly. All of the source code goes into the `pages` directory, and the backend code is limited to the `api` directory. Each seperate file, whether a frontend page or a backend route, is compiled into it's own endpoint, and the two work together to power a fullstack application.
 
 To pull them together, we query the new `api/feed` endpoint from the `pages/index.tsx` page, and show our list of tweets to the user. We're going to user a small library called [SWR](https://swr.now.sh) for our data fetching, which handles caching, locally changing data during POST requests, and revalidation. The power of SWR and it's ability to make handling cached data on the frontend will soon become obvious.
 
@@ -135,7 +134,7 @@ Within `fetcher.tsx` we have
 ```tsx
 // components/util/fetcher.tsx
 export const fetcher = (url, data = undefined) =>
-  fetch("http://localhost:3000" + url, {
+  fetch(window.location.origin + url, {
     method: data ? "POST" : "GET",
     credentials: "include",
     headers: {
@@ -199,11 +198,10 @@ export default () => (
 )
 ```
 
-For one last detail, let's import Ant Design's CSS stylesheet in a specially-designed file in the `pages` directory titled `_app.js`, which next uses to wrap all other pages
+For one last detail, we need to import Ant Design's CSS stylesheet into our app, so that it's automatically included in all our pages. We do this with a special file, `_app.js` in the `pages` directory, which next.js uses to wrap all of the other pages.
 
 ```js
 // pages/_app.js
-
 import "antd/dist/antd.css"
 
 export default function MyApp({ Component, pageProps }) {
@@ -230,6 +228,7 @@ Our twitter app won't work if all users can do is _read_ tweets, so we need to g
 In `CreateTweetForm.tsx` we call the same `useFeed()` hook as in `Feed.tsx`, and we additionally make use of the `mutate` export from swr. This allows us to change the local state of our feed to reflect the change, even before it's registered by the server, so the user can see their new tweet right away.
 
 ```tsx
+// components/CreateTweetForm.tsx
 import { Button, message, Row, Col, Input } from "antd"
 import { mutate } from "swr"
 import { fetcher } from "./util/fetcher"
@@ -268,7 +267,9 @@ export const CreateTweetForm = () => {
 
 Be sure to test this on localhost to ensure you can spam your feed with every thought with which you desire.
 
-The only problem, you may have noticed, is that tweets don't stick around if you refresh your browser. So, now we need a way for:
+The only problem, you may have noticed, is that tweets don't stick around if you refresh your browser. This is because we are currently adding new tweets to SWR's local cache, but is not being sent to the backend or stored anywhere that persist independently of browser sessions and devices.
+
+Essentially, we need a way for:
 
 1. Tweets to stick around if you refresh the browser or go take a nap.
 2. Your friends to be able to see your tweets on their computers.
@@ -308,7 +309,7 @@ generator client {
 Now, we can add a model for new tweets
 
 ```prisma
-
+// prisma/schema.prisma
 model Tweet {
   id        Int      @id @default(autoincrement())
   createdAt DateTime @default(now())
@@ -372,6 +373,7 @@ Which peaks into our schema file for the models defined, generates the client in
 Within the `api` directory, create another directory `tweet`, and within that `create.ts`. This will be another backend serverless function that takes some `text` and gives us back a tweet object.
 
 ```ts
+// pages/api/tweet/create.ts
 import { PrismaClient } from "@prisma/client"
 const prisma = new PrismaClient()
 
@@ -387,6 +389,7 @@ Notice that we are assuming the `text` to be attached to the body of the request
 Now, lets try calling this function from our frontend. After the call to `mutate` in our index page, add
 
 ```ts
+// within pages/index.tsx
 fetcher("/api/tweet/create", {
   text: input,
 })
@@ -401,6 +404,7 @@ Now, try creating another tweet in the browser and head to the **Network** tab o
 Now that we can create tweets in our database, let's change our feed API function to retrieve tweets from the database instead of giving us back hardcoded data. Open `pages/api/feed.ts` and change the contents to
 
 ```ts
+// pages/api/feed.ts
 import { PrismaClient } from "@prisma/client"
 const prisma = new PrismaClient()
 
@@ -433,6 +437,7 @@ Basically, we're gonna build a safe and secure way to allow users to sign in wit
 First, we introduce the `User` model in `schema.prisma`
 
 ```prisma
+// prisma/schema.prisma
 model User {
   id          Int      @id @default(autoincrement())
   createdAt   DateTime @default(now())
@@ -442,7 +447,21 @@ model User {
 }
 ```
 
-You'll notice that every `user` has a `tweets` field that corresponds to an array of Tweets. This allows us to access a users tweets as simply as with `user.tweets`. But let's not get ahead of ourselves, since we still need to save and apply the database migration.
+You'll notice that every `user` has a `tweets` field that corresponds to an array of Tweets. This allows us to access a users tweets as simply as with `user.tweets`. Also, let's add the other side of the relationship by adding `authorId` and `author` fields to `Tweet`.
+
+```diff
+// prisma/schema.prisma
+model Tweet {
+  id         Int      @id @default(autoincrement())
+  createdAt  DateTime @default(now())
+  text       String
++  authorId   Int
++  author     User @relation(fields: [authorId], references:[id])
+}
+
+```
+
+Now, we can save and run our database migrations to apply our changes. Let's use the scripts we added to `package.json` earlier.
 
 ```bash
 yarn migrate:save
@@ -637,7 +656,7 @@ export default async (req, res) => {
 }
 ```
 
-Now, we can a similarly-structured `login` route
+Now, we can implement a similarly-structured `login` route.
 
 ```ts
 // pages/api/login.tsx
@@ -809,6 +828,7 @@ export const DeleteTweetButton = ({ tweet, feed }) => (
       await fetcher("/api/tweet/delete", { id: tweet.id })
       await mutate(
         "/api/feed",
+        // remove the tweet from the local cache to instantly reflect the change
         feed.filter(t => t.id !== tweet.id)
       )
     }}
