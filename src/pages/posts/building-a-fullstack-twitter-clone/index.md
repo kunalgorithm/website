@@ -1,6 +1,6 @@
 ---
 title: "Building a Fullstack Twitter Clone with Next.js and Prisma"
-date: "2020-06-21"
+date: "2020-06-29"
 draft: false
 ---
 
