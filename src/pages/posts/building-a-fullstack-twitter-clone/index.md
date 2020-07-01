@@ -39,21 +39,22 @@ yarn add next react react-dom
 yarn add --dev typescript @types/react @types/node
 ```
 
-Now, we create our first page, using the designated `pages` directory that next.js uses for file-based routing
+Now, we create the designated `pages` directory that next.js uses for file-based routing.
 
 ```bash
 mkdir pages
-touch pages/index.tsx
 ```
 
-Then add the following component to our first page
+Every file within the `pages` directory is compiled into it's own route, so `index.tsx` can be visited at `/`, `about.tsx` at `/about`, and so on.
+
+Lets add the following component to our first page, `index.tsx`.
 
 ```jsx
 // pages/index.tsx
 export default () => <div> hello, world! </div>
 ```
 
-Now, run the next development server
+Now, run the Nextjs development server
 
 ```bash
 npx next
@@ -247,7 +248,12 @@ export const CreateTweetForm = () => {
 
         // we include "false" here to ask SWR not to revalidate the cache with
         // the feed returned from the server. we'll remove this after the next section
-        mutate("/api/feed", [{ text: input, author }, ...feed], false)
+        mutate(
+          "/api/feed",
+          [{ text: input, author: { username: "Marshall Mathers" } }, ...feed],
+          false
+        )
+
         setInput("")
       }}
     >
@@ -276,7 +282,7 @@ Essentially, we need a way for:
 
 ## Enter: sqlite + Prisma
 
-Now that we've got our app working nicely on single-player single-sesion instances, we need to make it immune to the effects of time and refreshes by storing all of our users' data somewhere persistent. We do this by bringing in our old friend, **the database**. With it, we'll use [Prisma](https://prisma.io) to handle the datamodel, access the data, and give us type safety throughout the application.
+Now that we've got our app working nicely on single-player instances, we need to make it immune to the effects of time and refreshes by storing all of our users' data somewhere persistent. We do this by bringing in our old friend, **the database**. With it, we'll use [Prisma](https://prisma.io) to handle the datamodel, access the data, and give us type safety throughout the application.
 
 We start by adding prisma to our project
 
@@ -366,11 +372,11 @@ Create the client by running
 yarn generate
 ```
 
-Which peaks into our schema file for the models defined, generates the client in `node_modules/@prisma/client` and concludes with some output dictating exactly how we can use it in our code.
+Which peeks into our schema file for the models defined, generates the client in `node_modules/@prisma/client` and concludes with some output dictating exactly how we can use it in our code.
 
 ### Actually creating tweets
 
-Within the `api` directory, create another directory `tweet`, and within that `create.ts`. This will be another backend serverless function that takes some `text` and gives us back a tweet object.
+Within the `api` directory, create another directory `tweet`, and within that `create.ts`. This will be another backend function that takes some `text` and gives us back a tweet object.
 
 ```ts
 // pages/api/tweet/create.ts
@@ -389,7 +395,7 @@ Notice that we are assuming the `text` to be attached to the body of the request
 Now, lets try calling this function from our frontend. After the call to `mutate` in our index page, add
 
 ```ts
-// within pages/index.tsx
+// components/CreateTweetForm.tsx
 fetcher("/api/tweet/create", {
   text: input,
 })
@@ -409,22 +415,14 @@ import { PrismaClient } from "@prisma/client"
 const prisma = new PrismaClient()
 
 export default async (req, res) => {
-  const tweets = await prisma.tweet.findMany({})
+  const tweets = await prisma.tweet.findMany({
+    orderBy: { createdAt: "desc" },
+  })
   res.json(tweets)
 }
 ```
 
 and you'll now be able to create tweets, refresh the page, and see them live on.
-
-One last detail: change the prisma call in the feed to
-
-```ts
-const tweets = await prisma.tweet.findMany({
-  orderBy: { createdAt: "desc" },
-})
-```
-
-To return them in chronological order.
 
 ## Authentication
 
@@ -748,7 +746,7 @@ export default async (req, res) => {
 }
 ```
 
-If you hover over the `tweets` variable, typescript will show us that the feed is now of type
+If you're using VSCode and hover over the `tweets` variable, typescript will show us that the feed is now of type
 
 ```ts
 const tweets: (Tweet & { user: User })[]
@@ -923,6 +921,23 @@ Then import and render it in Profile
 
  </Col>
 
+```
+
+For our final step, we create the logout API route
+
+```ts
+// pages/api/logout.ts
+import { serialize } from "cookie"
+
+export default (req, res) => {
+  const cookie = serialize("token", "", {
+    maxAge: -1,
+    path: "/",
+  })
+
+  res.setHeader("Set-Cookie", cookie)
+  res.json({ loggedOut: true })
+}
 ```
 
 Try and logout, and behold that our app is complete.
