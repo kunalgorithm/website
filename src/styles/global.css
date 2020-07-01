@@ -15,6 +15,9 @@ p {
   font-size: 110%;
 }
 
+ul {
+  font-size: 110%;
+}
 /* Links */
 /* a {
   text-decoration: none;
@@ -98,4 +101,8 @@ blockquote {
 }
 .toc > ul > li > p {
   margin-bottom: 0.5em;
+}
+
+.gatsby-code-button-container {
+  top: 78px;
 }
