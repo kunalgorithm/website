@@ -171,10 +171,10 @@ export const Feed = () => {
   const { feed } = useFeed()
   return feed ? (
     <>
-      {feed.map((tweet, i) => (
+      {feed.map(({ id, text, author }, i) => (
         <Card key={i}>
-          <h4>{tweet.text}</h4>
-          <span>{tweet.author.username}</span>
+          <h4>{text}</h4>
+          <span>{author.username}</span>
         </Card>
       ))}
     </>
@@ -809,7 +809,7 @@ It would be nice if users could delete their tweets after they've posted them, a
 
 To know if a user can delete a tweet, we need to check if the user is the tweet's author. Then we can make a call to a new API endpoint for deleting a tweet, and then locally mutate the cache to remove the tweet from the feed.
 
-Create a new component `DeleteTweetButton.tsx` in components.
+Create a new component `DeleteButton.tsx` in components.
 
 ```tsx
 // components/DeleteTweetButton
@@ -817,17 +817,16 @@ import { Button } from "antd"
 import { mutate } from "swr"
 import { fetcher } from "./util/fetcher"
 
-export const DeleteTweetButton = ({ tweet, feed }) => (
+export const DeleteButton = ({ id, feed }) => (
   <Button
     style={{ float: "right" }}
     danger
     type="dashed"
     onClick={async () => {
-      await fetcher("/api/tweet/delete", { id: tweet.id })
+      await fetcher("/api/tweet/delete", { id })
       await mutate(
         "/api/feed",
-        // remove the tweet from the local cache to instantly reflect the change
-        feed.filter(t => t.id !== tweet.id)
+        feed.filter(t => t.id !== id)
       )
     }}
   >
@@ -840,15 +839,15 @@ and import and render it in the feed component.
 
 ```diff
 // components/Feed.tsx
-+ import { DeleteTweetButton } from "./DeleteTweetButton";
++ import { DeleteButton } from "./DeleteButton";
 ...
 
  <Card key={i}>
-+  {me && tweet.author.id === me.id && (
-+    <DeleteTweetButton tweet={tweet} feed={feed} />
++  {me && author.id === me.id && (
++    <DeleteButton id={id} feed={feed} />
 +  )}
-  <h4>{tweet.text}</h4>
-  <span>{tweet.author.username}</span>
+  <h4>{text}</h4>
+  <span>{author.username}</span>
  </Card>
 
 ```
