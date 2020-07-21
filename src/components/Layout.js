@@ -23,25 +23,30 @@ export default ({ children, title = undefined }) => {
     `
   )
 
+  const DesktopHeader = () => (
+    <header style={{ marginBottom: `1.5rem` }}>
+      <Link to="/" style={{ textShadow: `none`, backgroundImage: `none` }}>
+        {/* <img style={{ height: "3rem" }} alt="Logo" src="logo.png"></img> */}
+        <h4 style={{ display: `inline` }}>{data.site.siteMetadata.title}</h4>
+      </Link>
+
+      <ul style={{ listStyle: `none`, float: `right` }}>
+        <ListLink to="/">Home</ListLink>
+        <ListLink to="/about">About</ListLink>
+        <ListLink to="/projects">Projects</ListLink>
+        <ListLink to="/now">Now</ListLink>
+      </ul>
+      <SocialIcons />
+    </header>
+  )
+
   return (
     <div style={{ margin: `3rem auto`, maxWidth: 650, padding: `0 1rem` }}>
       <SEO
         title={title || data.site.siteMetadata.title}
         description={data.site.siteMetadata.description}
       />
-      <header style={{ marginBottom: `1.5rem` }}>
-        <Link to="/" style={{ textShadow: `none`, backgroundImage: `none` }}>
-          {/* <img style={{ height: "3rem" }} alt="Logo" src="logo.png"></img> */}
-          <h4 style={{ display: `inline` }}>{data.site.siteMetadata.title}</h4>
-        </Link>
-
-        <ul style={{ listStyle: `none`, float: `right` }}>
-          <ListLink to="/">Home</ListLink>
-          <ListLink to="/about">About</ListLink>
-          <ListLink to="/projects">Projects</ListLink>
-        </ul>
-        <SocialIcons />
-      </header>
+      <DesktopHeader />
 
       {children}
     </div>
