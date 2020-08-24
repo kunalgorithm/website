@@ -20,7 +20,11 @@ exclude: "Table of Contents"
 
 Before we get started, make sure you have node and [yarn](https://yarnpkg.com/) installed.
 
-> At the time of writing, prisma migrate is still an experimental feature and should not be used on production. You can still use the this tutorial to bootstrap your database schema, but consider using [Hasura](https://hasura.io) to create, update, and manage tables when supporting production user data.
+<details>
+  <summary>Note: <code>prisma migrate</code> isn't ready for production use. Use <a href="https://hasura.io">Hasura</a> instead.</summary>
+  
+  At the time of writing, prisma migrate is still an experimental feature and should not be used on production. You can still use the this tutorial to bootstrap your database schema, but consider using [Hasura](https://hasura.io) to create, update, and manage tables when supporting production user data.
+</details>
 
 ## Getting Started
 
@@ -271,7 +275,7 @@ export const CreateTweetForm = () => {
 }
 ```
 
-Be sure to test this on localhost to ensure you can spam your feed with every thought with which you desire.
+Import `CreateTweetForm` into the index page and render it directly above the `Feed` component. Be sure to test this on localhost to ensure you can spam your feed with every thought with which you desire.
 
 The only problem, you may have noticed, is that tweets don't stick around if you refresh your browser. This is because we are currently adding new tweets to SWR's local cache, but is not being sent to the backend or stored anywhere that persist independently of browser sessions and devices.
 
@@ -303,7 +307,7 @@ To configure prisma to use sqlite and to point the prisma client to a local sqli
 ```prisma
 datasource sqlite {
   provider = ["sqlite", "postgresql"]
-  url      = env("DATABASE_URL")
+  url      = "file:./dev.db"
 }
 
 generator client {
@@ -657,7 +661,7 @@ export default async (req, res) => {
 Now, we can implement a similarly-structured `login` route.
 
 ```ts
-// pages/api/login.tsx
+// pages/api/login.ts
 import { PrismaClient } from "@prisma/client"
 const prisma = new PrismaClient()
 import bcrypt from "bcrypt"
@@ -749,7 +753,14 @@ export default async (req, res) => {
 If you're using VSCode and hover over the `tweets` variable, typescript will show us that the feed is now of type
 
 ```ts
-const tweets: (Tweet & { user: User })[]
+const tweets: (Tweet & {
+  user: {
+    author: {
+      username: string
+      id: number
+    }
+  }
+})[]
 ```
 
 So we can update our `useFeed` hook to return the same type, the same as we did for `useMe` earlier.
