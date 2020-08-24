@@ -7,7 +7,7 @@ draft: true
 
 Hi, I'm Kunal 👋
 
-I like turning complicated problems into simple and intuitive solutions.
+I'm a JavaScript engineer and I build things for the web. I most enjoy turning complicated problems into simple and intuitive solutions.
 
 Most recently, I built [Cosign](https://cosign.co), a peer-to-peer credentialing network, and [Via](https://via.beondeck.com), a referral-based hiring platform, at [On Deck](https://beondeck.com)
 
