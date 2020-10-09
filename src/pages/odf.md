@@ -4,7 +4,7 @@ draft: true
 date: "2020-07-01"
 ---
 
-I'm thrilled to be partaking in ODF 4 as a hacker-in-residence. I'll be helping fellows build production-ready technical prototypes.
+I'm thrilled to be partaking in ODF as a hacker-in-residence. I'll be helping fellows build production-ready technical prototypes.
 
 ### tl;dr
 
