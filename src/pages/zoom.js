@@ -1,15 +1,18 @@
 import React from "react"
 import Helmet from "react-helmet"
+import { Row, Col } from "antd"
 
 export default ({}) => {
   if (typeof window !== `undefined`)
     window.location.replace(
-      `https://zoom.us/j/7865414444?pwd=VG5GeVIyaVE2VWhWUmI5RHZqbkFXdz09`
+      `https://zoom.us/j/5962714465?pwd=MUxiSFBxOTNBS2I3OGl5NldZeDdJdz09`
     )
   return (
     <div>
       <Helmet title="Join My Personal Zoom Meeting"></Helmet>
-      You should be redirected...
+      <Row align="middle" justify="center">
+        <Col>You should be redirected...</Col>
+      </Row>
     </div>
   )
 }

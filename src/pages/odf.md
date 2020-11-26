@@ -40,5 +40,3 @@ The opportunity to learn more about you and your concept :) Turning ephemeral id
 > Note: Since the time I can dedicate to hacking each week is limited, I won't be able to work with everyone who contacts me. Preference will be given to those who have a complete vision of what needs to be built so that our time together can be maximally effective.
 
 Write me an email at [me@kunal.sh](mailto:me@kunal.sh) with a short intro, a description of what you're working on, and links to designs and/or wireframes.
-
-or just fill out [this typeform](https://beondeck.typeform.com/to/rUpjUadH)

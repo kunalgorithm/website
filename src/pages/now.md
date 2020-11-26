@@ -3,18 +3,18 @@ title: "What I'm Doing Now"
 draft: true
 ---
 
+> updated November 25, 2020.
+
 This is what I'm up to at the moment. If you have your own website, you should [create one too](https://nownownow.com/about).
 
-- Living in Tulum, Mexico at [launch house](https://twitter.com/launch_house).
 - Building [Compose](https://compose.pw/), an AI-powered email writer.
 - Helping founders build prototypes as a [hacker-in-residence](./odf) at [On Deck](https://beondeck.com).
-- Gathering feedback on my [first tutorial](./posts/building-a-fullstack-twitter-clone) and making it better.
-- Getting better at designing with [Figma](https://figma.com).
+- Improving my [first tutorial](./posts/building-a-fullstack-twitter-clone).
+- Building [Mindstreaks], a meditation app, with [Patricia](https://twitter.com/_patriciamou).
 
 ### Eager to discuss
 
 - Applications and limitations of [GPT-3](https://arxiv.org/abs/2005.14165).
-- The upcoming election.
 - GraphQL vs REST, particularly tooling and usage with SSR.
 - The relationships between empathy, deliberate reasoning, and moral judgement.
 

@@ -954,4 +954,4 @@ Try and logout, and behold that our app is complete.
 
 ## Need help?
 
-Don't hesitate to DM me on [twitter](https://twitter.com/kunalgorithm) or email me at me@kunal.sh 🙂
+Don't hesitate to DM me on [twitter](https://twitter.com/kunalgorithm) or email me at [kunal@compose.ai](mailto:kunal@compose.ai).
