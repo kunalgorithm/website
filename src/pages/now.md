@@ -3,14 +3,14 @@ title: "What I'm Doing Now"
 draft: true
 ---
 
-> updated November 25, 2020.
-
-This is what I'm up to at the moment. If you have your own website, you should [create one too](https://nownownow.com/about).
+> updated November 30, 2020.
+>
+> This is what I'm up to at the moment. If you have your own website, you should [create one too](https://nownownow.com/about).
 
 - Building [Compose](https://compose.pw/), an AI-powered email writer.
 - Helping founders build prototypes as a [hacker-in-residence](./odf) at [On Deck](https://beondeck.com).
 - Improving my [first tutorial](./posts/building-a-fullstack-twitter-clone).
-- Building [Mindstreaks], a meditation app, with [Patricia](https://twitter.com/_patriciamou).
+- Building [MindStreaks](https://mindstreaks.com), a meditation app to support mindfulness habits with streak-tracking and accountability.
 
 ### Eager to discuss
 
