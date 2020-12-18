@@ -15,4 +15,4 @@ Previously, I built [Cosign](https://cosign.co), a peer-to-peer credentialing ne
 
 I attended Rice University, where I studied computer science, helped start [Rice Blockchain](https://blockchain.rice.edu/), served as webmaster of [Wiess College](https://teamwiess.com), and competed on the NCAA D1 track team.
 
-You can reach me at [kunal@compose.ai](mailto:kunal@compose.ai).
+You can reach me at [me@kunal.sh](mailto:me@kunal.sh).
