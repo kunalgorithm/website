@@ -20,7 +20,6 @@ import RiceBlockchain from "./portfolio/rice-blockchain.png"
 //@ts-ignore
 import TaskTimer from "./portfolio/task-timer.png"
 // TODO: add medicalbills.fyi, found ?
-import { Row, Col } from "antd"
 
 const projects = [
   // {
