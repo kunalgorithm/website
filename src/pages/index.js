@@ -19,32 +19,21 @@ export default ({ data }) => {
 const Posts = ({ pages }) => (
   <div>
     {pages.map(({ node }) => (
-      <div key={node.id}>
-        <Link
-          to={node.fields.slug.replace(/\/$/, "")}
-          css={css`
-            text-decoration: none;
-            color: inherit;
-          `}
-        >
-          <h3
-            css={css`
-              margin-bottom: ${rhythm(1 / 4)};
-            `}
-          >
-            {node.frontmatter.title} <br />
-            <span
-              css={css`
-                color: #bbb;
-                font-size: 70%;
-              `}
-            >
-              {node.frontmatter.date}
-            </span>
-          </h3>
+      <Link
+        key={node.id}
+        to={node.fields.slug.replace(/\/$/, "")}
+        className="blog-post-title"
+      >
+        <div>
+          <h2 style={{ marginBottom: "5px" }} className="blog-post-title">
+            {node.frontmatter.title}
+          </h2>
+          <span style={{ color: "#bbb", fontSize: "16px", marginTop: "0" }}>
+            {node.frontmatter.date}
+          </span>
           <p>{node.excerpt}</p>
-        </Link>
-      </div>
+        </div>
+      </Link>
     ))}
   </div>
 )

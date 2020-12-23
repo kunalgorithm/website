@@ -1,5 +1,5 @@
-import "./src/styles/global.css"
 import "antd/dist/antd.dark.css"
+import "./src/styles/global.css"
 import "prismjs/themes/prism-tomorrow.css"
 // import "antd/dist/antd.css"
 // import "./src/styles/prism.css"

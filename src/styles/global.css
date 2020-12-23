@@ -33,6 +33,14 @@ a > img {
   background-image: none;
 } */
 
+a.blog-post-title:hover {
+  color: rgb(167, 94, 255);
+}
+
+a:hover {
+  color: rgb(167, 94, 255);
+}
+
 /* Inline code */
 code {
   font-family: Fira Code, Monaco, courier, monospace !important;
