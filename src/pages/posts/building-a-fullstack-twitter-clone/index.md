@@ -4,6 +4,10 @@ date: "2020-06-29"
 draft: false
 ---
 
+> Updated on December 23, 2020 to reflect the changes in the [Prisma Migrate Preview Release](https://www.prisma.io/blog/prisma-migrate-preview-b5eno5g08d0b)
+
+> As always, feel free to DM me on [twitter](https://twitter.com/kunalgorithm) with any feedback, suggestions, or bugs.
+
 This tutorial covers how to build a fullstack application that allows users to sign up or login, then post tweets to a global feed. You can find the code for the completed app [here](https://github.com/kunalgorithm/fullstack-twitter).
 
 A demo of what we'll be building is currently deployed at [fullstack-twitter.onrender.com](https://fullstack-twitter.onrender.com)
@@ -23,7 +27,7 @@ Before we get started, make sure you have node and [yarn](https://yarnpkg.com/) 
 <details>
   <summary>Note: <code>prisma migrate</code> isn't ready for production use. Use <a href="https://hasura.io">Hasura</a> instead.</summary>
   
-  At the time of writing, prisma migrate is still an experimental feature and should not be used on production. You can still use the this tutorial to bootstrap your database schema, but consider using [Hasura](https://hasura.io) to create, update, and manage tables when supporting production user data.
+  At the time of writing, [prisma migrate](https://www.prisma.io/blog/prisma-migrate-preview-b5eno5g08d0b) is still a preview feature and should not be used on production. You can still use the this tutorial to bootstrap your database schema, but consider using [Hasura](https://hasura.io) to create, update, and manage tables when supporting production user data.
 </details>
 
 ## Getting Started
@@ -344,8 +348,7 @@ Before we begin, let's add some scripts to `package.json` to make it easier for 
 
 ```json
 "scripts": {
-    "migrate:save": "prisma migrate save --experimental",
-    "migrate:up": "prisma migrate up --experimental",
+    "migrate": "prisma migrate dev --preview-feature",
     "postinstall": "prisma generate",
     "generate":"prisma generate",
     "dev": "next",
@@ -356,19 +359,13 @@ Before we begin, let's add some scripts to `package.json` to make it easier for 
 
 Now that we're set up, we can create the sqlite database file, run the migration to create the new table, and then generate the prisma client to create and access tweets.
 
-First, we create the sqlite file and save the migration.
+First, we create the sqlite file and run the migration.
 
 ```bash
-yarn migrate:save
+yarn migrate
 ```
 
-Respond **Yes** when asked if you'd like to create a new sqlite file, then give your migration a name, like "Create tweet model". Then, we run the migration against our database.
-
-```bash
-yarn migrate:up
-```
-
-Finally, we can generate the prisma client, which lives in the `node_modules` directory and is generated on the fly (usually in a postintall hook) to give us up-to-date typesafe access to our data.
+Now, we can generate the prisma client, which lives in the `node_modules` directory and is generated on the fly (usually in a postintall hook) to give us up-to-date typesafe access to our data.
 
 Create the client by running
 
@@ -671,7 +668,7 @@ import cookie from "cookie"
 export default async (req, res) => {
   const { username, password } = req.body
 
-  const user = await prisma.user.findOne({
+  const user = await prisma.user.findUnique({
     where: { username },
   })
 
@@ -726,7 +723,7 @@ export default async (req, res) => {
 
   if (token) {
     const { id, username } = jwt.verify(token, process.env.JWT_SECRET)
-    const me = await prisma.user.findOne({ where: { id } })
+    const me = await prisma.user.findUnique({ where: { id } })
     res.json(me)
   } else {
     res.json({})
