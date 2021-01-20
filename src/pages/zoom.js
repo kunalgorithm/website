@@ -4,7 +4,7 @@ import Helmet from "react-helmet"
 export default ({}) => {
   if (typeof window !== `undefined`)
     window.location.replace(
-      `https://zoom.us/j/5962714465?pwd=MUxiSFBxOTNBS2I3OGl5NldZeDdJdz09`
+      `https://zoom.us/j/97921881967?pwd=WU5LK1dTQkVkUjJwbTZRT3N0ek1hZz09`
     )
   return (
     <div>
