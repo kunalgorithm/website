@@ -310,7 +310,7 @@ To configure prisma to use sqlite and to point the prisma client to a local sqli
 
 ```prisma
 datasource sqlite {
-  provider = ["sqlite", "postgresql"]
+  provider = "sqlite"
   url      = "file:./dev.db"
 }
 
