@@ -295,7 +295,7 @@ Now that we've got our app working nicely on single-player instances, we need to
 We start by adding prisma to our project
 
 ```bash
-yarn add --dev @prisma/cli
+yarn add prisma
 ```
 
 Then initialize the prisma project with
@@ -349,7 +349,6 @@ Before we begin, let's add some scripts to `package.json` to make it easier for 
 ```json
 "scripts": {
     "migrate": "prisma migrate dev --preview-feature",
-    "postinstall": "prisma generate",
     "generate":"prisma generate",
     "dev": "next",
     "start": "next start",
