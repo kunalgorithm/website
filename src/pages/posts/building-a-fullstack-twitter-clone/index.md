@@ -462,8 +462,7 @@ model Tweet {
 Now, we can save and run our database migrations to apply our changes. Let's use the scripts we added to `package.json` earlier.
 
 ```bash
-yarn migrate:save
-yarn migrate:up
+yarn migrate
 yarn generate
 ```
 
