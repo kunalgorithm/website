@@ -1,5 +1,5 @@
 ---
-title: "Compose.ai: Write Email At the Speed of Thought"
+title: "Compose.ai: Write At the Speed of Thought"
 date: "2020-11-12"
 draft: false
 ---
