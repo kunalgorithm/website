@@ -4,7 +4,7 @@ date: "2020-11-12"
 draft: false
 ---
 
-We're excited to announce the launch of [Compose.ai](https://compose.ai), an AI-powered writing tool that makes it easier than ever to write great emails.
+I've thrilled to announce [Compose.ai](https://compose.ai), an AI-powered writing tool that makes it easier than ever to write great emails.
 
 Our extension plugs directly into Gmail to turn plain descriptions into well-written and context-aware emails.
 
