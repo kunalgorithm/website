@@ -57,8 +57,7 @@ Every file within the `pages` directory is compiled into it's own route, so `ind
 
 Lets add the following component to our first page, `index.tsx`.
 
-```jsx
-// pages/index.tsx
+```jsx:pages/index.tsx
 export default () => <div> hello, world! </div>;
 ```
 
@@ -80,8 +79,7 @@ mkdir pages/api
 
 Create a file, `feed.ts` within the `api` directory and create a simple function that returns an array.
 
-```ts
-// pages/api/feed.ts
+```ts:pages/api/feed.ts
 export default (req, res) => res.json({ feed: [] });
 ```
 
@@ -95,8 +93,7 @@ Head to http://localhost:3000/api/feed and you should see some json within your 
 
 Let's make our feed more interesting by adding some fake tweets to `feed.ts`
 
-```ts
-// pages/api/feed.ts
+```ts:pages/api/feed.ts
 export default (req, res) => {
   const feed = [
     {
@@ -140,8 +137,7 @@ Create a top-level `components` directory, and a `util` directory within that. I
 
 Within `fetcher.tsx` we have
 
-```tsx
-// components/util/fetcher.tsx
+```tsx:components/util/fetcher.tsx
 export const fetcher = (url, data = undefined) =>
   fetch(window.location.origin + url, {
     method: data ? 'POST' : 'GET',
@@ -157,8 +153,7 @@ This basically abstracts away the complexity of POST and GET requests when using
 
 In `hooks.tsx` we add
 
-```tsx
-// components/util/hooks.tsx
+```tsx:components/util/hooks.tsx
 import useSWR from 'swr';
 import { fetcher } from './fetcher';
 
@@ -170,8 +165,7 @@ export function useFeed() {
 
 Finally, let's pull this all together in `components/Feed.tsx`, rendering each Tweet in Ant Design's `Card` component
 
-```tsx
-// components/Feed.tsx
+```tsx:components/Feed.tsx
 import { Card } from 'antd';
 import { useFeed } from './util/hooks';
 
@@ -193,8 +187,7 @@ export const Feed = () => {
 which will give us the same contents as the value of the json endpoint, demonstrating that the data is being retrieved correctly. Finally, we can render the feed in `pages/index.tsx`
 ah
 
-```tsx
-// pages/index.tsx
+```tsx:pages/index.tsx
 import { Col, Row } from 'antd';
 import { Feed } from '../components/Feed';
 
@@ -209,8 +202,7 @@ export default () => (
 
 For one last detail, we need to import Ant Design's CSS stylesheet into our app, so that it's automatically included in all our pages. We do this with a special file, `_app.js` in the `pages` directory, which next.js uses to wrap all of the other pages.
 
-```js
-// pages/_app.js
+```js:pages/_app.js
 import 'antd/dist/antd.css';
 
 export default function MyApp({ Component, pageProps }) {
@@ -236,8 +228,7 @@ Our twitter app won't work if all users can do is _read_ tweets, so we need to g
 
 In `CreateTweetForm.tsx` we call the same `useFeed()` hook as in `Feed.tsx`, and we additionally make use of the `mutate` export from swr. This allows us to change the local state of our feed to reflect the change, even before it's registered by the server, so the user can see their new tweet right away.
 
-```tsx
-// components/CreateTweetForm.tsx
+```tsx:components/CreateTweetForm.tsx
 import { Button, message, Row, Col, Input } from 'antd';
 import { mutate } from 'swr';
 import { fetcher } from './util/fetcher';
@@ -378,8 +369,7 @@ Which peeks into our schema file for the models defined, generates the client in
 
 Within the `api` directory, create another directory `tweet`, and within that `create.ts`. This will be another backend function that takes some `text` and gives us back a tweet object.
 
-```ts
-// pages/api/tweet/create.ts
+```ts:pages/api/tweet/create.ts
 import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
@@ -394,8 +384,7 @@ Notice that we are assuming the `text` to be attached to the body of the request
 
 Now, lets try calling this function from our frontend. After the call to `mutate` in our index page, add
 
-```ts
-// components/CreateTweetForm.tsx
+```ts:components/CreateTweetForm.tsx
 fetcher('/api/tweet/create', {
   text: input
 });
@@ -409,8 +398,7 @@ Now, try creating another tweet in the browser and head to the **Network** tab o
 
 Now that we can create tweets in our database, let's change our feed API function to retrieve tweets from the database instead of giving us back hardcoded data. Open `pages/api/feed.ts` and change the contents to
 
-```ts
-// pages/api/feed.ts
+```ts:pages/api/feed.ts
 import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
@@ -447,8 +435,7 @@ model User {
 
 You'll notice that every `user` has a `tweets` field that corresponds to an array of Tweets. This allows us to access a users tweets as simply as with `user.tweets`. Also, let's add the other side of the relationship by adding `authorId` and `author` fields to `Tweet`.
 
-```diff
-// prisma/schema.prisma
+```diff:prisma/schema.prisma
 model Tweet {
   id         Int      @id @default(autoincrement())
   createdAt  DateTime @default(now())
@@ -476,8 +463,7 @@ We're going to handle authentication and reflect this to the user by rendering a
 
 Let's start by creating `Profile.tsx`
 
-```tsx
-// components/Profile.tsx
+```tsx:components/Profile.tsx
 import { Row, Col, Button, message } from 'antd';
 import { SignupForm } from './SignupForm';
 import { useMe } from './util/hooks';
@@ -505,8 +491,7 @@ export const Profile = () => {
 
 You'll notice we're using a new hook, `useMe`. As you can guess, this will return the currently authenticated user. Let's go ahead and add this hook to our hooks utility.
 
-```tsx
-// components/util/hooks.tsx
+```tsx:components/util/hooks.tsx
 import { User } from '@prisma/client';
 
 // useFeed function
@@ -527,8 +512,7 @@ We'll implement the `/api/me` endpoint right after we've built the signup form a
 
 Then we can create the form itself
 
-```tsx
-// components/SignupForm.tsx
+```tsx:components/SignupForm.tsx
 import { Row, Col, Button, message, Input } from 'antd';
 import { useState } from 'react';
 import { mutate } from 'swr';
@@ -607,8 +591,7 @@ Let's start with `signup` which
 3. Signs a `jsonwebtoken` with the `id` and `username` of the user and the `JWT_SECRET` from the environment.
 4. Sets an [httpOnly cookie](https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies)
 
-```ts
-// pages/api/signup.ts
+```ts:pages/api/signup.ts
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import cookie from 'cookie';
@@ -655,8 +638,7 @@ export default async (req, res) => {
 
 Now, we can implement a similarly-structured `login` route.
 
-```ts
-// pages/api/login.ts
+```ts:pages/api/login.ts
 import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 import bcrypt from 'bcrypt';
@@ -710,8 +692,7 @@ Replace `appsecret123` with some less-guessable combination of characters, and r
 
 Finally, we can build `/api/me`
 
-```ts
-// pages/api/me.ts
+```ts:pages/api/me.ts
 import jwt from 'jsonwebtoken';
 import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
@@ -731,8 +712,7 @@ export default async (req, res) => {
 
 Also, we can return the author of each tweet in the `feed`, so that we can render their usernames
 
-```ts
-// pages/api/feed.ts
+```ts:pages/api/feed.ts
 import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
@@ -760,8 +740,7 @@ const tweets: (Tweet & {
 
 So we can update our `useFeed` hook to return the same type, the same as we did for `useMe` earlier.
 
-```tsx
-// components/util/hooks.tsx
+```tsx:components/util/hooks.tsx
 import { Tweet, User } from '@prisma/client';
 import useSWR from 'swr';
 import { fetcher } from './fetcher';
@@ -783,8 +762,7 @@ export function useMe() {
 
 One last thing: we need to attach the logged in user to each tweet that's created as it's author. We do this by using the `token` the same way we do in `/api/me`, and then using the prisma client's `connect` property.
 
-```ts
-// pages/api/tweet/create.ts
+```ts:pages/api/tweet/create.ts
 import { PrismaClient } from '@prisma/client';
 import jwt from 'jsonwebtoken';
 export default async (req, res) => {
@@ -817,8 +795,7 @@ To know if a user can delete a tweet, we need to check if the user is the tweet'
 
 Create a new component `DeleteButton.tsx` in components.
 
-```tsx
-// components/DeleteTweetButton
+```tsx:components/DeleteTweetButton
 import { Button } from 'antd';
 import { mutate } from 'swr';
 import { fetcher } from './util/fetcher';
@@ -860,8 +837,7 @@ and import and render it in the feed component.
 
 Now, let's create the backend half of the equation. Create a new API route for `/api/tweet/delete` that takes the `id` from the body of the request, then passes it to prisma's `delete` method, and returns the (now empty) tweet.
 
-```ts
-// pages/api/tweet/delete
+```ts:pages/api/tweet/delete
 
 import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
@@ -884,8 +860,7 @@ Great! Now let's follow the very same process to facillitate logging out.
 
 Create a `LogoutButton.tsx`
 
-```tsx
-// components/LogoutButton.tsx
+```tsx:components/LogoutButton.tsx
 import { Button, message } from 'antd';
 import { mutate } from 'swr';
 import { fetcher } from './util/fetcher';
@@ -930,8 +905,7 @@ Then import and render it in Profile
 
 For our final step, we create the logout API route
 
-```ts
-// pages/api/logout.ts
+```ts:pages/api/logout.ts
 import { serialize } from 'cookie';
 
 export default (req, res) => {
