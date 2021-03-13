@@ -23,8 +23,10 @@ export default function Container(props) {
     ...customMeta
   };
 
+  const darkBg = 'bg-white dark:bg-gray-900';
+
   return (
-    <div className="bg-white dark:bg-black">
+    <div className={` ${darkBg}`}>
       <Head>
         <title>{meta.title}</title>
         <meta name="robots" content="follow, index" />
@@ -45,7 +47,9 @@ export default function Container(props) {
           <meta property="article:published_time" content={meta.date} />
         )}
       </Head>
-      <nav className="sticky-nav flex justify-between items-center max-w-4xl w-full p-8 my-0 md:my-8 mx-auto bg-white dark:bg-black bg-opacity-60">
+      <nav
+        className={`sticky-nav flex justify-between items-center max-w-4xl w-full p-8 my-0 md:my-8 mx-auto  ${darkBg} bg-opacity-60`}
+      >
         <a href="#skip" className="sr-only focus:not-sr-only">
           Skip to content
         </a>
@@ -100,7 +104,7 @@ export default function Container(props) {
       </nav>
       <main
         id="skip"
-        className="flex flex-col justify-center bg-white dark:bg-black px-8"
+        className={`flex flex-col justify-center  ${darkBg} px-8`}
       >
         {children}
         <Footer />
