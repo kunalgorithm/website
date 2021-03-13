@@ -8,9 +8,9 @@ If you want to understand this repo better, I did a [one-hour live stream](https
 
 ## Overview
 
-- `pages/api/*` - [API routes](https://nextjs.org/docs/api-routes/introduction) powering [`/dashboard`](https://leerob.io/dashboard), newsletter subscription, and post views.
+- `pages/api/*` - [API routes](https://nextjs.org/docs/api-routes/introduction) powering [`/dashboard`](https://kunal.sh/dashboard), newsletter subscription, and post views.
 - `pages/blog/*` - Static pre-rendered blog pages using [MDX](https://github.com/mdx-js/mdx).
-- `pages/dashboard` - [Personal dashboard](https://leerob.io/dashboard) containing metrics like sales, views, and subscribers.
+- `pages/dashboard` - [Personal dashboard](https://kunal.sh/dashboard) containing metrics like sales, views, and subscribers.
 - `pages/*` - All other static pages.
 
 ## Running Locally

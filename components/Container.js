@@ -16,9 +16,9 @@ export default function Container(props) {
   const { children, ...customMeta } = props;
   const router = useRouter();
   const meta = {
-    title: 'Kunal Shah – Developer, writer, creator.',
+    title: 'Kunal Shah – Web engineer.',
     description: `JavaScript enthusiast.`,
-    // image: 'https://leerob.io/static/images/banner.png',
+    // image: 'https://kunal.sh/static/images/banner.png',
     type: 'website',
     ...customMeta
   };
