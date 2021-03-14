@@ -44,6 +44,16 @@ html {
   }
 }
 
+h1,
+h3,
+.text-primary {
+  @apply text-indigo-800 dark:text-indigo-400;
+}
+
+.bg-primary {
+  @apply bg-white dark:bg-gray-900;
+}
+
 .prose pre {
   @apply bg-gray-50 border border-gray-200 dark:border-gray-700 dark:bg-gray-900;
 }
@@ -55,6 +65,10 @@ html {
 .prose img {
   /* Don't apply styles to next/image */
   @apply m-0;
+}
+
+.prose a {
+  @apply text-indigo-600 dark:text-indigo-400;
 }
 
 .token.comment,
