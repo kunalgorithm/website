@@ -299,7 +299,7 @@ You'll notice that a `prisma` directory was created, and within it a `schema.pri
 
 To configure prisma to use sqlite and to point the prisma client to a local sqlite file on your machine, update the datasource and client attributes within `schema.prisma`
 
-```
+```diff
 datasource sqlite {
   provider = "sqlite"
   url      = "file:./dev.db"
@@ -313,8 +313,7 @@ generator client {
 
 Now, we can add a model for new tweets
 
-```
-// prisma/schema.prisma
+```diff:prisma/schema.prisma
 model Tweet {
   id        Int      @id @default(autoincrement())
   createdAt DateTime @default(now())
@@ -422,8 +421,7 @@ Basically, we're gonna build a safe and secure way to allow users to sign in wit
 
 First, we introduce the `User` model in `schema.prisma`
 
-```
-// prisma/schema.prisma
+```diff:prisma/schema.prisma
 model User {
   id          Int      @id @default(autoincrement())
   createdAt   DateTime @default(now())
@@ -820,8 +818,7 @@ export const DeleteButton = ({ id, feed }) => (
 
 and import and render it in the feed component.
 
-```diff
-// components/Feed.tsx
+```diff:components/Feed.tsx
 + import { DeleteButton } from "./DeleteButton";
 ...
 
@@ -889,8 +886,7 @@ export const LogoutButton = () => {
 
 Then import and render it in Profile
 
-```diff
-// components/Profile.tsx
+```diff:components/Profile.tsx
 + import { LogoutButton } from "./LogoutButton";
 ...
 

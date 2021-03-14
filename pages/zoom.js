@@ -2,10 +2,10 @@ import Head from 'next/head';
 import React from 'react';
 
 export default ({}) => {
-  //   if (typeof window !== `undefined`)
-  //     window.location.replace(
-  //       `https://zoom.us/j/7865414444?pwd=VG5GeVIyaVE2VWhWUmI5RHZqbkFXdz09`
-  //     );
+  if (typeof window !== `undefined`)
+    window.location.replace(
+      `https://zoom.us/j/7865414444?pwd=VG5GeVIyaVE2VWhWUmI5RHZqbkFXdz09`
+    );
   return (
     <div>
       {/* <Helmet title="Join My Personal Zoom Meeting"></Helmet> */}
@@ -14,7 +14,7 @@ export default ({}) => {
       </Head>
       <div class="flex items-center justify-center h-screen" style={{}}>
         <p
-          className=" dark:text-white"
+          className="text-black dark:text-white"
           style={
             {
               //   display: 'flex',

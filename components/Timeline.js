@@ -102,7 +102,7 @@ export default function Timeline() {
 
   return (
     <>
-      <h3 className="font-bold text-2xl md:text-4xl tracking-tight mb-4 mt-8 text-black dark:text-white">
+      <h3 className="font-bold text-2xl md:text-4xl tracking-tight mb-4 mt-8 text-indigo-800 dark:text-indigo-400">
         Timeline
       </h3>
       <Year>2020</Year>
