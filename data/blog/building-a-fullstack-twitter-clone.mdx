@@ -299,7 +299,7 @@ You'll notice that a `prisma` directory was created, and within it a `schema.pri
 
 To configure prisma to use sqlite and to point the prisma client to a local sqlite file on your machine, update the datasource and client attributes within `schema.prisma`
 
-```
+```diff
 datasource sqlite {
   provider = "sqlite"
   url      = "file:./dev.db"
