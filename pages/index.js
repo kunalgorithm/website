@@ -32,20 +32,17 @@ export default function Home() {
         <ProjectCard
           title="Webform.so"
           description="Create customizable and embeddable forms to collect data and automate processes without having to write a single line of code."
-          href="https://react2025.com/"
-          icon="react2025"
+          href="https://webform.so/"
         />
         <ProjectCard
           title="Compose.ai"
           description="An AI-powered email writer that lets you draft and send emails faster than you thought possible."
           href="https://compose.ai/"
-          icon="nextjs"
         />
         <ProjectCard
           title="Mindstreaks"
           description="Strava for Meditation: Actually stick to your meditation goals with motivational quotes, streak tracking, and most importantly.. friends ✨ "
           href="https://mindstreaks.com/"
-          icon="fastfeedback"
         />
         <Timeline />
         {/* <Subscribe /> */}

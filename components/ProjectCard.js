@@ -9,7 +9,7 @@ const trackGoal = (title) => {
   Fathom.trackGoal(goalCodes[title], 0);
 };
 
-export default function ProjectCard({ title, description, href, icon }) {
+export default function ProjectCard({ title, description, href }) {
   return (
     <a
       className="mb-4 hover:shadow"
