@@ -105,11 +105,18 @@ export default function Timeline() {
       <h3 className="font-bold text-2xl md:text-4xl tracking-tight mb-4 mt-8 text-indigo-800 dark:text-indigo-400">
         Timeline
       </h3>
-      <Year>2020</Year>
+      <Year>2021</Year>
       <ul>
         <Step title="Moved to Taiwan 🇹🇼">
           I'm excited to be joining the most recent Hacker Fellowship in Taiwan.
         </Step>
+      </ul>
+      <Divider />
+      <Year>2020</Year>
+      <ul>
+        {/* <Step title="Moved to Taiwan 🇹🇼">
+          I'm excited to be joining the most recent Hacker Fellowship in Taiwan.
+        </Step> */}
         {/* <Step title="MTN compound ">Ski'd and hacked in Salt Lake City with a great group of people.</Step> */}
         <Step title="Launched Compose.ai">
           Build an AI-powered writing augmentation tool and{' '}
@@ -121,10 +128,10 @@ export default function Timeline() {
           </a>{' '}
           to great reception
         </Step>
-        <Step title="Became a tech lead">
+        {/* <Step title="Became a tech lead">
           Great year for a wedding, huh? We had a small ceremony with family and
           it was better than I could have imagined.
-        </Step>
+        </Step> */}
         <Step title="Built Mindstreaks">
           Starting at the beginning of 2020, I moved into a tech leadership role
           on an e-commerce development team at Hy-Vee.
