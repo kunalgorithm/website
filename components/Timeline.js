@@ -77,10 +77,10 @@ const FullTimeline = () => (
     </ul>
     <Divider />
 
-    <Year>2014</Year>
+    {/* <Year>2014</Year>
     <ul>
       <Step title="Graduated High School">
-        My hometown had about 1000 people, in total. My graduating class was 36.
+        
       </Step>
       <Step title="Learned How To Program">
         CS 140. Our professor asked a simple question - "Who here has prior
@@ -88,7 +88,7 @@ const FullTimeline = () => (
         knew it was going to be an uphill battle from here.
       </Step>
     </ul>
-    <Divider />
+    <Divider /> */}
 
     <Year>1996</Year>
     <ul>
@@ -110,8 +110,17 @@ export default function Timeline() {
         <Step title="Moved to Taiwan 🇹🇼">
           I'm excited to be joining the most recent Hacker Fellowship in Taiwan.
         </Step>
-        <Step title="MTN compound ">Ski and hack</Step>
-        <Step title="Launched Compose.ai">*product hunt link*</Step>
+        {/* <Step title="MTN compound ">Ski'd and hacked in Salt Lake City with a great group of people.</Step> */}
+        <Step title="Launched Compose.ai">
+          Build an AI-powered writing augmentation tool and{' '}
+          <a
+            href="https://www.producthunt.com/posts/compose-ai"
+            className="text-indigo-500"
+          >
+            launched it
+          </a>{' '}
+          to great reception
+        </Step>
         <Step title="Became a tech lead">
           Great year for a wedding, huh? We had a small ceremony with family and
           it was better than I could have imagined.
@@ -120,10 +129,10 @@ export default function Timeline() {
           Starting at the beginning of 2020, I moved into a tech leadership role
           on an e-commerce development team at Hy-Vee.
         </Step>
-        <Step title="Quit my job">
+        {/* <Step title="Quit my job">
           I taught hundreds of students from all over the world how to build web
           applications. Exceeded my wildest expectations.
-        </Step>
+        </Step> */}
       </ul>
       <Divider />
       <Year>2019</Year>
