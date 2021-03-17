@@ -4,6 +4,7 @@ import Container from '@/components/Container';
 
 import { getAllFilesFrontMatter } from '@/lib/mdx';
 import BlogPostPreview from '@/components/BlogPostPreview';
+import MostReadBlogPosts from '@/components/MostReadBlogPosts';
 
 export default function Blog({ posts }) {
   const [searchValue, setSearchValue] = useState('');
@@ -53,18 +54,7 @@ export default function Blog({ posts }) {
             />
           </svg>
         </div>
-        {!searchValue && (
-          <>
-            <h3 className="font-bold text-2xl md:text-4xl tracking-tight mb-4 mt-8 ">
-              Most Popular
-            </h3>
-            <BlogPostPreview
-              title="Building a Fullstack Twitter Clone with NextJS and Prisma"
-              summary="Learn how to build a complete web application with authentication, server-side-rendering, and data storage. "
-              slug="building-a-fullstack-twitter-clone"
-            />
-          </>
-        )}
+        {!searchValue && <MostReadBlogPosts />}
         <h3 className="font-bold text-2xl md:text-4xl tracking-tight mb-4 mt-8 ">
           All Posts
         </h3>
