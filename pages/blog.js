@@ -19,7 +19,7 @@ export default function Blog({ posts }) {
 
   return (
     <Container
-      title="Blog – Kunal Shah"
+      title="Blog"
       description="Thoughts on the software industry, programming, tech, music, and my personal life."
     >
       <div className="flex flex-col justify-center items-start max-w-2xl mx-auto mb-16">

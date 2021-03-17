@@ -5,7 +5,7 @@ import { getTweets } from '@/lib/twitter';
 export default function Tweets({ tweets }) {
   return (
     <Container
-      title="Tweets – Kunal Shah"
+      title="Tweets"
       description="A collection of tweets that inspire me, make me laugh, and make me think."
     >
       <div className="flex flex-col justify-center items-start max-w-2xl mx-auto mb-16">
