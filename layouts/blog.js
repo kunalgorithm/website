@@ -53,21 +53,21 @@ export default function BlogLayout({ children, frontMatter }) {
           <Subscribe />
         </div> */}
         <div className="text-sm text-gray-700 dark:text-gray-300">
-          <a
+          {/* <a
             href={discussUrl(frontMatter.slug)}
             target="_blank"
             rel="noopener noreferrer"
           >
             {'Discuss on Twitter'}
-          </a>
-          {` • `}
-          <a
+          </a> */}
+          {/* {` • `} */}
+          {/* <a
             href={editUrl(frontMatter.slug)}
             target="_blank"
             rel="noopener noreferrer"
           >
             {'Edit on GitHub'}
-          </a>
+          </a> */}
         </div>
       </article>
     </Container>
