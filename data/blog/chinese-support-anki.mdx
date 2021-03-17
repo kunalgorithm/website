@@ -4,14 +4,15 @@ publishedAt: '2021-03-17'
 summary: 'Create SRS flashcards and automatically have the english translation and pronunciations filled in.  '
 ---
 
-I find using [Anki](https://ankiweb.net/about) for invaluable when learning chinese vocabulary, and even moreso the ability to embed pronunciations in my flashcards.
+Today, I found an addon, [Chinese Support Redux](https://github.com/luoliyan/chinese-support-redux), that makes learning chinese vocabular quite a bit more effective when using [Anki](https://ankiweb.net/about) by automatically translating chinese characters and attaching the right pronunciation from Google Translate.
 
-However, the popular library [Chinese Support Redux](https://github.com/luoliyan/chinese-support-redux) has recently found itself without a maintainer and is consequently quite tricky to set up. Here's how I did it.
+<Image
+  src="/static/images/chinese-support-anki/anki-demo.gif"
+  width={500}
+  height={500}
+/>
 
-### Specifications
-
-- macOS Big Sur 11.1
-- Anki Version 2.1.41
+The trouble is that it's found itself without a maintainer recently and is consequently quite tricky to set up. Here's how I did it.
 
 ### Steps
 
@@ -20,5 +21,10 @@ However, the popular library [Chinese Support Redux](https://github.com/luoliyan
 3. Drag the `chinese` directory from folder into the your Anki `addons21` folder (for me, this is `/Users/kunal/Library/Application Support/Anki2/addons21`)
 4. Rename it to `1128979221`, the original addon code.
 5. Restart Anki and follow the original [usage](https://github.com/luoliyan/chinese-support-redux#usage) instructions to create and auto-populate cards.
+
+### Specifications
+
+- macOS Big Sur 11.1
+- Anki Version 2.1.41
 
 > Credit to Dave Fontenot for directing me towards the plugin in the first place, and to `psiii` for the original [fix](https://github.com/luoliyan/chinese-support-redux/issues/169#issuecomment-769820916) mentioned.
