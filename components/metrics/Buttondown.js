@@ -8,7 +8,7 @@ export default function Buttondown() {
   const { data } = useSWR('/api/subscribers', fetcher);
 
   const subscriberCount = format(data?.count);
-  const link = 'https://buttondown.email/leerob';
+  const link = 'https://buttondown.email/kunalgorithm';
 
   return (
     <MetricCard

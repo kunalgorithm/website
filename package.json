@@ -28,7 +28,6 @@
     "comma-number": "2.0.1",
     "date-fns": "2.19.0",
     "fathom-client": "3.0.0",
-    "firebase-admin": "9.5.0",
     "googleapis": "48.0.0",
     "gray-matter": "4.0.2",
     "ioredis": "^4.23.0",
