@@ -34,7 +34,7 @@ export default function Container(props) {
         <meta property="og:url" content={`https://kunal.sh${router.asPath}`} />
         <link rel="canonical" href={`https://kunal.sh${router.asPath}`} />
         <meta property="og:type" content={meta.type} />
-        <meta property="og:site_name" content="Kunal shah" />
+        <meta property="og:site_name" content="Kunal Shah" />
         <meta property="og:description" content={meta.description} />
         <meta property="og:title" content={meta.title} />
         {/* <meta property="og:image" content={meta.image} /> */}
