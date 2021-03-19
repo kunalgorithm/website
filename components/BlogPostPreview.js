@@ -4,7 +4,7 @@ import format from 'comma-number';
 
 import fetcher from '@/lib/fetcher';
 
-const BlogPostPreview = ({ title, summary, slug }) => {
+const BlogPostPreview = ({ title, summary, slug, publishedAt }) => {
   // const { data } = useSWR(`/api/views/${slug}`, fetcher);
   const views = null; //data?.total;
 
@@ -19,6 +19,7 @@ const BlogPostPreview = ({ title, summary, slug }) => {
             <p className="text-gray-500 text-left md:text-right w-32 mb-4 md:mb-0">
               {/* {`${views ? format(views) + '--- views' : ''}`}
                */}
+              {publishedAt && new Date(publishedAt).toLocaleDateString()}
             </p>
           </div>
           <p className="text-gray-600 dark:text-gray-400">{summary}</p>
