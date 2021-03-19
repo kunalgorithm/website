@@ -18,7 +18,7 @@ export default function Container(props) {
   const meta = {
     title: 'Kunal Shah – Web engineer.',
     description: `JavaScript enthusiast.`,
-    // image: 'https://kunal.sh/static/images/banner.png',
+    // image: 'https://kunal.sh/images/banner.png',
     type: 'website',
     ...customMeta
   };
