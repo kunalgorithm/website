@@ -7,6 +7,8 @@ import ConsCard from '@/components/ConsCard';
 
 import Analytics from '@/components/metrics/Analytics';
 import Step from '@/components/Step';
+import ErrorMessage from '@/components/ErrorMessage';
+import SuccessMessage from '@/components/SuccessMessage';
 
 const CustomLink = (props) => {
   const href = props.href;
@@ -30,7 +32,9 @@ const MDXComponents = {
   ConsCard,
   ProsCard,
   Step,
-  Tweet
+  Tweet,
+  ErrorMessage,
+  SuccessMessage
 };
 
 export default MDXComponents;

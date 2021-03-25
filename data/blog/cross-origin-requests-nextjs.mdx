@@ -1,0 +1,72 @@
+---
+title: 'Enable Cross-Origin Requests with Next.js API Routes'
+publishedAt: '2021-03-25'
+summary: 'Configure CORS to allow resource fetching and include credentials from other origins.'
+---
+
+Using `httpOnly` cookies adds a level of security to your application by authenticating clients without making the cookie or JWT readable via javascript on the client itself. These are particularly useful to authenticate resources in [Next.js API Routes](https://nextjs.org/docs/api-routes/introduction).
+
+Here's how to set up `fetch` in the browser to work with Next's API [middlewares](https://nextjs.org/docs/api-routes/api-middlewares).
+
+Fetch exposes an option to [include credentials](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch#sending_a_request_with_credentials_included) made to a resource, which attach server-side `httpOnly` cookies attached to the domain.
+
+We set the request up to `include` credentials:
+
+```js
+fetch("https://example.com/api/secure_resource", {
+    method: 'GET',
+    credentials:'include',
+    mode: 'cors',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({data})
+}
+```
+
+Now, we need to receive a specific set of headers from the server to pass the cors requirements. The documentation warns us
+
+<ErrorMessage>
+  Access-Control-Allow-Origin is prohibited from using a wildcard for requests
+  with credentials: 'include'. In such cases, the exact origin must be provided;
+  even if you are using a CORS unblocker extension, the requests will still
+  fail.
+</ErrorMessage>
+
+Consequently we configure CORS at the beginning of our API routes to preconfigure the correct headers.
+
+First, we set up middlewares according to the documentation
+
+```ts:init-middleware.ts
+function initMiddleware(middleware) {
+  return (req, res) =>
+    new Promise((resolve, reject) => {
+      middleware(req, res, (result) => {
+        if (result instanceof Error) {
+          return reject(result);
+        }
+        return resolve(result);
+      });
+    });
+}
+```
+
+Then create an `initCors` method
+
+```ts:init-middleware.ts
+// top of the file
+import Cors from "cors";
+
+// Initialize the cors middleware
+export const initCors = initMiddleware(
+  // You can read more about the available options here: https://github.com/expressjs/cors#configuration-options
+  Cors({
+    // Options
+    methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
+    origin: ["http://other-example.com", "http://localhost:3001"],
+    credentials: true,
+  })
+);
+```
+
+Notice that we cannot set `origin` to `*` to allow requests from _any_ domain when the request has `credentials` set to `include`. Moreover, we'll need to set `credentials` to `true` on the server response in order to set the `Access-Control-Allow-Origin` header to `true`, which is necessary for the preflight request from the browser to pass and allow the original request to be made.
