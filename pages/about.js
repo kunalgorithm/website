@@ -12,19 +12,15 @@ export default function About() {
         <div className="mb-8 prose leading-6 text-gray-600 dark:text-gray-400">
           <p>
             Hey, I’m Kunal. I'm a developer and I love creating new and useful
-            experiences on the web. &nbsp;Most recently, I've been working on
-            building{' '}
-            <a href="https://webform.so" target="_blank">
-              Webform
-            </a>
-            .
+            experiences on the web.
           </p>
 
           <p>
             I grew up in Westchester, New York and went to school at Rice
             University, where I studied computer science. I spend my free time
             listening to EDM, reading, traveling (where safe to do so), and
-            learning about things that interest me.
+            learning about things that interest me. I created this site
+            primarily for the purpose of documenting and sharing my learnings.
           </p>
         </div>
 

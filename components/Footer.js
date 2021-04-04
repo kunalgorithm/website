@@ -28,11 +28,9 @@ export default function Footer() {
               About
             </a>
           </Link>
-          {/* <Link href="/newsletter">
-            <a className="text-gray-500 hover:text-gray-600 transition">
-              Newsletter
-            </a>
-          </Link> */}
+          <Link href="/now">
+            <a className="text-gray-500 hover:text-gray-600 transition">Now</a>
+          </Link>
         </div>
         <div className="flex flex-col space-y-6">
           <ExternalLink href="https://twitter.com/kunalgorithm">
@@ -40,6 +38,9 @@ export default function Footer() {
           </ExternalLink>
           <ExternalLink href="https://github.com/kunalgorithm">
             GitHub
+          </ExternalLink>
+          <ExternalLink href="https://instagram.com/hi.kunal">
+            Instagram
           </ExternalLink>
         </div>
       </div>

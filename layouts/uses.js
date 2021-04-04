@@ -7,9 +7,7 @@ export default function UsesLayout({ children }) {
         <h1 className="font-bold text-3xl md:text-5xl tracking-tight mb-4 text-black dark:text-white">
           Now
         </h1>
-        <p className="text-gray-700 dark:text-gray-300 mt-2 mb-8">
-          Here's I'm currently up to.
-        </p>
+
         <div className="prose dark:prose-dark w-full">{children}</div>
       </article>
     </Container>
