@@ -53,7 +53,7 @@ function initMiddleware(middleware) {
 
 Then create an `initCors` method
 
-```ts:init-middleware.ts
+```ts:init-middleware.ts highlight=3
 // top of the file
 import Cors from "cors";
 
@@ -61,7 +61,6 @@ import Cors from "cors";
 export const initCors = initMiddleware(
   // You can read more about the available options here: https://github.com/expressjs/cors#configuration-options
   Cors({
-    // Options
     methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
     origin: ["http://other-example.com", "http://localhost:3001"],
     credentials: true,
@@ -70,3 +69,25 @@ export const initCors = initMiddleware(
 ```
 
 Notice that we cannot set `origin` to `*` to allow requests from _any_ domain when the request has `credentials` set to `include`. Moreover, we'll need to set `credentials` to `true` on the server response in order to set the `Access-Control-Allow-Origin` header to `true`, which is necessary for the preflight request from the browser to pass and allow the original request to be made.
+
+### Dynamic Origins
+
+If you require a dynamic origin alongside `credentials: include`, you can combine the two methods above and reflect the requests' `origin` property from the preflight request's headers
+
+```ts
+export function runMiddleware(req, res) {
+  return new Promise((resolve, reject) => {
+    Cors({
+      methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
+      origin: req.headers.origin,
+      credentials: true
+    })(req, res, (result) => {
+      if (result instanceof Error) {
+        return reject(result);
+      }
+
+      return resolve(result);
+    });
+  });
+}
+```

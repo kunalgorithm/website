@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Timeline from '../components/Timeline';
 
 import Container from '@/components/Container';
 
@@ -23,7 +24,7 @@ export default function About() {
             primarily for the purpose of documenting and sharing my learnings.
           </p>
         </div>
-
+        <Timeline />
         {/* <iframe
           height="280"
           src="https://www.google.com/maps/d/embed?mid=1QOGi-u8d4vwoQ4vC4zQjKxrSfsDIQdOK&hl=en"

@@ -1,13 +1,13 @@
 import Link from 'next/link';
 
-import Timeline from '../components/Timeline';
 import Container from '../components/Container';
 import BlogPostPreview from '../components/BlogPostPreview';
 import Subscribe from '../components/Subscribe';
 import ProjectCard from '../components/ProjectCard';
 import MostReadBlogPosts from '../components/MostReadBlogPosts';
+import { getAllFilesFrontMatter } from '@/lib/mdx';
 
-export default function Home() {
+export default function Home({ posts }) {
   return (
     <Container>
       <div className="flex flex-col justify-center items-start max-w-2xl mx-auto mb-16">
@@ -18,7 +18,7 @@ export default function Home() {
           I'm a developer and I love creating new and useful experiences on the
           web. You’ve found my personal corner of the internet.
         </h2>
-        <MostReadBlogPosts />
+        <MostReadBlogPosts posts={posts} />
 
         <h3 className="font-bold text-2xl md:text-4xl tracking-tight mb-4 mt-8">
           Projects
@@ -38,9 +38,15 @@ export default function Home() {
           description="Strava for Meditation: Actually stick to your meditation goals with motivational quotes, streak tracking, and most importantly.. friends ✨ "
           href="https://mindstreaks.com/"
         />
-        <Timeline />
+
         {/* <Subscribe /> */}
       </div>
     </Container>
   );
+}
+
+export async function getStaticProps() {
+  const posts = await getAllFilesFrontMatter('blog');
+
+  return { props: { posts } };
 }
