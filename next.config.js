@@ -5,6 +5,10 @@ module.exports = {
       'pbs.twimg.com' // Twitter Profile Picture
     ]
   },
+  future: {
+    webpack5: true,
+    strictPostcssConfiguration: true
+  },
   webpack: (config, { dev, isServer }) => {
     if (isServer) {
       require('./scripts/generate-sitemap');
