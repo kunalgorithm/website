@@ -24,6 +24,11 @@ export default function Home({ posts }) {
           Projects
         </h3>
         <ProjectCard
+          title="Polygon Video"
+          description="Learn foreign languages by watching interactive videos. "
+          href="https://polygon.video/"
+        />
+        <ProjectCard
           title="Webform.so"
           description="Create customizable and embeddable forms to collect data and automate processes without having to write a single line of code."
           href="https://webform.so/"
