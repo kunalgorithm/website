@@ -15,7 +15,7 @@ export default function Home({ posts }) {
           Hey, I’m Kunal Shah
         </h1>
         <h2 className="prose text-gray-600 dark:text-gray-400 mb-16">
-          I'm a developer and I love creating new and useful experiences on the
+          I spend most of my time creating new and useful experiences on the
           web. You’ve found my personal corner of the internet.
         </h2>
         <MostReadBlogPosts posts={posts} />

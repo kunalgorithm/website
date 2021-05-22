@@ -43,10 +43,7 @@ const FullTimeline = () => (
     <Divider />
     <Year>2018</Year>
     <ul>
-      <Step title="Graduated College 🤘🏻">
-        One of my most cherished accomplishments. I worked my ass off to get
-        this degree.
-      </Step>
+      <Step title="Graduated College 🤘🏻"></Step>
       <Step title="Travelled throughout Asia 🌎">
         Spent 6 months after graduation travelling solo throughout Singapore,
         Thailand, Bali, Vietnam, Malaysia, and Taiwan.
@@ -132,9 +129,14 @@ export default function Timeline() {
           Great year for a wedding, huh? We had a small ceremony with family and
           it was better than I could have imagined.
         </Step> */}
-        <Step title="Built Mindstreaks">
-          Starting at the beginning of 2020, I moved into a tech leadership role
-          on an e-commerce development team at Hy-Vee.
+        <Step title="Built MindStreaks">
+          Adopting a meditation practice has altered my life for the better. I
+          built{' '}
+          <a href="https://mindstreaks.com" className="text-indigo-500">
+            MindStreaks
+          </a>{' '}
+          with Patricia Mou to make it easier to keep ourselves accountable with
+          the practice.
         </Step>
         {/* <Step title="Quit my job">
           I taught hundreds of students from all over the world how to build web
@@ -144,13 +146,10 @@ export default function Timeline() {
       <Divider />
       <Year>2019</Year>
       <ul>
-        <Step title="Moved to San Francisco">
-          Led design system architecture at Hy-Vee, building new components with
-          React, Storybook, and styled-components.
-        </Step>
+        <Step title="Moved to San Francisco"></Step>
         <Step title="Joined On Deck">
           Joined On Deck as the second employee and first engineer. It was the
-          greatest and most fulfilling job of my career.
+          most fulfilling job of my career.
         </Step>
       </ul>
       {isShowingFullTimeline ? (

@@ -4,10 +4,6 @@ publishedAt: '2020-05-29'
 summary: 'Learn how to build a complete web application with authentication, server-side-rendering, and data storage. '
 ---
 
-> Updated on December 23, 2020 to reflect the changes in the [Prisma Migrate Preview Release](https://www.prisma.io/blog/prisma-migrate-preview-b5eno5g08d0b)
-
-> As always, feel free to DM me on [twitter](https://twitter.com/kunalgorithm) with any feedback, suggestions, or bugs.
-
 This tutorial covers how to build a fullstack application that allows users to sign up or login, then post tweets to a global feed. You can find the code for the completed app [here](https://github.com/kunalgorithm/fullstack-twitter).
 
 A demo of what we'll be building is currently deployed at [fullstack-twitter.onrender.com](https://fullstack-twitter.onrender.com)
@@ -485,6 +481,8 @@ export const Profile = () => {
   );
 };
 ```
+
+Now, render `<Profile />` in `pages/index.tsx` so we can view our new component.
 
 You'll notice we're using a new hook, `useMe`. As you can guess, this will return the currently authenticated user. Let's go ahead and add this hook to our hooks utility.
 
