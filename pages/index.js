@@ -25,7 +25,7 @@ export default function Home({ posts }) {
         </h3>
         <ProjectCard
           title="Polygon Video"
-          description="Learn foreign languages by watching interactive videos. "
+          description="Learn foreign languages by watching interactive videos. Polygon adds an entirely new layer of engagement on top of video to unlock a deeper form of interaction. "
           href="https://polygon.video/"
         />
         <ProjectCard
