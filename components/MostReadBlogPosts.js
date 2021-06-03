@@ -12,7 +12,7 @@ const MostReadBlogPosts = ({ posts }) => {
         <BlogPostPreview
           key={post.slug}
           title={post.title}
-          summary={post.summary}
+          publishedAt={post.publishedAt}
           slug={post.slug}
         />
       ))}

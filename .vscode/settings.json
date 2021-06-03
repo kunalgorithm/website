@@ -1,0 +1,7 @@
+{
+    "pasteImage.basePath": "${projectRoot}/public/images",
+    "pasteImage.namePrefix": "image",
+    "pasteImage.showFilePathConfirmInputBox": true,
+    "pasteImage.path": "${projectRoot}/public/images",
+    "pasteImage.insertPattern": "![ImageAlt](/images/${imageSyntaxPrefix}${imageFilePath}${imageSyntaxSuffix})"
+}
