@@ -48,7 +48,7 @@ export default function Container(props) {
         )}
       </Head>
       <nav
-        className={`sticky-nav flex justify-between items-center max-w-4xl w-full p-8 my-0 md:my-8 mx-auto  ${primaryBg} bg-opacity-60`}
+        className={`sticky-nav flex justify-between items-center max-w-4xl w-full px-8 py-5 md:py-6 my-0 md:my-8 mx-auto  ${primaryBg} bg-opacity-70 opacity-60`}
       >
         <a href="#skip" className="sr-only focus:not-sr-only">
           Skip to content

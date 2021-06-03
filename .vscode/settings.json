@@ -3,5 +3,6 @@
     "pasteImage.namePrefix": "image",
     "pasteImage.showFilePathConfirmInputBox": true,
     "pasteImage.path": "${projectRoot}/public/images",
-    "pasteImage.insertPattern": "![ImageAlt](/images/${imageSyntaxPrefix}${imageFilePath}${imageSyntaxSuffix})"
+    "pasteImage.insertPattern": "![ImageAlt](/images/${imageSyntaxPrefix}${imageFilePath}${imageSyntaxSuffix})",
+    "explorer.incrementalNaming": "smart"
 }
