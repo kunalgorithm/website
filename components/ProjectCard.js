@@ -12,7 +12,7 @@ const trackGoal = (title) => {
 export default function ProjectCard({ title, description, href }) {
   return (
     <a
-      className="mb-4 hover:shadow"
+      className="mb-4 hover:shadow w-full"
       href={href}
       onClick={() => trackGoal(title)}
       aria-label={title}

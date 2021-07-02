@@ -25,7 +25,7 @@ export default function Home({ posts }) {
         </h3>
         <ProjectCard
           title="Polygon Video"
-          description="Learn foreign languages by watching interactive videos. Polygon adds an entirely new layer of engagement on top of video to unlock a deeper form of interaction. "
+          description="Learn foreign languages by watching interactive videos.  "
           href="https://polygon.video/"
         />
         <ProjectCard
@@ -45,7 +45,7 @@ export default function Home({ posts }) {
         />
         <ProjectCard
           title="Mindstreaks"
-          description="Strava for Meditation: Actually stick to your meditation goals with motivational quotes, streak tracking, and most importantly.. friends ✨ "
+          description="Strava for Meditation: Actually stick to your meditation goals with motivational quotes, streak tracking, and friends. "
           href="https://mindstreaks.com/"
         />
 

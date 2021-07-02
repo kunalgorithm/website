@@ -8,6 +8,7 @@ import MostReadBlogPosts from '@/components/MostReadBlogPosts';
 
 export default function Blog({ posts }) {
   const [searchValue, setSearchValue] = useState('');
+  console.log(posts);
   const filteredBlogPosts = posts
     .sort(
       (a, b) =>
