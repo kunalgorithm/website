@@ -29,6 +29,11 @@ export default function Home({ posts }) {
           href="https://polygon.video/"
         />
         <ProjectCard
+          title="Echo Cards"
+          description="Remember what you learn with spaced repetition. "
+          href="https://echocards.co"
+        />
+        <ProjectCard
           title="Webform.so"
           description="Create customizable and embeddable forms to collect data and automate processes without having to write a single line of code."
           href="https://webform.so/"
