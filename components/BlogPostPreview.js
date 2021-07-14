@@ -15,7 +15,12 @@ const BlogPostPreview = ({ title, summary, slug, publishedAt }) => {
             <p className="text-gray-500 text-left md:text-right w-32 mb-4 md:mb-0">
               {/* {`${views ? format(views) + '--- views' : ''}`}
                */}
-              {publishedAt && new Date(publishedAt).toLocaleDateString()}
+              {publishedAt &&
+                new Date(publishedAt).toLocaleDateString('en-US', {
+                  year: 'numeric',
+                  month: 'short',
+                  day: 'numeric'
+                })}
             </p>
           </div>
           {/* <p className="text-gray-600 dark:text-gray-400">{summary}</p> */}
