@@ -34,7 +34,7 @@ export default function Home({ posts }) {
           href="https://echocards.co"
         />
         <ProjectCard
-          title="Webform.so"
+          title="Webform"
           description="Create customizable and embeddable forms to collect data and automate processes without having to write a single line of code."
           href="https://webform.so/"
         />

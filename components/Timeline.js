@@ -104,8 +104,20 @@ export default function Timeline() {
       </h3>
       <Year>2021</Year>
       <ul>
-        <Step title="Moved to Taiwan 🇹🇼">
-          I'm excited to be joining the most recent Hacker Fellowship in Taiwan.
+        <Step title="Became a puppy papa">
+          Welcomed{' '}
+          <a
+            href="https://www.instagram.com/arlobrooklynfrenchie/"
+            className="text-indigo-500"
+          >
+            Arlo
+          </a>{' '}
+          into our lives.{' '}
+        </Step>
+        <Step title="Moved to New York City 🗽"></Step>
+        <Step title="Lived in Taiwan 🇹🇼">
+          Moved to Taiwan at the height of the pandemic to join a group-living
+          community.
         </Step>
       </ul>
       <Divider />
