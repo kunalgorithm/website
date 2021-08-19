@@ -23,12 +23,23 @@ export default function About() {
             learning about things that interest me. I created this site
             primarily for the purpose of documenting and sharing my learnings.
           </p>
+          <p>
+            I currently live in Brooklyn with my girlfriend, Patricia, and
+            puppy,{' '}
+            <a
+              href="https://www.instagram.com/arlobrooklynfrenchie/"
+              className="text-indigo-500"
+            >
+              Arlo
+            </a>
+            .
+          </p>
         </div>
         <Timeline />
         {/* <iframe
           height="280"
           src="https://www.google.com/maps/d/embed?mid=1QOGi-u8d4vwoQ4vC4zQjKxrSfsDIQdOK&hl=en"
-          title="Lee's Travel Map"
+          title="Kunals's Travel Map"
           width="100%"
         /> */}
       </div>
