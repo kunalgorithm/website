@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 import hydrate from 'next-mdx-remote/hydrate';
 
-import { getFiles, getFileBySlug } from '@/lib/mdx';
-import BlogLayout from '@/layouts/blog';
-import MDXComponents from '@/components/MDXComponents';
+import { getFiles, getFileBySlug } from 'lib/mdx';
+import BlogLayout from 'layouts/blog';
+import MDXComponents from 'components/MDXComponents';
 import { useRouter } from 'next/router';
 
 export default function Blog({ mdxSource, frontMatter }) {

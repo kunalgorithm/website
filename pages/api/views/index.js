@@ -1,4 +1,4 @@
-// import db from '@/lib/firebase';
+// import db from 'lib/firebase';
 
 export default async (_, res) => {
   // const snapshot = await db.ref('views').once('value');

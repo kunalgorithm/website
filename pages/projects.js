@@ -11,9 +11,9 @@ import React from 'react';
 // import WiessCollege from '/static/portfolio/teamwiess.png';
 // import RiceBlockchain from '/static/portfolio/rice-blockchain.png';
 // import TaskTimer from '/static/portfolio/task-timer.png';
-// import Container from '@/components/Container';
+// import Container from 'components/Container';
 // TODO: add medicalbills.fyi, found ?
-import Container from '@/components/Container';
+import Container from 'components/Container';
 const projects = [
   // {
   //   title: "Snailsheet",

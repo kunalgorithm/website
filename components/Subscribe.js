@@ -4,10 +4,10 @@ import useSWR from 'swr';
 import format from 'comma-number';
 import { trackGoal } from 'fathom-client';
 
-import fetcher from '@/lib/fetcher';
-import SuccessMessage from '@/components/SuccessMessage';
-import ErrorMessage from '@/components/ErrorMessage';
-import LoadingSpinner from '@/components/LoadingSpinner';
+import fetcher from 'lib/fetcher';
+import SuccessMessage from 'components/SuccessMessage';
+import ErrorMessage from 'components/ErrorMessage';
+import LoadingSpinner from 'components/LoadingSpinner';
 
 export default function Subscribe() {
   const [form, setForm] = useState(false);

@@ -5,7 +5,7 @@ import BlogPostPreview from '../components/BlogPostPreview';
 import Subscribe from '../components/Subscribe';
 import ProjectCard from '../components/ProjectCard';
 import MostReadBlogPosts from '../components/MostReadBlogPosts';
-import { getAllFilesFrontMatter } from '@/lib/mdx';
+import { getAllFilesFrontMatter } from 'lib/mdx';
 
 export default function Home({ posts }) {
   return (
@@ -14,30 +14,29 @@ export default function Home({ posts }) {
         <h1 className="font-bold text-3xl md:text-5xl tracking-tight mb-4 ">
           Hey, I’m Kunal Shah
         </h1>
-        <h2 className="prose text-gray-600 dark:text-gray-400 mb-16">
-          I spend most of my time creating new and useful experiences on the
-          web. You’ve found my personal corner of the internet.
+        <h2 className="prose text-gray-600 dark:text-gray-300 mb-16">
+          You’ve found my corner of the internet.
         </h2>
         <MostReadBlogPosts posts={posts} />
 
         <h3 className="font-bold text-2xl md:text-4xl tracking-tight mb-4 mt-8">
-          Projects
+          Recent Projects
         </h3>
-        <ProjectCard
+        {/* <ProjectCard
           title="Polygon Video"
           description="Learn foreign languages by watching interactive videos.  "
           href="https://polygon.video/"
-        />
+        /> */}
         <ProjectCard
           title="Echo Cards"
           description="Remember what you learn with spaced repetition. "
           href="https://echocards.co"
         />
-        <ProjectCard
+        {/* <ProjectCard
           title="Webform"
           description="Create customizable and embeddable forms to collect data and automate processes without having to write a single line of code."
           href="https://webform.so/"
-        />
+        /> */}
         <ProjectCard
           title="Compose.ai"
           description="An AI-powered email writer that lets you draft and send emails faster than you thought possible."

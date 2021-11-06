@@ -2,13 +2,13 @@ import Link from 'next/link';
 import Image from 'next/image';
 import Tweet from 'react-tweet-embed';
 
-import ProsCard from '@/components/ProsCard';
-import ConsCard from '@/components/ConsCard';
+import ProsCard from 'components/ProsCard';
+import ConsCard from 'components/ConsCard';
 
-import Analytics from '@/components/metrics/Analytics';
-import Step from '@/components/Step';
-import ErrorMessage from '@/components/ErrorMessage';
-import SuccessMessage from '@/components/SuccessMessage';
+import Analytics from 'components/metrics/Analytics';
+import Step from 'components/Step';
+import ErrorMessage from 'components/ErrorMessage';
+import SuccessMessage from 'components/SuccessMessage';
 
 const CustomLink = (props) => {
   const href = props.href;

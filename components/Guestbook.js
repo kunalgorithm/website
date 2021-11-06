@@ -2,10 +2,10 @@ import { useState, useRef } from 'react';
 import { format } from 'date-fns';
 import useSWR, { mutate } from 'swr';
 
-import fetcher from '@/lib/fetcher';
-import SuccessMessage from '@/components/SuccessMessage';
-import ErrorMessage from '@/components/ErrorMessage';
-import LoadingSpinner from '@/components/LoadingSpinner';
+import fetcher from 'lib/fetcher';
+import SuccessMessage from 'components/SuccessMessage';
+import ErrorMessage from 'components/ErrorMessage';
+import LoadingSpinner from 'components/LoadingSpinner';
 
 function GuestbookEntry({ entry, user }) {
   const deleteEntry = async (e) => {

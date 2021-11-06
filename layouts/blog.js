@@ -1,9 +1,9 @@
 import Image from 'next/image';
 import { parseISO, format } from 'date-fns';
 
-import Container from '@/components/Container';
-import Subscribe from '@/components/Subscribe';
-import ViewCounter from '@/components/ViewCounter';
+import Container from 'components/Container';
+import Subscribe from 'components/Subscribe';
+import ViewCounter from 'components/ViewCounter';
 
 const editUrl = (slug) =>
   `https://github.com/kunalgorithm/website/edit/main/data/blog/${slug}.mdx`;

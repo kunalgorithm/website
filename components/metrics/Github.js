@@ -1,8 +1,8 @@
 import useSWR from 'swr';
 import format from 'comma-number';
 
-import fetcher from '@/lib/fetcher';
-import MetricCard from '@/components/metrics/Card';
+import fetcher from 'lib/fetcher';
+import MetricCard from 'components/metrics/Card';
 
 export default function GitHub() {
   const { data } = useSWR('/api/github', fetcher);
