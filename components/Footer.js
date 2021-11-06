@@ -33,7 +33,7 @@ export default function Footer() {
           </Link>
         </div>
         <div className="flex flex-col space-y-6">
-          <ExternalLink href="https://twitter.com/kunalgorithm">
+          <ExternalLink href="https://twitter.com/kunalshxh">
             Twitter
           </ExternalLink>
           <ExternalLink href="https://github.com/kunalgorithm">
