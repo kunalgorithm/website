@@ -14,6 +14,7 @@ export default function About({ mdxSource, frontMatter }) {
     <Container title={title}>
       <Layout frontMatter={frontMatter} title={title}>
         {content}
+        <Timeline />
       </Layout>
     </Container>
   );
