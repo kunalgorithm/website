@@ -26,9 +26,9 @@ export default function Footer() {
               About
             </a>
           </Link>
-          <Link href="/now">
+          {/* <Link href="/now">
             <a className="text-gray-500 hover:text-gray-600 transition">Now</a>
-          </Link>
+          </Link> */}
         </div>
         <div className="flex flex-col space-y-6">
           <ExternalLink href="https://twitter.com/kunalshxh">
