@@ -2,7 +2,7 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
-import NextLink from 'next/link';
+import Link from 'next/link';
 
 import Footer from 'components/Footer';
 
@@ -105,20 +105,22 @@ export default function Container(props) {
           Skip to content
         </a>
         <div>
-          <NextLink href="/">
-            <a className="p-1 sm:p-4 sm:pl-0 text-gray-900 dark:text-gray-100">
-              Home
-            </a>
-          </NextLink>
-          {/* <NextLink href="/about">
+          <Link
+            href="/"
+            className="p-1 sm:p-4 sm:pl-0 text-gray-900 dark:text-gray-100"
+          >
+            Home
+          </Link>
+          {/* <Link href="/about">
             <a className="p-1 sm:p-4 text-gray-900 dark:text-gray-100">About</a>
-          </NextLink> */}
-          {/* <NextLink href="/now">
+          </Link> */}
+          {/* <Link href="/now">
             <a className="p-1 sm:p-4 text-gray-900 dark:text-gray-100">Now</a>
-          </NextLink> */}
-          <NextLink href="/blog">
-            <a className="p-1 sm:p-4 text-gray-900 dark:text-gray-100">Blog</a>
-          </NextLink>
+          </Link> */}
+          <Link
+            href="/blog"
+            className="p-1 sm:p-4 text-gray-900 dark:text-gray-100"
+          ></Link>
         </div>
         <DarkModeButton />
       </nav>
