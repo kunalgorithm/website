@@ -55,22 +55,10 @@ const projects = [
       'Generate polished ads for any product instantly. Input your product details and get professional ads with logos and taglines.'
   },
   {
-    name: 'Evelon',
-    url: 'https://evelon.ai',
-    description:
-      'SEO for ChatGPT, Gemini, and other generative AI applications. Optimize your content to rank in the new era of AI-powered search.'
-  },
-  {
     name: 'Ascend',
     url: 'https://rideascend.com',
     description:
       'Electric motorcycles with breakthrough driving range. Experience the future of two-wheeled transportation.'
-  },
-  {
-    name: 'Evoke Art',
-    url: 'https://evoke.art',
-    description:
-      'A gallery of AI-generated artwork that you can purchase and ship to your home. Discover unique pieces and bring them into your space.'
   },
   {
     name: 'Compose AI',
