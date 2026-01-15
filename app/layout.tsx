@@ -65,6 +65,12 @@ export default function RootLayout({
                 About
               </Link>
               <Link
+                href="/projects"
+                className="text-gray-900 dark:text-gray-100 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
+              >
+                Projects
+              </Link>
+              <Link
                 href="/blog"
                 className="text-gray-900 dark:text-gray-100 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
               >
