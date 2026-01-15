@@ -13,6 +13,12 @@ const projects = [
       'A voice AI matchmaker for dating. It conducts high-signal phone call interviews and matches people based on outlier likelihoods of forming meaningful connections.'
   },
   {
+    name: 'Form',
+    url: 'https://buildwithform.com/',
+    description:
+      'A 3D kitchen design tool for contractors. Scan a kitchen space and turn it into a fully renovated 3D design with one-click materials ordering. The one-stop shop design and procurement marketplace for home renovation contractors.'
+  },
+  {
     name: 'AI Slop',
     url: 'https://aislop.com',
     description:
