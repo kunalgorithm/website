@@ -81,7 +81,7 @@ export default async function Home() {
             Co-founder of <a href="http://Cocomo.ai" target="_blank" rel="noopener noreferrer">Cocomo.ai</a>, a marketing optimization platform. We use deep learning algorithms to manage marketing budgets across ad platforms. We manage over $100M across clients like USAA, Bain, Yum Brands, Coca Cola, and more.
           </li>
           <li>
-            Built electric motorcycles with 200 miles range. Find video of our prototypes is below.
+            Built electric motorcycles with 200 miles range. 
           </li>
           <li>
             Founded <a href="http://compose.ai" target="_blank" rel="noopener noreferrer">compose.ai</a>, one of the first AI-powered writing tools in the browser. Joined YC’s w21 batch and scaled to 500k monthly active users.
@@ -90,7 +90,7 @@ export default async function Home() {
             Joined <a href="https://joinodf.com/" target="_blank" rel="noopener noreferrer">On Deck</a> as their first engineering hire and grew into Head of Engineering.
           </li>
           <li>
-            Studied CS at Rice, where I started the blockchain club, ran D1 Track, and managed a $10k budget to throw events across campus.
+            Studied CS at Rice, where I started the blockchain club, ran D1 Track, and served as an academic advisor for the computer science department.
           </li>
           <li>
             In high school, I was New York state champion in the mile run and was voted best dressed.
