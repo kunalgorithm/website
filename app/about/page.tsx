@@ -37,7 +37,7 @@ export default function AboutPage() {
             Co-founder of <a href="http://Cocomo.ai" target="_blank" rel="noopener noreferrer">Cocomo.ai</a>, a marketing optimization platform. We use deep learning algorithms to manage marketing budgets across ad platforms. We manage over $100M across clients like USAA, Bain, Yum Brands, Coca Cola, and more.
           </li>
           <li>
-            Built electric motorcycles with 200 miles range.
+            Built electric motorcycles with a 200-mile driving range by pioneering a novel battery pack configuration and cooling method. This allowed us to utilize high-energy density cylindrical lithium-ion cells in a 12.5kWh pack, delivering 20-30% greater range than any competitive motorcycle on the market.
           </li>
           <li>
             Founded <a href="http://compose.ai" target="_blank" rel="noopener noreferrer">compose.ai</a>, one of the first AI-powered writing tools in the browser. Joined YC's w21 batch and scaled to 500k monthly active users.
