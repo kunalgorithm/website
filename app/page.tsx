@@ -12,7 +12,7 @@ export default async function Home() {
     <div className="mb-16">
       <div className="flex items-center gap-6 mb-6">
         <Image
-          src="/prof_pic.jpeg"
+          src="/profile-pic.PNG"
           alt="Kunal Shah"
           width={80}
           height={80}
