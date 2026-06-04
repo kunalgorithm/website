@@ -8,3 +8,4 @@ public/feed.xml
 .vercel
 .DS_Store
 .env
+*.tsbuildinfo

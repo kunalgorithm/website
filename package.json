@@ -34,10 +34,10 @@
     "tailwindcss": "^3.4.17"
   },
   "devDependencies": {
-    "@types/node": "^24.0.13",
+    "@types/node": "^25.9.1",
     "@types/react": "^19.1.8",
     "prettier": "^3.6.2",
-    "typescript": "^5.8.3"
+    "typescript": "^6.0.3"
   },
   "prettier": {
     "arrowParens": "always",
