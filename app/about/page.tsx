@@ -25,7 +25,7 @@ export default function AboutPage() {
 
       <div className="prose prose-lg dark:prose-invert">
         <p className="mb-8">
-          I like building creative and useful things for the world.
+          I'm currently leading product and engineering at <a target="_blank" rel="noopener noreferrer" href="https://accio3d.ai">Accio3D</a>, a marketplace for 3D printing. We're making it easy and accessible to get parts.
         </p>
       </div>
 
@@ -34,7 +34,7 @@ export default function AboutPage() {
 
         <ul className="mb-4 ml-6 list-disc">
           <li>
-            Co-founder of <a href="http://Cocomo.ai" target="_blank" rel="noopener noreferrer">Cocomo.ai</a>, a marketing optimization platform. We use deep learning algorithms to manage marketing budgets across ad platforms. We manage over $100M across clients like USAA, Bain, Yum Brands, Coca Cola, and more.
+            Co-founded of <a href="http://Cocomo.ai" target="_blank" rel="noopener noreferrer">Cocomo.ai</a>, a marketing optimization platform. We use deep learning algorithms to manage marketing budgets across ad platforms. We manage over $100M across clients like USAA, Bain, Yum Brands, Coca Cola, and more.
           </li>
           <li>
             Built electric motorcycles with a 200-mile driving range by pioneering a novel battery pack configuration and cooling method. This allowed us to utilize high-energy density cylindrical lithium-ion cells in a 12.5kWh pack, delivering 20-30% greater range than any competitive motorcycle on the market.
@@ -46,7 +46,7 @@ export default function AboutPage() {
             Joined <a href="https://joinodf.com/" target="_blank" rel="noopener noreferrer">On Deck</a> as their first engineering hire and grew into Head of Engineering.
           </li>
           <li>
-            Studied CS at Rice, where I started the blockchain club, ran D1 Track, and served as an academic advisor for the computer science department.
+            Studied computer science at Rice, where I started the blockchain club, ran D1 Track, and served as an academic advisor for the CS department.
           </li>
           <li>
             In high school, I was New York state champion in the mile run and was voted best dressed.

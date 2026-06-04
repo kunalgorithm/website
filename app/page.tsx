@@ -20,7 +20,7 @@ export default async function Home() {
           priority
         />
         <h1 className="font-bold text-3xl md:text-5xl tracking-tight text-black dark:text-white">
-          Hey, I'm Kunal Shah
+          Hey, I'm Kunal 
         </h1>
       </div>
       <div className="flex gap-4 mb-6">
