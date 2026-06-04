@@ -11,7 +11,7 @@ export default function AboutPage() {
     <div className="mb-16">
       <div className="flex items-center gap-6 mb-8">
         <Image
-          src="/profile-pic.PNG"
+          src="/profile-pic.png"
           alt="Kunal Shah"
           width={100}
           height={100}

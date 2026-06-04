@@ -58,7 +58,7 @@ export default async function BlogPost({ params }: Props) {
               alt="Kunal Shah"
               height={24}
               width={24}
-              src="/profile-pic.PNG"
+              src="/profile-pic.png"
               className="rounded-full"
             />
             <p className="text-sm text-gray-700 dark:text-gray-300 ml-2">
