@@ -9,3 +9,4 @@ public/feed.xml
 .DS_Store
 .env
 *.tsbuildinfo
+package-lock.json
